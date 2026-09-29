@@ -1,0 +1,50 @@
+<header class="site-header">
+  <div class="header-container">
+    <a href="#" class="brand">
+      <span class="brand-name">IgnI</span>
+      <span class="brand-sep">/</span>
+      <span class="brand-role">frontend dev</span>
+    </a>
+
+    <nav class="nav-links">
+      <button type="button" (click)="scrollTo('app-bento-grid')" class="nav-link">Проекты</button>
+      <button type="button" (click)="scrollTo('app-skills-matrix')" class="nav-link">Стек</button>
+      <button type="button" (click)="scrollTo('app-footer')" class="nav-link">Контакты</button>
+    </nav>
+
+    <div class="header-actions">
+      <button
+        (click)="toggleTerminal()"
+        type="button"
+        class="terminal-btn"
+        aria-label="Терминал (⌘K / Ctrl+K)"
+      >
+        <svg lucideTerminal size="14"></svg>
+        <span class="btn-text">CLI</span>
+        <kbd class="kbd">⌘K</kbd>
+      </button>
+
+      <div class="actions-sep"></div>
+
+      <a
+        href="https://github.com/IVKLD"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="icon-link"
+        aria-label="GitHub профиль"
+      >
+        <svg appGithubIcon size="16"></svg>
+      </a>
+
+      <a
+        href="https://t.me/IVKLCD"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="icon-link"
+        aria-label="Telegram"
+      >
+        <svg lucideSend size="16"></svg>
+      </a>
+    </div>
+  </div>
+</header>

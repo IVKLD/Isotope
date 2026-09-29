@@ -1,0 +1,189 @@
+:host {
+  display: contents;
+}
+
+.gnome-window {
+  max-width: 680px;
+  height: 440px;
+  max-height: 80vh;
+}
+
+.headerbar-left {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.app-icon {
+  color: var(--accent);
+}
+
+.app-title {
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.headerbar-center {
+  font-size: 0.78rem;
+  color: var(--text-dim);
+}
+
+.headerbar-right {
+  display: flex;
+  align-items: center;
+}
+
+.terminal-screen {
+  flex: 1;
+  background: var(--bg-terminal);
+  padding: 1rem;
+  overflow-y: auto;
+  font-size: 0.82rem;
+  line-height: 1.55;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.terminal-entry {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.prompt-group {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.prompt-line-top {
+  font-size: 0.8rem;
+  line-height: 1.3;
+}
+
+.prompt-line-bottom {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.82rem;
+  line-height: 1.3;
+}
+
+.p-branch {
+  color: var(--purple-light);
+  font-weight: 500;
+}
+
+.p-user {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.p-path {
+  color: var(--accent-light);
+  font-weight: 600;
+}
+
+.p-cmd {
+  color: var(--text-code);
+  font-weight: 500;
+  margin-left: 2px;
+}
+
+.active-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  margin-top: 0.25rem;
+}
+
+.prompt-line-bottom.active {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+}
+
+.output-block {
+  margin-top: 3px;
+  padding-left: 0.75rem;
+}
+
+.output-block.success {
+  color: var(--accent);
+}
+.output-block.warning {
+  color: var(--terminal-warning);
+}
+.output-block.error {
+  color: var(--terminal-error);
+}
+.output-block.list {
+  color: var(--terminal-list);
+}
+.output-block.text {
+  color: var(--text-muted);
+}
+
+.output-line {
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.cli-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--text-white);
+  font-size: 0.82rem;
+}
+
+.send-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-dim);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.send-btn:hover {
+  color: var(--text-white);
+}
+
+.terminal-quick-bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  background: var(--bg-quickbar);
+  border-top: 1px solid rgba(var(--purple-rgb), 0.12);
+  font-size: 0.72rem;
+}
+
+.quick-label {
+  color: var(--text-dim);
+  margin-right: 4px;
+}
+
+.quick-btn {
+  background: rgba(var(--purple-rgb), 0.08);
+  border: 1px solid rgba(var(--purple-rgb), 0.16);
+  border-radius: 4px;
+  color: var(--text-muted);
+  font-size: 0.72rem;
+  padding: 2px 7px;
+  cursor: pointer;
+  line-height: 1.2;
+  transition: all 0.15s ease;
+}
+
+.quick-btn:hover {
+  background: rgba(var(--purple-rgb), 0.18);
+  color: var(--text-white);
+}

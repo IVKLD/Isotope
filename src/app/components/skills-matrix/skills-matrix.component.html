@@ -1,0 +1,23 @@
+<section class="skills-section">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">Технический стек</h2>
+      <p class="section-desc">
+        Технологии и концепции, которые реально применяются в моих проектах.
+      </p>
+    </div>
+
+    <div class="skills-grid">
+      @for (group of skillGroups; track group.category) {
+        <div class="skill-category-card">
+          <h3 class="category-title font-mono">{{ group.category }}</h3>
+          <div class="pills-list">
+            @for (item of group.items; track item) {
+              <span class="skill-pill">{{ item }}</span>
+            }
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>

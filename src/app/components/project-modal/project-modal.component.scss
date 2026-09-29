@@ -1,0 +1,153 @@
+:host {
+  display: contents;
+}
+
+.gnome-window {
+  max-width: 740px;
+  max-height: 85vh;
+}
+
+.headerbar-left {
+  display: flex;
+  align-items: center;
+}
+
+.window-subtitle {
+  font-size: 0.75rem;
+  color: var(--text-dim);
+}
+
+.headerbar-center {
+  display: flex;
+  align-items: center;
+}
+
+.window-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-white);
+}
+
+.headerbar-right {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.gnome-action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 8px;
+  border-radius: 6px;
+  background: rgba(var(--purple-rgb), 0.08);
+  border: 1px solid rgba(var(--purple-rgb), 0.18);
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  line-height: 1;
+  transition: all 0.15s ease;
+
+  &:hover {
+    background: rgba(var(--purple-rgb), 0.18);
+    color: var(--text-white);
+  }
+}
+
+.gnome-badge-private {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 8px;
+  border-radius: 6px;
+  background: rgba(var(--purple-rgb), 0.06);
+  border: 1px solid var(--border-purple-subtle);
+  color: var(--text-dim);
+  font-size: 0.72rem;
+  line-height: 1;
+}
+
+.modal-content {
+  padding: 1.5rem;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  background: var(--bg-deep);
+}
+
+.modal-desc {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.section-box {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.section-heading {
+  font-size: 0.8rem;
+  color: var(--purple-light);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.highlights-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding-left: 0.25rem;
+}
+
+.highlights-list li {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  line-height: 1.5;
+}
+
+.bullet {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.code-header {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-bottom: 4px;
+}
+
+.filename {
+  font-size: 0.82rem;
+  color: var(--purple-light);
+  font-weight: 600;
+}
+
+.file-desc {
+  font-size: 0.78rem;
+  color: var(--text-dim);
+}
+
+.code-view {
+  background: var(--bg-code);
+  border: 1px solid var(--border-purple-muted);
+  border-radius: 8px;
+  padding: 1rem;
+  font-size: 0.8rem;
+  color: var(--purple-pale);
+  overflow-x: auto;
+  line-height: 1.5;
+  max-height: 280px;
+}
+
+.pills-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}

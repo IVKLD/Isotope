@@ -1,0 +1,82 @@
+@if (project(); as p) {
+  <div class="modal-backdrop" (click)="handleClose()">
+    <div class="gnome-window" (click)="$event.stopPropagation()">
+      <div class="gnome-headerbar">
+        <div class="headerbar-left font-mono">
+          <span class="window-subtitle">{{ p.year }} • {{ p.role }}</span>
+        </div>
+
+        <div class="headerbar-center">
+          <span class="window-title">{{ p.name }}</span>
+        </div>
+
+        <div class="headerbar-right">
+          @if (p.githubUrl) {
+            <a
+              [href]="p.githubUrl"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="gnome-action-btn font-mono"
+              aria-label="Репозиторий на GitHub"
+            >
+              <svg lucideFolderGit2 size="14"></svg>
+              <span>GitHub</span>
+              <svg lucideExternalLink size="11"></svg>
+            </a>
+          } @else {
+            <span class="gnome-badge-private font-mono">
+              <svg lucideLock size="12"></svg>
+              <span>Приватный</span>
+            </span>
+          }
+
+          <button
+            (click)="handleClose()"
+            type="button"
+            class="gnome-close-btn"
+            aria-label="Закрыть"
+          >
+            <svg lucideX size="14"></svg>
+          </button>
+        </div>
+      </div>
+
+      <div #modalContent class="modal-content">
+        <p class="modal-desc">{{ p.fullDesc }}</p>
+
+        <div class="section-box">
+          <h4 class="section-heading font-mono">Архитектурные решения:</h4>
+          <ul class="highlights-list">
+            @for (item of p.highlights; track item) {
+              <li>
+                <span class="bullet">›</span>
+                <span>{{ item }}</span>
+              </li>
+            }
+          </ul>
+        </div>
+
+        @if (p.codeSnippet) {
+          <div class="section-box">
+            <div class="code-header">
+              <span class="filename font-mono">{{ p.codeSnippet.filename }}</span>
+              <span class="file-desc">{{ p.codeSnippet.description }}</span>
+            </div>
+            <div class="code-view font-mono">
+              <pre><code>{{ p.codeSnippet.code }}</code></pre>
+            </div>
+          </div>
+        }
+
+        <div class="section-box">
+          <h4 class="section-heading font-mono">Использованный стек:</h4>
+          <div class="pills-row">
+            @for (tech of p.techStack; track tech) {
+              <span class="tech-pill">{{ tech }}</span>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+}

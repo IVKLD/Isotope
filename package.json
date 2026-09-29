@@ -1,0 +1,40 @@
+{
+  "name": "igni-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "ng serve",
+    "build": "ng build --configuration production",
+    "build:gh": "ng build --configuration production --base-href /portfolio/",
+    "preview": "npx serve -s dist/portfolio/browser",
+    "watch": "ng build --watch --configuration development",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
+  "dependencies": {
+    "@angular/cdk": "^22.1.4",
+    "@angular/common": "^22.1.4",
+    "@angular/compiler": "^22.1.4",
+    "@angular/core": "^22.1.4",
+    "@angular/forms": "^22.1.4",
+    "@angular/platform-browser": "^22.1.4",
+    "@angular/router": "^22.1.4",
+    "@lucide/angular": "^1.48.0",
+    "rxjs": "~7.8.0",
+    "tslib": "^2.3.0"
+  },
+  "devDependencies": {
+    "@angular/build": "^22.1.6",
+    "@angular/cli": "^22.1.6",
+    "@angular/compiler-cli": "^22.1.4",
+    "angular-eslint": "^22.5.0",
+    "eslint": "^10.11.0",
+    "eslint-config-prettier": "^10.1.8",
+    "prettier": "^3.9.9",
+    "typescript": "~6.0.0",
+    "typescript-eslint": "^8.71.0"
+  }
+}
