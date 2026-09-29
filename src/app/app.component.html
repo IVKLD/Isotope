@@ -1,15 +1,13 @@
 <app-canvas-background />
 
+<app-header />
+
 <div class="app-layout">
-  <app-header />
   <main>
     <app-hero />
-    <app-bento-grid (selectProject)="onSelectProject($event)" />
+    <app-bento-grid />
     <app-skills-matrix />
     <app-angular-choice />
   </main>
   <app-footer />
 </div>
-
-<app-project-modal [project]="selectedProject()" (closed)="onCloseModal()" />
-<app-terminal-modal />

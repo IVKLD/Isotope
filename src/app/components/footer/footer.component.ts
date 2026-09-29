@@ -8,8 +8,4 @@ import { GithubIconComponent } from '@components/icons/github-icon.component';
   templateUrl: './footer.component.html',
   styleUrl: './footer.component.scss'
 })
-export class FooterComponent {
-  protected scrollToTop(): void {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-}
+export class FooterComponent {}

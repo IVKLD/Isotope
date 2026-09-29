@@ -12,7 +12,8 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "serve:ssr:portfolio": "node dist/portfolio/server/server.mjs"
   },
   "dependencies": {
     "@angular/cdk": "^22.1.4",
@@ -21,8 +22,11 @@
     "@angular/core": "^22.1.4",
     "@angular/forms": "^22.1.4",
     "@angular/platform-browser": "^22.1.4",
+    "@angular/platform-server": "^22.2.0",
     "@angular/router": "^22.1.4",
+    "@angular/ssr": "^22.2.0",
     "@lucide/angular": "^1.48.0",
+    "express": "^5.1.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0"
   },
@@ -30,11 +34,12 @@
     "@angular/build": "^22.1.6",
     "@angular/cli": "^22.1.6",
     "@angular/compiler-cli": "^22.1.4",
+    "@types/express": "^5.0.1",
     "angular-eslint": "^22.5.0",
     "eslint": "^10.11.0",
     "eslint-config-prettier": "^10.1.8",
     "prettier": "^3.9.9",
-    "typescript": "~6.0.0",
+    "typescript": "^6.0.3",
     "typescript-eslint": "^8.71.0"
   }
 }

@@ -1,45 +1,40 @@
-<section class="hero-block">
+<section>
   <div class="container">
     <div class="hero-inner">
-      <!-- Left column: content -->
       <div class="hero-content">
-        <div class="status-indicator">
+        <div class="status-badge">
           <span class="status-dot"></span>
           <span>Открыт к предложениям (Remote / Middle / Middle+)</span>
         </div>
 
-        <div class="hero-name-row">
-          <h1 class="hero-name">IgnI</h1>
-          <span class="hero-name-sep">/</span>
-          <div class="hero-framework-badge">
+        <header>
+          <h1>IgnI</h1>
+          <span class="sep">/</span>
+          <div class="framework-badge">
             <app-angular-icon [size]="22" />
             <span>Angular Dev</span>
           </div>
-        </div>
+        </header>
 
-        <p class="hero-role font-mono">Frontend Developer · Angular v20–22</p>
+        <p class="role">Frontend Developer · Angular v16–22</p>
 
-        <p class="hero-summary">
+        <p class="summary">
           Разрабатываю веб-приложения на
-          <strong>Angular (v20–22)</strong>
-          ,
+          <strong>Angular (v16–22)</strong>,
           <strong>TypeScript</strong>
           и
-          <strong>RxJS</strong>
-          . Делаю упор на компонентную архитектуру (Standalone), реактивность на Signals, работу с
-          формами любой сложности (
-          <span class="code-tag">ControlValueAccessor</span>
-          ,
-          <span class="code-tag">FormArray</span>
-          ), потоковую передачу данных через WebSockets и оптимизацию рендеринга с OnPush.
+          <strong>RxJS</strong>.
+          Делаю упор на компонентную архитектуру (Standalone), реактивность на Signals, работу с
+          формами любой сложности (<code>ControlValueAccessor</code>, <code>FormArray</code>),
+          потоковую передачу данных через WebSockets и оптимизацию рендеринга с OnPush.
         </p>
 
-        <div class="hero-actions">
-          <button type="button" (click)="scrollToProjects()" class="btn-solid">
+        <div class="actions">
+          <a href="#projects" class="solid">
             <span>Проекты</span>
             <svg lucideArrowDown size="15"></svg>
-          </button>
-          <button type="button" (click)="openTerminal()" class="btn-outline">
+          </a>
+          <button type="button" (click)="terminal.open()" class="outline">
             <svg lucideTerminal size="15"></svg>
             <span>Терминал</span>
           </button>
@@ -47,14 +42,14 @@
             href="https://github.com/IVKLD"
             target="_blank"
             rel="noopener noreferrer"
-            class="btn-outline"
+            class="outline"
           >
-            <svg appGithubIcon size="15"></svg>
+            <svg app-github-icon size="15"></svg>
             <span>GitHub</span>
           </a>
         </div>
 
-        <div class="quick-stack">
+        <div class="stack-pills">
           <span class="tech-pill">Angular 22</span>
           <span class="tech-pill">Standalone Components</span>
           <span class="tech-pill">Signals &amp; RxJS</span>
@@ -64,15 +59,14 @@
         </div>
       </div>
 
-      <!-- Right column: Angular logo decoration -->
-      <div class="hero-logo-wrap" aria-hidden="true">
-        <div class="hero-logo-glow"></div>
-        <div class="hero-logo-card">
+      <aside class="hero-logo-wrap" aria-hidden="true">
+        <div class="logo-glow"></div>
+        <div class="logo-card">
           <app-angular-icon [size]="96" />
-          <span class="hero-logo-label font-mono">Angular</span>
-          <span class="hero-logo-version font-mono">v20 – v22</span>
+          <span class="logo-label">Angular</span>
+          <span class="logo-version">v16 – v22</span>
         </div>
-      </div>
+      </aside>
     </div>
   </div>
 </section>

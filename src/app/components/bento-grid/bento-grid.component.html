@@ -1,24 +1,24 @@
-<section class="projects-section">
+<section id="projects">
   <div class="container">
-    <div class="section-header">
-      <h2 class="section-title">Реальные проекты</h2>
-      <p class="section-desc">
+    <header class="section-header">
+      <h2>Реальные проекты</h2>
+      <p>
         Проекты из личного и коммерческого опыта с реальным кодом на GitHub. Кликните на карточку
         для просмотра архитектурных деталей и фрагментов кода.
       </p>
-    </div>
+    </header>
 
     <div class="projects-grid">
       @for (project of projects; track project.name) {
-        <article class="project-card" (click)="selectProject.emit(project)">
-          <div class="card-header">
+        <article class="project-card" (click)="openProjectModal(project)">
+          <header class="card-header">
             <div>
-              <div class="project-meta font-mono">
+              <div class="project-meta">
                 <span>{{ project.year }}</span>
-                <span class="meta-sep">•</span>
+                <span>•</span>
                 <span>{{ project.role }}</span>
               </div>
-              <h3 class="project-name">{{ project.name }}</h3>
+              <h3>{{ project.name }}</h3>
             </div>
 
             <div class="card-actions" (click)="$event.stopPropagation()">
@@ -41,7 +41,7 @@
                 </span>
               }
             </div>
-          </div>
+          </header>
 
           <p class="project-desc">{{ project.shortDesc }}</p>
 
@@ -54,18 +54,18 @@
             }
           </ul>
 
-          <div class="card-footer">
+          <footer class="card-footer">
             <div class="stack-pills">
               @for (tech of project.techStack; track tech) {
                 <span class="tech-pill">{{ tech }}</span>
               }
             </div>
 
-            <button class="inspect-btn font-mono">
+            <button type="button" class="inspect-btn">
               <svg lucideCodeXml size="14"></svg>
               <span>Код и разбор</span>
             </button>
-          </div>
+          </footer>
         </article>
       }
     </div>

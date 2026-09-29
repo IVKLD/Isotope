@@ -1,4 +1,6 @@
-import { Component, output } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { Dialog } from '@angular/cdk/dialog';
+import { ProjectModalComponent } from '@components/project-modal/project-modal.component';
 import { Project } from '@models/project.model';
 import { LucideFolderGit2, LucideExternalLink, LucideCodeXml, LucideLock } from '@lucide/angular';
 
@@ -9,7 +11,15 @@ import { LucideFolderGit2, LucideExternalLink, LucideCodeXml, LucideLock } from 
   styleUrl: './bento-grid.component.scss'
 })
 export class BentoGridComponent {
-  public readonly selectProject = output<Project>();
+  private readonly dialog = inject(Dialog);
+
+  protected openProjectModal(project: Project): void {
+    this.dialog.open(ProjectModalComponent, {
+      data: project,
+      maxWidth: '740px',
+      width: 'min(740px, calc(100vw - 2rem))'
+    });
+  }
 
   protected readonly projects: readonly Project[] = [
     {

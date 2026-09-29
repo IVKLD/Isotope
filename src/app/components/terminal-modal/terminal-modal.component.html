@@ -1,90 +1,80 @@
-@if (terminal.isOpen()) {
-  <div class="terminal-backdrop" (click)="handleClose()">
-    <div class="gnome-window" (click)="$event.stopPropagation()">
-      <div class="gnome-headerbar">
-        <div class="headerbar-left font-mono">
-          <svg lucideTerminal size="14" class="app-icon"></svg>
-          <span class="app-title">Terminal</span>
-        </div>
-
-        <div class="headerbar-center font-mono">igni&#64;desktop: ~</div>
-
-        <div class="headerbar-right">
-          <button
-            (click)="handleClose()"
-            type="button"
-            class="gnome-close-btn"
-            aria-label="Закрыть"
-          >
-            <svg lucideX size="14"></svg>
-          </button>
-        </div>
-      </div>
-
-      <div #scrollContainer class="terminal-screen font-mono">
-        @for (entry of terminal.history(); track $index) {
-          <div class="terminal-entry">
-            <div class="prompt-group">
-              <div class="prompt-line-top">
-                <span class="p-branch">┌─[</span>
-                <span class="p-user">igni&#64;desktop</span>
-                <span class="p-branch">]-[</span>
-                <span class="p-path">~</span>
-                <span class="p-branch">]</span>
-              </div>
-              <div class="prompt-line-bottom">
-                <span class="p-branch">└───»</span>
-                <span class="p-cmd">{{ entry.command }}</span>
-              </div>
-            </div>
-
-            <div class="output-block" [class]="entry.type">
-              @if (isArray(entry.output)) {
-                @for (line of asArray(entry.output); track $index) {
-                  <div class="output-line">{{ line }}</div>
-                }
-              } @else {
-                <div class="output-line">{{ entry.output }}</div>
-              }
-            </div>
-          </div>
-        }
-
-        <form (ngSubmit)="onSubmit()" class="active-input-group">
-          <div class="prompt-line-top">
-            <span class="p-branch">┌─[</span>
-            <span class="p-user">igni&#64;desktop</span>
-            <span class="p-branch">]-[</span>
-            <span class="p-path">~</span>
-            <span class="p-branch">]</span>
-          </div>
-          <div class="prompt-line-bottom active">
-            <span class="p-branch">└───»</span>
-            <input
-              #cmdInput
-              type="text"
-              [(ngModel)]="currentInput"
-              name="commandInput"
-              autocomplete="off"
-              spellcheck="false"
-              class="cli-input font-mono"
-              placeholder=""
-            />
-            <button type="submit" class="send-btn" aria-label="Выполнить">
-              <svg lucideCornerDownLeft size="14"></svg>
-            </button>
-          </div>
-        </form>
-      </div>
-
-      <div class="terminal-quick-bar font-mono">
-        <span class="quick-label">Быстрый запуск:</span>
-        <button (click)="runQuick('whoami')" class="quick-btn">whoami</button>
-        <button (click)="runQuick('projects')" class="quick-btn">projects</button>
-        <button (click)="runQuick('stack')" class="quick-btn">stack</button>
-        <button (click)="runQuick('contact')" class="quick-btn">contact</button>
-        <button (click)="runQuick('clear')" class="quick-btn">clear</button>
-      </div>
+<div class="gnome-window">
+  <header>
+    <div>
+      <svg lucideTerminal size="14"></svg>
+      <span>Terminal</span>
     </div>
+
+    <div>igni&#64;desktop: ~</div>
+
+    <div>
+      <button
+        appDialogClose
+        type="button"
+        aria-label="Закрыть"
+      >
+        <svg lucideX size="14"></svg>
+      </button>
+    </div>
+  </header>
+
+  <div class="terminal-viewport" #viewport>
+    @for (entry of terminal.history(); track trackByEntry($index, entry)) {
+      <div class="terminal-entry">
+        <div class="prompt-line">
+          <div class="path-badge">
+            <span>┌─[</span>
+            <span>igni&#64;desktop</span>
+            <span>]-[</span>
+            <span>~</span>
+            <span>]</span>
+          </div>
+          <div class="cmd-line">
+            <span>└───»</span>
+            <span>{{ entry.command }}</span>
+          </div>
+        </div>
+
+        <div class="output-block">
+          @for (line of entry.lines; track $index) {
+            <div>{{ line }}</div>
+          }
+        </div>
+      </div>
+    }
   </div>
-}
+
+  <form (ngSubmit)="onSubmit()">
+    <div class="prompt-path">
+      <span>┌─[</span>
+      <span>igni&#64;desktop</span>
+      <span>]-[</span>
+      <span>~</span>
+      <span>]</span>
+    </div>
+    <div class="input-line">
+      <span>└───»</span>
+      <input
+        cdkFocusInitial
+        type="text"
+        [(ngModel)]="currentInput"
+        name="commandInput"
+        autocomplete="off"
+        spellcheck="false"
+        placeholder=""
+      />
+      <button type="submit" aria-label="Выполнить">
+        <svg lucideCornerDownLeft size="14"></svg>
+      </button>
+    </div>
+  </form>
+
+  <footer>
+    <span>Быстрый запуск:</span>
+    <button type="button" (click)="terminal.execute('whoami')">whoami</button>
+    <button type="button" (click)="terminal.execute('projects')">projects</button>
+    <button type="button" (click)="terminal.execute('stack')">stack</button>
+    <button type="button" (click)="terminal.execute('contact')">contact</button>
+    <button type="button" (click)="terminal.execute('clear')">clear</button>
+  </footer>
+</div>

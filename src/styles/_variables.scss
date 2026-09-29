@@ -1,59 +1,43 @@
 :root {
-  /* ── Backgrounds ── */
-  --bg-primary: #0d0014;
-  --bg-secondary: #130a1e;
-  --bg-card: #180f24;
-  --bg-card-hover: #1f1430;
-  --bg-overlay: rgba(13, 0, 20, 0.55);      /* modal backdrop */
-  --bg-modal: #140d1e;                       /* gnome-window */
-  --bg-modal-header: #1a1128;               /* gnome-headerbar */
-  --bg-terminal: #0b0617;                   /* terminal screen */
-  --bg-code: #0a0614;                       /* code-view */
-  --bg-deep: #110920;                       /* modal content */
-  --bg-quickbar: #130a20;                   /* terminal quick-bar */
+  --bg-primary: #090713;
+  --bg-card: rgba(20, 15, 33, 0.78);
+  --bg-card-hover: rgba(28, 21, 46, 0.88);
+  --bg-overlay: rgba(9, 7, 19, 0.75);
+  --bg-terminal: #090713;
+  --bg-code: #0c0919;
+  --bg-deep: #0c0819;
+  --bg-quickbar: #140f26;
 
-  /* ── Borders ── */
-  --border-subtle: rgba(var(--accent-rgb), 0.14);
-  --border-hover: rgba(var(--accent-rgb), 0.32);
-  --border-purple: rgba(var(--purple-rgb), 0.2);
-  --border-purple-subtle: rgba(var(--purple-rgb), 0.12);
-  --border-purple-muted: rgba(var(--purple-rgb), 0.18);
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-hover: rgba(var(--accent-rgb), 0.4);
+  --border-purple: rgba(176, 98, 255, 0.22);
+  --border-purple-subtle: rgba(176, 98, 255, 0.12);
+  --border-purple-muted: rgba(176, 98, 255, 0.16);
 
-  /* ── Accent (Angular red) ── */
-  --accent: #dd0031;
-  --accent-light: #ff1a4b;
-  --accent-dim: #a0001f;
-  --accent-pale: #ff7a96;                   /* tinted text on red bg */
-  --accent-rgb: 221, 0, 49;
+  --accent: #e4003a;
+  --accent-light: #ff2a5f;
+  --accent-pale: #ff7597;
+  --accent-rgb: 228, 0, 58;
 
-  /* ── Purple ── */
-  --purple: #7b00d4;
-  --purple-light: #a040f5;
-  --purple-dim: #4a0080;
-  --purple-pale: #d8b4fe;                   /* tinted text / code color */
-  --purple-rgb: 123, 0, 212;
+  --purple: #9027ff;
+  --purple-light: #b062ff;
+  --purple-pale: #e0b0ff;
+  --purple-rgb: 144, 39, 255;
 
-  /* ── Text ── */
-  --text-main: #f5f0ff;
-  --text-muted: #b89ec8;
-  --text-dim: #7a5f8a;
+  --magenta: #f637e3;
+  --magenta-rgb: 246, 55, 227;
+
+  --text-main: #f8fafc;
+  --text-muted: #cbd5e1;
+  --text-dim: #94a3b8;
   --text-white: #ffffff;
-  --text-code: #f8fafc;                     /* terminal cmd input */
+  --text-code: #f1f5f9;
 
-  /* ── Terminal output states ── */
-  --terminal-warning: #fbbf24;
-  --terminal-error: #f87171;
-  --terminal-list: #fca5a5;
+  --shadow-modal: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.08);
 
-  /* ── Shadows ── */
-  --shadow-modal: 0 16px 40px rgba(0, 0, 0, 0.6), 0 2px 6px rgba(0, 0, 0, 0.4);
+  --scrollbar-thumb: rgba(255, 255, 255, 0.15);
+  --scrollbar-thumb-hover: rgba(255, 255, 255, 0.3);
 
-  /* ── Scrollbar ── */
-  --scrollbar-thumb: rgba(255, 255, 255, 0.12);
-  --scrollbar-thumb-hover: rgba(255, 255, 255, 0.25);
-
-  /* ── Typography ── */
   --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
 }
-

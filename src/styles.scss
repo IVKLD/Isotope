@@ -1,5 +1,7 @@
+@use '@angular/cdk/overlay-prebuilt.css';
 @use './styles/variables';
 @use './styles/reset';
-@use './styles/typography';
 @use './styles/layout';
+@use './styles/buttons';
+@use './styles/links';
 @use './styles/modal';

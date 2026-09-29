@@ -11,13 +11,5 @@ import { AngularIconComponent } from '@components/icons/angular-icon.component';
   styleUrl: './hero.component.scss'
 })
 export class HeroComponent {
-  private readonly terminal = inject(TerminalService);
-
-  protected scrollToProjects(): void {
-    document.querySelector('app-bento-grid')?.scrollIntoView({ behavior: 'smooth' });
-  }
-
-  protected openTerminal(): void {
-    this.terminal.open();
-  }
+  protected readonly terminal = inject(TerminalService);
 }

@@ -15,7 +15,7 @@ export class SkillsMatrixComponent {
     {
       category: 'Angular & Core',
       items: [
-        'Angular (v20–v22)',
+        'Angular (v16–v22)',
         'Standalone Components',
         'Angular Signals (signal, computed, effect)',
         'Modern Control Flow (@if, @for)',

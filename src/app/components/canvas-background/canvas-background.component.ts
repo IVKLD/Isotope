@@ -1,11 +1,11 @@
 import {
-  AfterViewInit,
   Component,
   ElementRef,
   NgZone,
-  OnDestroy,
   viewChild,
-  inject
+  inject,
+  afterNextRender,
+  DestroyRef
 } from '@angular/core';
 
 interface Particle {
@@ -22,9 +22,10 @@ interface Particle {
   templateUrl: './canvas-background.component.html',
   styleUrl: './canvas-background.component.scss'
 })
-export class CanvasBackgroundComponent implements AfterViewInit, OnDestroy {
+export class CanvasBackgroundComponent {
   private readonly canvasRef = viewChild.required<ElementRef<HTMLCanvasElement>>('canvas');
   private readonly ngZone = inject(NgZone);
+  private readonly destroyRef = inject(DestroyRef);
 
   private ctx: CanvasRenderingContext2D | null = null;
   private animationFrameId = 0;
@@ -35,27 +36,28 @@ export class CanvasBackgroundComponent implements AfterViewInit, OnDestroy {
   private mouseX = -9999;
   private mouseY = -9999;
 
-  public ngAfterViewInit(): void {
-    const canvas = this.canvasRef().nativeElement;
-    this.ctx = canvas.getContext('2d');
-    if (!this.ctx) return;
+  constructor() {
+    afterNextRender(() => {
+      const canvas = this.canvasRef().nativeElement;
+      this.ctx = canvas.getContext('2d');
+      if (!this.ctx) return;
 
-    this.resizeCanvas();
-    window.addEventListener('resize', this.onResize);
-    window.addEventListener('mousemove', this.onMouseMove);
-
-    this.ngZone.runOutsideAngular(() => {
-      this.initParticles();
-      this.animate();
+      this.ngZone.runOutsideAngular(() => {
+        this.resizeCanvas();
+        window.addEventListener('resize', this.onResize);
+        window.addEventListener('mousemove', this.onMouseMove);
+        this.initParticles();
+        this.animate();
+      });
     });
-  }
 
-  public ngOnDestroy(): void {
-    window.removeEventListener('resize', this.onResize);
-    window.removeEventListener('mousemove', this.onMouseMove);
-    if (this.animationFrameId) {
-      cancelAnimationFrame(this.animationFrameId);
-    }
+    this.destroyRef.onDestroy(() => {
+      window.removeEventListener('resize', this.onResize);
+      window.removeEventListener('mousemove', this.onMouseMove);
+      if (this.animationFrameId) {
+        cancelAnimationFrame(this.animationFrameId);
+      }
+    });
   }
 
   private onMouseMove = (event: MouseEvent): void => {
@@ -89,11 +91,11 @@ export class CanvasBackgroundComponent implements AfterViewInit, OnDestroy {
     this.particles = [];
 
     const colors = [
-      'rgba(221, 0, 49, 0.6)',
-      'rgba(255, 26, 75, 0.45)',
-      'rgba(123, 0, 212, 0.6)',
-      'rgba(160, 64, 245, 0.45)',
-      'rgba(180, 0, 130, 0.5)'
+      'rgba(228, 0, 58, 0.65)',
+      'rgba(246, 55, 227, 0.55)',
+      'rgba(144, 39, 255, 0.65)',
+      'rgba(176, 98, 255, 0.5)',
+      'rgba(255, 42, 95, 0.55)'
     ];
 
     for (let i = 0; i < count; i++) {
@@ -124,7 +126,6 @@ export class CanvasBackgroundComponent implements AfterViewInit, OnDestroy {
       if (p.x < 0 || p.x > this.width) p.vx *= -1;
       if (p.y < 0 || p.y > this.height) p.vy *= -1;
 
-      // Mouse gentle interaction
       const mdx = this.mouseX - p.x;
       const mdy = this.mouseY - p.y;
       const mdist = Math.sqrt(mdx * mdx + mdy * mdy);
@@ -153,11 +154,10 @@ export class CanvasBackgroundComponent implements AfterViewInit, OnDestroy {
           this.ctx.beginPath();
           this.ctx.moveTo(p.x, p.y);
           this.ctx.lineTo(p2.x, p2.y);
-          // Alternate between red and purple connections
           const useRed = (i + j) % 2 === 0;
-          const r = useRed ? 221 : 123;
-          const g = 0;
-          const b = useRed ? 49 : 212;
+          const r = useRed ? 228 : 144;
+          const g = useRed ? 0 : 39;
+          const b = useRed ? 58 : 255;
           this.ctx.strokeStyle = `rgba(${r}, ${g}, ${b}, ${alpha * 0.8})`;
           this.ctx.lineWidth = 0.7;
           this.ctx.stroke();

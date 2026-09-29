@@ -1,9 +1,12 @@
-// @ts-check
+import { defineConfig } from 'eslint/config';
 import tseslint from 'typescript-eslint';
 import angular from 'angular-eslint';
 import prettierConfig from 'eslint-config-prettier';
 
-export default tseslint.config(
+export default defineConfig(
+  {
+    ignores: ['dist/**', '.angular/**', 'node_modules/**']
+  },
   {
     files: ['**/*.ts'],
     extends: [...tseslint.configs.recommended, ...angular.configs.tsRecommended, prettierConfig],

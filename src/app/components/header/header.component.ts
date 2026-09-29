@@ -13,20 +13,12 @@ import { GithubIconComponent } from '@components/icons/github-icon.component';
   }
 })
 export class HeaderComponent {
-  private readonly terminal = inject(TerminalService);
-
-  protected scrollTo(selector: string): void {
-    document.querySelector(selector)?.scrollIntoView({ behavior: 'smooth' });
-  }
-
-  protected toggleTerminal(): void {
-    this.terminal.toggle();
-  }
+  protected readonly terminal = inject(TerminalService);
 
   protected onKeydown(event: KeyboardEvent): void {
     if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === 'k') {
       event.preventDefault();
-      this.terminal.toggle();
+      this.terminal.open();
     }
   }
 }

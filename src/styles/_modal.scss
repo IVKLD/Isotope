@@ -1,79 +1,67 @@
-.modal-backdrop,
-.terminal-backdrop {
-  position: fixed;
-  inset: 0;
-  z-index: 100;
+.cdk-overlay-backdrop {
   background: var(--bg-overlay);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 4.5rem 1rem 1.5rem;
-  animation: gnomeFadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-
-  @media (max-width: 640px) {
-    padding: 4rem 0.75rem 1rem;
-  }
-}
-
-.terminal-backdrop {
-  z-index: 120;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  animation: backdropFadeIn 0.22s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 .gnome-window {
-  background: var(--bg-modal);
-  border: 1px solid var(--border-purple);
-  border-radius: 12px;
+  background: rgba(18, 14, 29, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 14px;
   width: 100%;
   display: flex;
   flex-direction: column;
   box-shadow:
-    var(--shadow-modal),
-    0 0 0 1px rgba(var(--purple-rgb), 0.08);
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    var(--shadow-modal);
   overflow: hidden;
   animation: gnomeScaleIn 0.22s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
 
-.gnome-headerbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 42px;
-  padding: 0 12px;
-  background: var(--bg-modal-header);
-  border-bottom: 1px solid var(--border-purple-muted);
-}
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 42px;
+    padding: 0 12px;
+    background: rgba(24, 18, 38, 0.9);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 
-.gnome-close-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  color: var(--text-muted);
-  padding: 0;
-  transition:
-    background-color 0.1s ease,
-    color 0.1s ease;
+    button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      color: var(--text-muted);
+      padding: 0;
+      transition:
+        background-color 0.1s ease,
+        color 0.1s ease;
 
-  &:hover {
-    background-color: rgba(var(--accent-rgb), 0.2);
-    color: var(--text-white);
+      &:hover {
+        background-color: rgba(var(--accent-rgb), 0.2);
+        color: var(--text-white);
+      }
+
+      &:active {
+        background-color: rgba(var(--accent-rgb), 0.32);
+      }
+    }
   }
-
-  &:active {
-    background-color: rgba(var(--accent-rgb), 0.32);
-  }
 }
 
-@keyframes gnomeFadeIn {
+@keyframes backdropFadeIn {
   from {
     opacity: 0;
+    backdrop-filter: blur(0);
+    -webkit-backdrop-filter: blur(0);
   }
   to {
     opacity: 1;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
   }
 }
 

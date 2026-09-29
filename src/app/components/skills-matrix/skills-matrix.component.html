@@ -1,22 +1,20 @@
-<section class="skills-section">
+<section id="skills">
   <div class="container">
-    <div class="section-header">
-      <h2 class="section-title">Технический стек</h2>
-      <p class="section-desc">
-        Технологии и концепции, которые реально применяются в моих проектах.
-      </p>
-    </div>
+    <header class="section-header">
+      <h2>Технический стек</h2>
+      <p>Технологии и концепции, которые реально применяются в моих проектах.</p>
+    </header>
 
     <div class="skills-grid">
       @for (group of skillGroups; track group.category) {
-        <div class="skill-category-card">
-          <h3 class="category-title font-mono">{{ group.category }}</h3>
+        <article class="skill-card">
+          <h3>{{ group.category }}</h3>
           <div class="pills-list">
             @for (item of group.items; track item) {
-              <span class="skill-pill">{{ item }}</span>
+              <span class="tech-pill">{{ item }}</span>
             }
           </div>
-        </div>
+        </article>
       }
     </div>
   </div>
