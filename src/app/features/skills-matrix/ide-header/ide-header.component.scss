@@ -1,0 +1,66 @@
+@use 'mixins' as *;
+
+:host {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  height: 2.65rem;
+  flex-shrink: 0;
+  background: var(--bg-window-header);
+  border-bottom: 1px solid var(--border-subtle);
+  overflow-x: auto;
+  scrollbar-width: none;
+  box-sizing: border-box;
+}
+
+.workspace-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  font-weight: 500;
+  color: var(--text-dim);
+  padding: 0 1rem;
+  background: rgba(0, 0, 0, 0.25);
+  border-right: 1px solid var(--border-subtle);
+  flex-shrink: 0;
+  user-select: none;
+
+  .workspace-icon {
+    color: var(--accent);
+    flex-shrink: 0;
+  }
+}
+
+nav[appTabList] {
+  display: flex;
+  align-items: stretch;
+  flex: 1;
+  height: 100%;
+  margin-bottom: 0;
+  border-bottom: none;
+  overflow-x: auto;
+  scrollbar-width: none;
+
+  button[appTab] {
+    height: 100%;
+    padding: 0 1rem;
+    border-radius: 0;
+    border-right: 1px solid var(--border-subtle);
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    margin-bottom: 0;
+
+    &::after {
+      bottom: auto;
+      top: 0;
+      border-radius: 0;
+    }
+
+    &.active {
+      background: var(--bg-code);
+      border-top-color: var(--accent);
+    }
+  }
+}

@@ -1,0 +1,21 @@
+<section id="why-angular">
+  <div class="container">
+    <header>
+      <span>Архитектурный выбор (2026)</span>
+      <h2>Почему Angular, а не React, Vue или Svelte</h2>
+      <p>
+        Сравнение архитектурных подходов: Signals, нативный Zoneless, иерархический DI, строгая
+        типизация шаблонов и экосистема без зоопарка зависимостей.
+      </p>
+    </header>
+
+    <app-competitor-tabs
+      [competitors]="competitorTabs"
+      [selectedKey]="selectedKey()"
+      (competitorSelect)="selectedKey.set($event)"
+    />
+
+    <app-comparison-accordion [competitor]="competitor()" />
+    <app-architecture-verdict [competitor]="competitor()" />
+  </div>
+</section>

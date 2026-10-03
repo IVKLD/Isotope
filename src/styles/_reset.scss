@@ -1,3 +1,6 @@
+@use 'mixins' as *;
+@use 'scrollbars';
+
 *,
 *::before,
 *::after {
@@ -6,10 +9,30 @@
   padding: 0;
 }
 
+ul,
+ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
 html {
   scroll-behavior: smooth;
   color-scheme: dark;
   scrollbar-gutter: stable;
+  interpolate-size: allow-keywords;
+
+  @include bp-hd {
+    font-size: 17px;
+  }
+
+  @include bp-2k {
+    font-size: 18px;
+  }
+
+  @include bp-4k {
+    font-size: 20px;
+  }
 }
 
 body {
@@ -22,56 +45,53 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+code,
+kbd,
+samp,
+pre {
+  font-family: var(--font-mono);
+}
+
+button,
+a {
+  color: inherit;
+  -webkit-tap-highlight-color: transparent;
+
+  * {
+    pointer-events: none;
+  }
+
+  &:focus:not(:focus-visible) {
+    outline: none;
+  }
+}
+
 button {
-  font-family: inherit;
+  font-family: var(--font-sans);
   font-size: inherit;
   line-height: inherit;
-  color: inherit;
   background-color: transparent;
   border: none;
   cursor: pointer;
   user-select: none;
-  -webkit-tap-highlight-color: transparent;
-
-  &:focus:not(:focus-visible) {
-    outline: none;
-  }
 }
 
 a {
-  color: inherit;
   text-decoration: none;
-  -webkit-tap-highlight-color: transparent;
-
-  &:focus:not(:focus-visible) {
-    outline: none;
-  }
 }
 
 svg.lucide,
 svg[class*='lucide-'] {
-  display: inline-flex !important;
+  pointer-events: none;
+}
+
+svg.lucide,
+svg[class*='lucide-'],
+.app-icon {
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   vertical-align: middle;
   flex-shrink: 0;
-  pointer-events: none;
-}
-
-::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--bg-primary);
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--scrollbar-thumb);
-  border-radius: 3px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--scrollbar-thumb-hover);
+  line-height: 0;
 }

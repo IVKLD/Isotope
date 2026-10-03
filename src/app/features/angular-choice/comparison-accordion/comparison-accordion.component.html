@@ -1,0 +1,81 @@
+<header>
+  <p>
+    <span>Аспекты архитектурного сравнения</span>
+    <small>{{ competitor().aspects.length }}</small>
+  </p>
+
+  <button
+    type="button"
+    (click)="toggleAll()"
+    [attr.aria-label]="hasOpenAspects() ? 'Свернуть все списки' : 'Развернуть все списки'"
+  >
+    {{ hasOpenAspects() ? 'Свернуть все' : 'Развернуть все' }}
+  </button>
+</header>
+
+@for (aspect of competitor().aspects; track aspect.title; let idx = $index) {
+  <article [class.open]="isAspectOpen(aspect.title)">
+    <button
+      type="button"
+      [attr.aria-expanded]="isAspectOpen(aspect.title)"
+      (click)="toggleAspect(aspect.title)"
+    >
+      <small>0{{ idx + 1 }}</small>
+
+      <div>
+        <h4>{{ aspect.title }}</h4>
+        <p>
+          <span>{{ aspect.competitor.title }}</span>
+          <em>vs</em>
+          <span>{{ aspect.angular.title }}</span>
+        </p>
+      </div>
+
+      <svg lucideChevronDown size="18" [class.rotated]="isAspectOpen(aspect.title)"></svg>
+    </button>
+
+    <div class="panel">
+      <section>
+        <header>
+          <small>
+            <app-framework-icon [framework]="competitor().key" [size]="14" />
+            {{ competitor().name }}
+          </small>
+          <h5>{{ aspect.competitor.title }}</h5>
+        </header>
+        <ul>
+          @for (point of aspect.competitor.points; track point) {
+            <li>{{ point }}</li>
+          }
+        </ul>
+        @if (aspect.competitor.code) {
+          <app-code-block
+            [code]="aspect.competitor.code"
+            [language]="aspect.competitor.codeLang ?? 'typescript'"
+          />
+        }
+      </section>
+
+      <section class="angular">
+        <header>
+          <small>
+            <app-angular-icon [size]="14" />
+            Angular
+          </small>
+          <h5>{{ aspect.angular.title }}</h5>
+        </header>
+        <ul>
+          @for (point of aspect.angular.points; track point) {
+            <li>{{ point }}</li>
+          }
+        </ul>
+        @if (aspect.angular.code) {
+          <app-code-block
+            [code]="aspect.angular.code"
+            [language]="aspect.angular.codeLang ?? 'typescript'"
+          />
+        }
+      </section>
+    </div>
+  </article>
+}

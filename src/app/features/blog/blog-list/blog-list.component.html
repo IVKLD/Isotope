@@ -1,0 +1,101 @@
+<header class="blog-hero">
+  <div class="hero-top">
+    <small>
+      <svg lucideBookOpen size="14"></svg>
+      Инженерный блог &amp; заметки
+    </small>
+    <h1>Статьи об архитектуре, производительности и ремесле разработки</h1>
+    <p>
+      Опыт проектирования enterprise-систем на Angular, отказ от устаревших практик, системная
+      разработка на Rust и трезвый взгляд на инженерную культуру.
+    </p>
+  </div>
+
+  <div class="filter-bar">
+    <nav class="tags-filter" aria-label="Фильтр по темам">
+      @for (tag of allTags; track tag) {
+        <button type="button" [class.active]="selectedTag() === tag" (click)="onTagSelect(tag)">
+          {{ tag }}
+        </button>
+      }
+    </nav>
+
+    <div class="search-box">
+      <svg lucideSearch size="16"></svg>
+      <input
+        type="search"
+        placeholder="Поиск по статьям и тегам..."
+        [value]="searchQuery()"
+        (input)="onSearchInput($event)"
+        aria-label="Поиск по статьям"
+      />
+    </div>
+  </div>
+</header>
+
+<main class="posts-container">
+  @if (featuredPost(); as featured) {
+    <article class="featured-card">
+      <header>
+        <small appBadge="accent">
+          <svg lucideSparkles size="14"></svg>
+          <span>Рекомендуемое</span>
+        </small>
+        <small class="read-meta">
+          <svg lucideClock size="13"></svg>
+          {{ featured.readTime }} • {{ featured.date }}
+        </small>
+      </header>
+
+      <h2>
+        <a [routerLink]="['/blog', featured.slug]">{{ featured.title }}</a>
+      </h2>
+
+      <p>{{ featured.excerpt }}</p>
+
+      <footer>
+        <app-tech-pills [items]="featured.tags" />
+        <a [routerLink]="['/blog', featured.slug]" class="read-link">
+          <span>Читать статью</span>
+          <svg lucideArrowRight size="16"></svg>
+        </a>
+      </footer>
+    </article>
+  }
+
+  <section class="posts-grid">
+    @for (post of regularPosts(); track post.slug) {
+      <article class="post-card">
+        <header>
+          <small class="read-meta">
+            <svg lucideClock size="13"></svg>
+            {{ post.readTime }} • {{ post.date }}
+          </small>
+        </header>
+
+        <h3>
+          <a [routerLink]="['/blog', post.slug]">{{ post.title }}</a>
+        </h3>
+
+        <p>{{ post.excerpt }}</p>
+
+        <footer>
+          <app-tech-pills [items]="post.tags" />
+          <a
+            [routerLink]="['/blog', post.slug]"
+            class="read-link"
+            [attr.aria-label]="'Читать: ' + post.title"
+          >
+            <span>Читать</span>
+            <svg lucideArrowRight size="15"></svg>
+          </a>
+        </footer>
+      </article>
+    } @empty {
+      <div class="empty-state">
+        <p>Статей по заданному фильтру не найдено.</p>
+        <button type="button" (click)="selectedTag.set('Все')">Сбросить фильтр</button>
+      </div>
+    }
+  </section>
+</main>

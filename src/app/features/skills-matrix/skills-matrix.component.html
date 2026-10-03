@@ -1,0 +1,30 @@
+<section id="skills">
+  <div class="container">
+    <header>
+      <span>Архитектура &amp; Стек</span>
+      <h2>Технический стек</h2>
+      <p>
+        Типизированные конфигурации, инженерные стандарты и архитектурные решения в коммерческой
+        разработке.
+      </p>
+    </header>
+
+    <div class="ide-window">
+      <app-ide-header
+        [modules]="modules"
+        [selected]="selectedModule()"
+        (moduleSelect)="selectModule($event)"
+      />
+
+      <div class="ide-body">
+        <div class="editor-pane">
+          <app-code-block [code]="selectedModule().code" [showLineNumbers]="true" />
+        </div>
+
+        <app-module-inspector [module]="selectedModule()" />
+      </div>
+
+      <app-ide-statusbar />
+    </div>
+  </div>
+</section>

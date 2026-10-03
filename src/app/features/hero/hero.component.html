@@ -1,0 +1,41 @@
+<section class="container">
+  <article>
+    <small appStatusBadge>Открыт к предложениям · Remote / Middle+</small>
+
+    <header>
+      <h1>IgnI</h1>
+      <span class="sep">/</span>
+      <small appBadge="accent">
+        <app-angular-icon [size]="20" />
+        <span>Angular Dev</span>
+      </small>
+    </header>
+
+    <p class="role">Frontend / Angular Developer · Angular 16–22 · TypeScript Strict</p>
+
+    <p class="summary">
+      Разрабатываю веб-приложения на <strong>Angular (16–22)</strong>, <strong>TypeScript</strong> и
+      <strong>RxJS</strong>. Специализируюсь на реактивном стейте с <strong>Signals</strong>,
+      сложных формах (<strong>CVA</strong>), потоковых данных <strong>WebSockets / SSE</strong> и
+      архитектуре в <strong>Nx-монорепозиториях</strong>. В pet-проектах пишу системные утилиты на
+      <strong>Rust</strong>.
+    </p>
+
+    <nav>
+      <a appSolidButton href="#projects">
+        <span>Проекты</span>
+        <svg lucideArrowDown size="15"></svg>
+      </a>
+      <button appOutlineButton (click)="terminal.open()">
+        <svg lucideTerminal size="15"></svg>
+        <span>Терминал</span>
+      </button>
+      <a appOutlineButton href="https://github.com/IVKLD" target="_blank" rel="noopener noreferrer">
+        <svg app-github-icon size="15"></svg>
+        <span>GitHub</span>
+      </a>
+    </nav>
+
+    <app-tech-pills [items]="techStack" />
+  </article>
+</section>

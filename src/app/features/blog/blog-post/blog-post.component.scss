@@ -1,0 +1,34 @@
+@use 'mixins' as *;
+@use 'styles/blog-post-header';
+@use 'styles/blog-post-author';
+@use 'styles/blog-post-footer';
+@use 'styles/blog-post-content';
+@use 'styles/blog-post-callouts';
+@use 'styles/blog-post-rules';
+@use 'styles/blog-post-sidebar';
+
+:host {
+  display: block;
+  padding: 6.5rem 1.5rem 4rem;
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+
+  @include max-md {
+    padding: 5rem 1rem 3rem;
+  }
+}
+
+article {
+  width: 100%;
+
+  .blog-body {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+
+    @include bp-lg {
+      grid-template-columns: minmax(0, 1fr) 280px;
+      gap: 3.5rem;
+    }
+  }
+}

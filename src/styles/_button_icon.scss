@@ -1,0 +1,42 @@
+.btn,
+a[appSolidButton],
+button[appSolidButton],
+a[appOutlineButton],
+button[appOutlineButton],
+a[appGhostButton],
+button[appGhostButton],
+a[appIconButton],
+button[appIconButton] {
+  &.btn-icon,
+  &.icon,
+  &[appIconButton] {
+    padding: 0;
+    width: 2.25rem;
+    height: 2.25rem;
+    border-color: transparent;
+    color: var(--text-muted);
+    flex-shrink: 0;
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.08);
+      color: var(--text-white);
+    }
+
+    &:active {
+      background-color: rgba(255, 255, 255, 0.12);
+    }
+
+    &.circle,
+    &[shape='circle'] {
+      width: 1.65rem;
+      height: 1.65rem;
+      border-radius: 50%;
+
+      svg {
+        width: 0.82rem;
+        height: 0.82rem;
+        flex-shrink: 0;
+      }
+    }
+  }
+}

@@ -1,0 +1,81 @@
+@use 'mixins' as *;
+@use 'styles/snippet';
+
+:host {
+  display: flex;
+  flex-direction: column;
+  width: var(--dialog-width-project);
+  max-width: calc(100vw - 32px);
+  max-height: 85vh;
+  outline: none;
+
+  [appDialogContent] {
+    header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+      padding-bottom: 1.1rem;
+      border-bottom: 1px solid var(--border-subtle);
+
+      > div {
+        display: flex;
+        flex-direction: column;
+        gap: 0.35rem;
+
+        h2 {
+          font-size: 1.35rem;
+          font-weight: 700;
+          color: var(--text-white);
+          line-height: 1.2;
+          letter-spacing: -0.02em;
+        }
+
+        small {
+          font-size: 0.85rem;
+          color: var(--text-dim);
+        }
+      }
+    }
+
+    > p {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    aside {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      padding: 0.9rem 1.1rem;
+      background: rgba(228, 0, 58, 0.05);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 8px 8px 0;
+
+      h4 {
+        font-size: 0.9rem;
+        color: var(--text-white);
+        font-weight: 600;
+      }
+
+      p {
+        font-size: 0.88rem;
+        color: var(--text-main);
+        line-height: 1.55;
+      }
+    }
+
+    section {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+
+      h4 {
+        font-size: 0.9rem;
+        color: var(--text-white);
+        font-weight: 600;
+      }
+    }
+  }
+}

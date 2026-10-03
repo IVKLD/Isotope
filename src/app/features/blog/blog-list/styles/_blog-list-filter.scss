@@ -1,0 +1,64 @@
+@use 'mixins' as *;
+
+.filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border-subtle);
+
+  .tags-filter {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+
+    button {
+      padding: 0.35rem 0.8rem;
+      border-radius: 9999px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      font-weight: 500;
+      transition: all var(--transition-fast);
+
+      &:hover {
+        color: var(--text-white);
+        border-color: var(--border-hover);
+      }
+      &.active {
+        color: var(--text-white);
+        background: rgba(228, 0, 58, 0.15);
+        border-color: rgba(228, 0, 58, 0.4);
+      }
+    }
+  }
+
+  .search-box {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.4rem 0.75rem;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-card);
+    border-radius: 8px;
+    min-width: 240px;
+
+    svg {
+      color: var(--text-dim);
+    }
+    input {
+      background: transparent;
+      border: none;
+      outline: none;
+      color: var(--text-white);
+      font-size: 0.82rem;
+      width: 100%;
+      &::placeholder {
+        color: var(--text-dim);
+      }
+    }
+  }
+}

@@ -1,0 +1,96 @@
+@use 'mixins' as *;
+
+section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  padding: 1.25rem 1.35rem;
+  border-radius: 12px;
+  background: var(--white-2);
+  border: 1px solid var(--border-card);
+
+  header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    small {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.74rem;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: 6px;
+      border: 1px solid var(--white-10);
+      background: var(--white-5);
+      color: var(--text-terminal);
+      width: fit-content;
+    }
+
+    h5 {
+      font-size: 1.02rem;
+      font-weight: 600;
+      color: var(--text-white);
+      margin: 0;
+      line-height: 1.35;
+    }
+  }
+
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+
+    li {
+      position: relative;
+      padding-left: 1.15rem;
+      font-size: 0.85rem;
+      line-height: 1.5;
+      color: var(--text-terminal);
+
+      &::before {
+        content: '—';
+        position: absolute;
+        left: 0;
+        color: var(--accent-light);
+        font-weight: 700;
+      }
+    }
+  }
+
+  app-code-block {
+    margin-top: 0.25rem;
+    background: var(--bg-code);
+    border: 1px solid var(--border-subtle);
+    border-radius: 8px;
+    padding: 0.75rem 0.85rem;
+    overflow-x: auto;
+    font-size: 0.76rem;
+    line-height: 1.5;
+  }
+
+  &.angular {
+    background: rgba(var(--accent-rgb), 0.035);
+    border-color: rgba(var(--accent-rgb), 0.22);
+
+    header small {
+      background: rgba(var(--accent-rgb), 0.12);
+      border-color: rgba(var(--accent-rgb), 0.3);
+      color: var(--accent-light);
+    }
+
+    ul li {
+      color: var(--text-main);
+
+      &::before {
+        content: '✓';
+        color: var(--color-green);
+        font-weight: 800;
+      }
+    }
+  }
+}

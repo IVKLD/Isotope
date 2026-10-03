@@ -3,3 +3,5 @@ node_modules
 .angular
 yarn.lock
 package-lock.json
+*.profile.json
+.skills

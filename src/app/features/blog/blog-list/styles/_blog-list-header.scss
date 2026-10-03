@@ -1,0 +1,38 @@
+@use 'mixins' as *;
+
+.blog-hero {
+  margin-bottom: 3.5rem;
+
+  .hero-top {
+    margin-bottom: 2.25rem;
+
+    small {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: var(--accent-light);
+      font-size: 0.82rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.75rem;
+    }
+
+    h1 {
+      font-size: clamp(1.85rem, 4.5vw, 3rem);
+      font-weight: 800;
+      line-height: 1.15;
+      color: var(--text-white);
+      letter-spacing: -0.03em;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      max-width: 720px;
+      font-size: 1.05rem;
+      line-height: 1.65;
+      color: var(--text-muted);
+      margin: 0;
+    }
+  }
+}

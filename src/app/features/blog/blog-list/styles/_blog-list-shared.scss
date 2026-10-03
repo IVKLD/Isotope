@@ -1,0 +1,27 @@
+@use 'mixins' as *;
+
+.read-meta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  color: var(--text-dim);
+  font-size: 0.8rem;
+}
+
+.read-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition:
+    gap var(--transition-fast),
+    color var(--transition-fast);
+
+  &:hover {
+    color: var(--text-white);
+    gap: 0.6rem;
+  }
+}

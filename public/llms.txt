@@ -1,0 +1,21 @@
+# IgnI — Angular / Frontend Developer
+
+> Portfolio and technical profile of IgnI, specializing in Angular (v16–22), TypeScript (strict), Signals, RxJS, and UI frameworks.
+
+## Overview
+- [Projects Overview](https://github.com/IVKLD): Personal and open-source engineering projects
+- [VortexDL](https://github.com/IVKLD/VortexDL): Desktop music player and downloader (Rust 2024 + Angular)
+- [AUSWP](https://github.com/IVKLD/AUSWP): Proxy rotator and load balancer based on sing-box (Rust)
+- [Elux Client](https://github.com/DeLattice/Elux): Web dashboard for xray-core with Angular 19 and Taiga UI
+- [xss-defender](https://github.com/IVKLD/xss-defender): TypeScript security engine for XSS prevention
+- [Atom-ThreeJS-Angular](https://github.com/IVKLD/Atom-ThreeJS-Angular): 3D atom simulation with Three.js WebGL and Angular
+- [Asus Fan Control](https://github.com/IVKLD/asus-zenbook-duo-fan-control): Linux ACPI sysfs fan controls for Zenbook Duo
+- [GitHub Profile](https://github.com/IVKLD): Source code repositories and contributions
+- [Telegram](https://t.me/IVKLCD): Direct contact
+
+## Core Stack
+- [Angular](https://angular.dev): Standalone components, Signals, computed, effect, OnPush change detection
+- [RxJS](https://rxjs.dev): Reactive streaming, operators, WebSocket interop
+- [TypeScript](https://www.typescriptlang.org): Strict typing, generic interfaces, immutable patterns
+- [UI Kits](https://material.angular.io): spartan/ui, Angular Material, Taiga UI, PrimeNG, Tailwind CSS, SCSS
+- [Nx Monorepo](https://nx.dev): Enterprise workspace structure and modular architecture

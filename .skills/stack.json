@@ -1,0 +1,762 @@
+{
+  "analysisDate": "2026-10-01",
+  "frequencyMethod": {
+    "physicalDirectories": 6,
+    "uniqueRootGitOrigins": 5,
+    "note": "Arcania-workspace and Frontend-workspace share one Git origin; Elux submodules are grouped under the Elux product root. Counts indicate project presence."
+  },
+  "categories": [
+    {
+      "name": "Nix_environment",
+      "technologies": [
+        {
+          "name": "Nix or Devbox",
+          "directories": 4,
+          "ofDirectories": 6,
+          "directoryFrequency": "67%",
+          "uniqueRootOrigins": 4,
+          "ofOrigins": 5,
+          "originFrequency": "80%",
+          "projects": [
+            "AUSWP",
+            "Elux",
+            "VortexDL",
+            "Zonex"
+          ],
+          "evidence": "Flakes in three roots; Devbox manifests in Elux",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "name": "archive_processing",
+      "technologies": [
+        {
+          "name": "ZIP/TAR archives",
+          "directories": 1,
+          "ofDirectories": 6,
+          "directoryFrequency": "17%",
+          "uniqueRootOrigins": 1,
+          "ofOrigins": 5,
+          "originFrequency": "20%",
+          "projects": [
+            "Zonex"
+          ],
+          "evidence": "Engines for ZIP/TAR/TAR.GZ/TAR.ZST",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "name": "async_runtime",
+      "technologies": [
+        {
+          "name": "Tokio",
+          "directories": 3,
+          "ofDirectories": 6,
+          "directoryFrequency": "50%",
+          "uniqueRootOrigins": 3,
+          "ofOrigins": 5,
+          "originFrequency": "60%",
+          "projects": [
+            "AUSWP",
+            "Elux",
+            "VortexDL"
+          ],
+          "evidence": "Direct Rust dependency and async source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "name": "audio_processing",
+      "technologies": [
+        {
+          "name": "Symphonia",
+          "directories": 1,
+          "ofDirectories": 6,
+          "directoryFrequency": "17%",
+          "uniqueRootOrigins": 1,
+          "ofOrigins": 5,
+          "originFrequency": "20%",
+          "projects": [
+            "VortexDL"
+          ],
+          "evidence": "Audio format probing/processing dependency",
+          "confidence": "medium"
+        }
+      ]
+    },
+    {
+      "name": "backend_web",
+      "technologies": [
+        {
+          "name": "Axum",
+          "directories": 2,
+          "ofDirectories": 6,
+          "directoryFrequency": "33%",
+          "uniqueRootOrigins": 2,
+          "ofOrigins": 5,
+          "originFrequency": "40%",
+          "projects": [
+            "Elux",
+            "VortexDL"
+          ],
+          "evidence": "Direct dependency and router/handler source",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "name": "backup_integration",
+      "technologies": [
+        {
+          "name": "WebDAV",
+          "directories": 1,
+          "ofDirectories": 6,
+          "directoryFrequency": "17%",
+          "uniqueRootOrigins": 1,
+          "ofOrigins": 5,
+          "originFrequency": "20%",
+          "projects": [
+            "VortexDL"
+          ],
+          "evidence": "backup strategy/provider modules",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "name": "ci_cd",
+      "technologies": [
+        {
+          "name": "GitHub Actions",
+          "directories": 3,
+          "ofDirectories": 6,
+          "directoryFrequency": "50%",
+          "uniqueRootOrigins": 2,
+          "ofOrigins": 5,
+          "originFrequency": "40%",
+          "projects": [
+            "Arcania-workspace",
+            "Frontend-workspace",
+            "VortexDL"
+          ],
+          "evidence": "CI/deploy workflows; Arcania two folders share origin",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "name": "cli",
+      "technologies": [
+        {
+          "name": "clap",
+          "directories": 3,
+          "ofDirectories": 6,
+          "directoryFrequency": "50%",
+          "uniqueRootOrigins": 3,
+          "ofOrigins": 5,
+          "originFrequency": "60%",
+          "projects": [
+            "AUSWP",
+            "Elux",
+            "VortexDL"
+          ],
+          "evidence": "CLI parser dependency",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "name": "code_quality",
+      "technologies": [
+        {
+          "name": "Clippy and rustfmt",
+          "directories": 2,
+          "ofDirectories": 6,
+          "directoryFrequency": "33%",
+          "uniqueRootOrigins": 2,
+          "ofOrigins": 5,
+          "originFrequency": "40%",
+          "projects": [
+            "AUSWP",
+            "Zonex"
+          ],
+          "evidence": "Nix shell tools; Zonex explicit lint targets and deny lints",
+          "confidence": "medium"
+        }
+      ]
+    },
+    {
+      "name": "compression",
+      "technologies": [
+        {
+          "name": "GZip/Zstandard",
+          "directories": 1,
+          "ofDirectories": 6,
+          "directoryFrequency": "17%",
+          "uniqueRootOrigins": 1,
+          "ofOrigins": 5,
+          "originFrequency": "20%",
+          "projects": [
+            "Zonex"
+          ],
+          "evidence": "flate2/zstd dependencies and format tests",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "name": "device_integration",
+      "technologies": [
+        {
+          "name": "ADB",
+          "directories": 1,
+          "ofDirectories": 6,
+          "directoryFrequency": "17%",
+          "uniqueRootOrigins": 1,
+          "ofOrigins": 5,
+          "originFrequency": "20%",
+          "projects": [
+            "VortexDL"
+          ],
+          "evidence": "device discovery/storage/sync and transport modules",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "name": "filesystem_integration",
+      "technologies": [
+        {
+          "name": "FUSE3",
+          "directories": 1,
+          "ofDirectories": 6,
+          "directoryFrequency": "17%",
+          "uniqueRootOrigins": 1,
+          "ofOrigins": 5,
+          "originFrequency": "20%",
+          "projects": [
+            "Zonex"
+          ],
+          "evidence": "fuser read-only mount and Nix package dependency",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "name": "frontend",
+      "technologies": [
+        {
+          "name": "HTML",
+          "directories": 4,
+          "ofDirectories": 6,
+          "directoryFrequency": "67%",
+          "uniqueRootOrigins": 3,
+          "ofOrigins": 5,
+          "originFrequency": "60%",
+          "projects": [
+            "Arcania-workspace",
+            "Elux",
+            "Frontend-workspace",
+            "VortexDL"
+          ],
+          "evidence": "Tracked templates in Angular projects",
+          "confidence": "high"
+        },
+        {
+          "name": "SCSS",
+          "directories": 4,
+          "ofDirectories": 6,
+          "directoryFrequency": "67%",
+          "uniqueRootOrigins": 3,
+          "ofOrigins": 5,
+          "originFrequency": "60%",
+          "projects": [
+            "Arcania-workspace",
+            "Elux",
+            "Frontend-workspace",
+            "VortexDL"
+          ],
+          "evidence": "Tracked component/global styles",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "name": "frontend_framework",
+      "technologies": [
+        {
+          "name": "Angular",
+          "directories": 4,
+          "ofDirectories": 6,
+          "directoryFrequency": "67%",
+          "uniqueRootOrigins": 3,
+          "ofOrigins": 5,
+          "originFrequency": "60%",
+          "projects": [
+            "Arcania-workspace",
+            "Elux",
+            "Frontend-workspace",
+            "VortexDL"
+          ],
+          "evidence": "Angular manifests/source and Angular CLI project config",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "name": "frontend_ui",
+      "technologies": [
+        {
+          "name": "Angular Material/CDK",
+          "directories": 3,
+          "ofDirectories": 6,
+          "directoryFrequency": "50%",
+          "uniqueRootOrigins": 2,
+          "ofOrigins": 5,
+          "originFrequency": "40%",
+          "projects": [
+            "Arcania-workspace",
+            "Frontend-workspace",
+            "VortexDL"
+          ],
+          "evidence": "Direct dependencies in Angular package manifests",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "name": "http_client",
+      "technologies": [
+        {
+          "name": "reqwest",
+          "directories": 3,
+          "ofDirectories": 6,
+          "directoryFrequency": "50%",
+          "uniqueRootOrigins": 3,
+          "ofOrigins": 5,
+          "originFrequency": "60%",
+          "projects": [
+            "AUSWP",
+            "Elux",
+            "VortexDL"
+          ],
+          "evidence": "Direct dependency and HTTP/proxy clients",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "name": "language",
+      "technologies": [
+        {
+          "name": "Rust",
+          "directories": 4,
+          "ofDirectories": 6,
+          "directoryFrequency": "67%",
+          "uniqueRootOrigins": 4,
+          "ofOrigins": 5,
+          "originFrequency": "80%",
+          "projects": [
+            "AUSWP",
+            "Elux",
+            "VortexDL",
+            "Zonex"
+          ],
+          "evidence": "Cargo source/manifests in four project roots",
+          "confidence": "high"
+        },
+        {
+          "name": "TypeScript",
+          "directories": 4,
+          "ofDirectories": 6,
+          "directoryFrequency": "67%",
+          "uniqueRootOrigins": 3,
+          "ofOrigins": 5,
+          "originFrequency": "60%",
+          "projects": [
+            "Arcania-workspace",
+            "Elux",
+            "Frontend-workspace",
+            "VortexDL"
+          ],
+          "evidence": "Angular source trees; Arcania folders share origin",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "name": "language_interop",
+      "technologies": [
+        {
+          "name": "Go/C FFI",
+          "directories": 1,
+          "ofDirectories": 6,
+          "directoryFrequency": "17%",
+          "uniqueRootOrigins": 1,
+          "ofOrigins": 5,
+          "originFrequency": "20%",
+          "projects": [
+            "Elux"
+          ],
+          "evidence": "xray-sys build compiles Go C archive and bindgen Rust API",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "name": "linux_packaging",
+      "technologies": [
+        {
+          "name": "NixOS modules and overlays",
+          "directories": 2,
+          "ofDirectories": 6,
+          "directoryFrequency": "33%",
+          "uniqueRootOrigins": 2,
+          "ofOrigins": 5,
+          "originFrequency": "40%",
+          "projects": [
+            "VortexDL",
+            "Zonex"
+          ],
+          "evidence": "Flake exports NixOS integration/package",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "name": "media_integration",
+      "technologies": [
+        {
+          "name": "SoundCloud",
+          "directories": 1,
+          "ofDirectories": 6,
+          "directoryFrequency": "17%",
+          "uniqueRootOrigins": 1,
+          "ofOrigins": 5,
+          "originFrequency": "20%",
+          "projects": [
+            "VortexDL"
+          ],
+          "evidence": "Local client crate and provider/search/download modules",
+          "confidence": "high"
+        },
+        {
+          "name": "YouTube",
+          "directories": 1,
+          "ofDirectories": 6,
+          "directoryFrequency": "17%",
+          "uniqueRootOrigins": 1,
+          "ofOrigins": 5,
+          "originFrequency": "20%",
+          "projects": [
+            "VortexDL"
+          ],
+          "evidence": "Local downloader crate and provider/search/download modules",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "name": "media_metadata",
+      "technologies": [
+        {
+          "name": "ID3",
+          "directories": 1,
+          "ofDirectories": 6,
+          "directoryFrequency": "17%",
+          "uniqueRootOrigins": 1,
+          "ofOrigins": 5,
+          "originFrequency": "20%",
+          "projects": [
+            "VortexDL"
+          ],
+          "evidence": "id3 dependency and metadata read/write modules",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "name": "monorepo_build",
+      "technologies": [
+        {
+          "name": "Nx",
+          "directories": 2,
+          "ofDirectories": 6,
+          "directoryFrequency": "33%",
+          "uniqueRootOrigins": 1,
+          "ofOrigins": 5,
+          "originFrequency": "20%",
+          "projects": [
+            "Arcania-workspace",
+            "Frontend-workspace"
+          ],
+          "evidence": "Nx workspace configs/scripts in two branches of same origin",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "name": "multi_stage_build",
+      "technologies": [
+        {
+          "name": "Docker",
+          "directories": 1,
+          "ofDirectories": 6,
+          "directoryFrequency": "17%",
+          "uniqueRootOrigins": 1,
+          "ofOrigins": 5,
+          "originFrequency": "20%",
+          "projects": [
+            "Elux"
+          ],
+          "evidence": "Dockerfile builds Angular assets Rust server and Xray runtime",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "name": "native_ui",
+      "technologies": [
+        {
+          "name": "GTK4/libadwaita",
+          "directories": 1,
+          "ofDirectories": 6,
+          "directoryFrequency": "17%",
+          "uniqueRootOrigins": 1,
+          "ofOrigins": 5,
+          "originFrequency": "20%",
+          "projects": [
+            "Zonex"
+          ],
+          "evidence": "GTK UI dependencies and desktop app modules",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "name": "network_routing",
+      "technologies": [
+        {
+          "name": "TUN",
+          "directories": 1,
+          "ofDirectories": 6,
+          "directoryFrequency": "17%",
+          "uniqueRootOrigins": 1,
+          "ofOrigins": 5,
+          "originFrequency": "20%",
+          "projects": [
+            "AUSWP"
+          ],
+          "evidence": "TUN inbound/routing configuration",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "name": "networking_api",
+      "technologies": [
+        {
+          "name": "WebSocket",
+          "directories": 2,
+          "ofDirectories": 6,
+          "directoryFrequency": "33%",
+          "uniqueRootOrigins": 2,
+          "ofOrigins": 5,
+          "originFrequency": "40%",
+          "projects": [
+            "Elux",
+            "VortexDL"
+          ],
+          "evidence": "Axum WS API and client live event integrations",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "name": "package_manager",
+      "technologies": [
+        {
+          "name": "Yarn",
+          "directories": 4,
+          "ofDirectories": 6,
+          "directoryFrequency": "67%",
+          "uniqueRootOrigins": 3,
+          "ofOrigins": 5,
+          "originFrequency": "60%",
+          "projects": [
+            "Arcania-workspace",
+            "Elux",
+            "Frontend-workspace",
+            "VortexDL"
+          ],
+          "evidence": "Yarn lockfiles/packageManager/workflows",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "name": "proxy_control",
+      "technologies": [
+        {
+          "name": "Xray-core",
+          "directories": 1,
+          "ofDirectories": 6,
+          "directoryFrequency": "17%",
+          "uniqueRootOrigins": 1,
+          "ofOrigins": 5,
+          "originFrequency": "20%",
+          "projects": [
+            "Elux"
+          ],
+          "evidence": "config/process services and xray bindings",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "name": "proxy_core",
+      "technologies": [
+        {
+          "name": "sing-box/Mihomo",
+          "directories": 1,
+          "ofDirectories": 6,
+          "directoryFrequency": "17%",
+          "uniqueRootOrigins": 1,
+          "ofOrigins": 5,
+          "originFrequency": "20%",
+          "projects": [
+            "AUSWP"
+          ],
+          "evidence": "Core manager and generated core configuration",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "name": "proxy_protocol",
+      "technologies": [
+        {
+          "name": "VLESS",
+          "directories": 2,
+          "ofDirectories": 6,
+          "directoryFrequency": "33%",
+          "uniqueRootOrigins": 2,
+          "ofOrigins": 5,
+          "originFrequency": "40%",
+          "projects": [
+            "AUSWP",
+            "Elux"
+          ],
+          "evidence": "URI parsing / outbound protocol modules",
+          "confidence": "high"
+        },
+        {
+          "name": "SOCKS5",
+          "directories": 1,
+          "ofDirectories": 6,
+          "directoryFrequency": "17%",
+          "uniqueRootOrigins": 1,
+          "ofOrigins": 5,
+          "originFrequency": "20%",
+          "projects": [
+            "AUSWP"
+          ],
+          "evidence": "Custom handshake/server/balancer/failover implementation",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "name": "serialization",
+      "technologies": [
+        {
+          "name": "serde and serde_json",
+          "directories": 3,
+          "ofDirectories": 6,
+          "directoryFrequency": "50%",
+          "uniqueRootOrigins": 3,
+          "ofOrigins": 5,
+          "originFrequency": "60%",
+          "projects": [
+            "AUSWP",
+            "Elux",
+            "VortexDL"
+          ],
+          "evidence": "Direct Rust dependencies and typed JSON/config use",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "name": "storage",
+      "technologies": [
+        {
+          "name": "SQLite",
+          "directories": 1,
+          "ofDirectories": 6,
+          "directoryFrequency": "17%",
+          "uniqueRootOrigins": 1,
+          "ofOrigins": 5,
+          "originFrequency": "20%",
+          "projects": [
+            "Elux"
+          ],
+          "evidence": "rusqlite pooled repository/transaction services",
+          "confidence": "high"
+        },
+        {
+          "name": "redb",
+          "directories": 1,
+          "ofDirectories": 6,
+          "directoryFrequency": "17%",
+          "uniqueRootOrigins": 1,
+          "ofOrigins": 5,
+          "originFrequency": "20%",
+          "projects": [
+            "VortexDL"
+          ],
+          "evidence": "Embedded key-value database dependency and module",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "name": "testing",
+      "technologies": [
+        {
+          "name": "Angular test tooling (Karma/Jasmine)",
+          "directories": 3,
+          "ofDirectories": 6,
+          "directoryFrequency": "50%",
+          "uniqueRootOrigins": 2,
+          "ofOrigins": 5,
+          "originFrequency": "40%",
+          "projects": [
+            "Arcania-workspace",
+            "Elux",
+            "Frontend-workspace"
+          ],
+          "evidence": "Angular test scripts and Karma/Jasmine dependencies",
+          "confidence": "medium"
+        },
+        {
+          "name": "Vitest",
+          "directories": 1,
+          "ofDirectories": 6,
+          "directoryFrequency": "17%",
+          "uniqueRootOrigins": 1,
+          "ofOrigins": 5,
+          "originFrequency": "20%",
+          "projects": [
+            "VortexDL"
+          ],
+          "evidence": "Vitest dependency and test script",
+          "confidence": "medium"
+        }
+      ]
+    }
+  ]
+}

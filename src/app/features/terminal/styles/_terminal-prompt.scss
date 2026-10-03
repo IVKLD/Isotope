@@ -1,0 +1,57 @@
+.prompt-line,
+.input-line {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  line-height: 1.3;
+
+  .user-host {
+    color: var(--color-green);
+    font-weight: 500;
+  }
+
+  .prompt-colon,
+  .prompt-char {
+    color: var(--text-dim);
+    font-weight: 500;
+  }
+
+  .prompt-path {
+    color: var(--code-ident);
+    font-weight: 500;
+  }
+}
+
+form {
+  flex-shrink: 0;
+  padding: 0.5rem 1rem;
+  background: var(--bg-terminal);
+  border-top: 1px solid var(--border-subtle);
+
+  .input-line {
+    width: 100%;
+
+    input {
+      flex: 1;
+      background: transparent;
+      border: none;
+      outline: none;
+      color: var(--text-white);
+      font: inherit;
+      margin-left: 3px;
+    }
+
+    button {
+      color: var(--text-dim);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2px 4px;
+      height: auto;
+
+      &:hover {
+        color: var(--text-white);
+      }
+    }
+  }
+}

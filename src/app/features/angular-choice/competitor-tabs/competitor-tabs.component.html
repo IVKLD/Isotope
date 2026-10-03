@@ -1,0 +1,16 @@
+<nav appTabList aria-label="Сравнение фреймворков">
+  @for (comp of competitors(); track comp.key) {
+    <button
+      type="button"
+      appTab
+      [active]="selectedKey() === comp.key"
+      (click)="competitorSelect.emit(comp.key)"
+    >
+      <app-framework-icon [framework]="comp.key" [size]="16" />
+      <span>{{ comp.name }}</span>
+      <span class="count">{{ comp.badgeText }}</span>
+    </button>
+  }
+</nav>
+
+<p class="tagline">{{ currentTab().tagline }}</p>

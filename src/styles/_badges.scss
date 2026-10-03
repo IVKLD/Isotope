@@ -1,0 +1,97 @@
+@use 'mixins' as *;
+
+.badge,
+small[appBadge],
+span[appBadge],
+div[appBadge],
+a[appBadge],
+small[appStatusBadge],
+span[appStatusBadge],
+div[appStatusBadge] {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  width: fit-content;
+  font-size: 0.82rem;
+  font-weight: 500;
+  line-height: 1.25;
+  color: var(--text-muted);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-subtle);
+  padding: 4px 12px;
+  border-radius: 9999px;
+  white-space: nowrap;
+  user-select: none;
+  font-family: var(--font-sans);
+  vertical-align: middle;
+  box-sizing: border-box;
+  transition:
+    background-color 0.15s ease,
+    border-color 0.15s ease,
+    color 0.15s ease;
+
+  &.sm,
+  &.badge-sm {
+    font-size: 0.75rem;
+    padding: 2.5px 8px;
+    gap: 5px;
+  }
+
+  &.badge-status::before,
+  &[appStatusBadge]::before {
+    content: '';
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background-color: var(--color-green);
+    box-shadow: 0 0 6px var(--color-green-glow);
+    flex-shrink: 0;
+  }
+
+  &[data-dot='accent']::before {
+    background-color: var(--accent);
+    box-shadow: 0 0 6px rgba(var(--accent-rgb), 0.6);
+  }
+  &[data-dot='amber']::before {
+    background-color: #eab308;
+    box-shadow: 0 0 6px rgba(234, 179, 8, 0.4);
+  }
+  &[data-dot='blue']::before {
+    background-color: #38bdf8;
+    box-shadow: 0 0 6px rgba(56, 189, 248, 0.4);
+  }
+  &[data-dot='purple']::before {
+    background-color: #a855f7;
+    box-shadow: 0 0 6px rgba(168, 85, 247, 0.4);
+  }
+
+  &.badge-accent,
+  &[appBadge='accent'] {
+    gap: 6px;
+    padding: 4px 10px;
+    background: rgba(228, 0, 58, 0.08);
+    border: 1px solid rgba(228, 0, 58, 0.2);
+    border-radius: 9999px;
+    font-weight: 600;
+    color: var(--accent-light);
+  }
+
+  &.badge-muted,
+  &[appBadge='muted'] {
+    font-size: 0.78rem;
+    font-weight: 500;
+    padding: 3px 8px;
+    border-radius: 6px;
+    color: var(--text-dim);
+    background-color: rgba(255, 255, 255, 0.02);
+    border-color: rgba(255, 255, 255, 0.07);
+  }
+
+  &.badge-outline,
+  &[appBadge='outline'] {
+    font-size: 0.8rem;
+    background: transparent;
+    border-color: var(--border-card);
+    color: var(--text-muted);
+  }
+}

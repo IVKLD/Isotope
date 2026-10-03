@@ -1,0 +1,170 @@
+<nav class="blog-nav" aria-label="Навигация по блогу">
+  <a routerLink="/blog" class="back-link">
+    <svg lucideArrowLeft size="16"></svg>
+    <span>Все статьи</span>
+  </a>
+  <small>Инженерные заметки</small>
+</nav>
+
+<article>
+  <header>
+    <div class="meta-row">
+      <small>
+        <svg lucideClock size="14"></svg>
+        {{ post().readTime }} • {{ post().date }}
+      </small>
+      <app-tech-pills [items]="post().tags" />
+    </div>
+
+    <h1>{{ post().title }}</h1>
+    <p class="lead">{{ post().subtitle }}</p>
+
+    <div class="author-bar">
+      <div class="author-info">
+        <app-logo-icon [size]="24" />
+        <div>
+          <strong>IgnI</strong>
+          <small>Frontend / Systems Engineer</small>
+        </div>
+      </div>
+      <div class="author-actions">
+        <a
+          href="https://github.com/IVKLD"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="GitHub профиль"
+          class="action-icon-btn"
+        >
+          <svg app-github-icon size="16"></svg>
+        </a>
+        <a
+          href="https://t.me/IVKLCD"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Telegram"
+          class="action-icon-btn"
+        >
+          <svg lucideSend size="16"></svg>
+        </a>
+        <button type="button" (click)="terminal.open()" aria-label="Открыть CLI">
+          <svg lucideTerminal size="14"></svg>
+          <span>CLI</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="blog-body">
+    <div class="content-rail">
+      @for (section of post().sections; track section.id) {
+        <section [id]="section.id">
+          <h2>{{ section.title }}</h2>
+
+          @for (paragraph of section.paragraphs; track $index) {
+            <p [innerHTML]="paragraph"></p>
+          }
+
+          @if (section.quote) {
+            <blockquote>{{ section.quote }}</blockquote>
+          }
+
+          @if (section.list) {
+            <ul>
+              @for (item of section.list; track $index) {
+                <li [innerHTML]="item"></li>
+              }
+            </ul>
+          }
+
+          @if (section.callout; as callout) {
+            <aside class="callout" [class]="callout.type">
+              @if (callout.type === 'danger') {
+                <svg lucideShieldAlert size="18"></svg>
+              } @else {
+                <svg lucideTriangleAlert size="18"></svg>
+              }
+              <div>
+                <strong>{{ callout.title }}</strong>
+                <p>{{ callout.text }}</p>
+              </div>
+            </aside>
+          }
+
+          @if (section.codeBlocks; as blocks) {
+            <div class="comparison-block">
+              @for (block of blocks; track block.title) {
+                <div class="code-card" [class]="block.type ?? 'neutral'">
+                  <header>
+                    @if (block.type === 'bad') {
+                      <svg lucideBug size="16"></svg>
+                    } @else {
+                      <svg lucideCircleCheck size="16"></svg>
+                    }
+                    <span>{{ block.title }}</span>
+                  </header>
+                  <app-code-block
+                    [code]="block.code"
+                    [language]="block.language"
+                    [showLineNumbers]="true"
+                  />
+                  @if (block.footerNote) {
+                    <footer>
+                      <small>{{ block.footerNote }}</small>
+                    </footer>
+                  }
+                </div>
+              }
+            </div>
+          }
+
+          @if (section.rules; as rules) {
+            <div class="rules-grid">
+              @for (rule of rules; track rule.title) {
+                <article>
+                  <strong>{{ rule.title }}</strong>
+                  <p>{{ rule.text }}</p>
+                </article>
+              }
+            </div>
+          }
+        </section>
+      }
+
+      <footer>
+        <div class="article-end">
+          <app-logo-icon [size]="28" />
+          <div>
+            <strong>Чистый код требует инженерной дисциплины</strong>
+            <p>
+              Автоматизация должна усиливать мастерство инженера, а не заменять его поверхностной
+              иллюзией.
+            </p>
+          </div>
+        </div>
+        <div class="end-actions">
+          <a routerLink="/blog" class="back-home-btn">
+            <svg lucideArrowLeft size="16"></svg>
+            <span>Ко всем статьям блога</span>
+          </a>
+        </div>
+      </footer>
+    </div>
+
+    <aside class="sidebar-rail">
+      <nav class="toc" aria-label="Оглавление статьи">
+        <strong>Оглавление</strong>
+        @for (item of tocItems(); track item.id) {
+          <a [href]="'#' + item.id">{{ item.title }}</a>
+        }
+      </nav>
+
+      <div class="summary-widget">
+        <header>
+          <svg lucideBrain size="16"></svg>
+          <strong>Ключевой вывод</strong>
+        </header>
+        <p>{{ post().keyTakeaway }}</p>
+      </div>
+    </aside>
+  </div>
+</article>

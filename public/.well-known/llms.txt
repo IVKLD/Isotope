@@ -1,0 +1,17 @@
+# IgnI — Angular / Frontend Developer
+
+> Portfolio and technical profile of IgnI, specializing in Angular (v16–22), TypeScript (strict), Signals, RxJS, and UI frameworks.
+
+## Overview
+- [Projects Overview](https://github.com/IVKLD): Personal and commercial frontend engineering projects
+- [VortexDL](https://github.com/IVKLD/VortexDL): Desktop downloader with WebSocket and Angular 22
+- [Elux Client](https://github.com/DeLattice/Elux): Web interface for network routing configurations
+- [GitHub Profile](https://github.com/IVKLD): Source code repositories and contributions
+- [Telegram](https://t.me/IVKLCD): Direct contact
+
+## Core Stack
+- [Angular](https://angular.dev): Standalone components, Signals, computed, effect, OnPush change detection
+- [RxJS](https://rxjs.dev): Reactive streaming, operators, WebSocket interop
+- [TypeScript](https://www.typescriptlang.org): Strict typing, generic interfaces, immutable patterns
+- [UI Kits](https://material.angular.io): Angular Material, Taiga UI, PrimeNG, Tailwind CSS, SCSS
+- [Nx Monorepo](https://nx.dev): Enterprise workspace structure and modular architecture

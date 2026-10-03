@@ -1,0 +1,28 @@
+.rules-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0;
+
+  article {
+    padding: 1.25rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border-card);
+    border-radius: 10px;
+
+    strong {
+      display: block;
+      color: var(--accent-light);
+      font-size: 0.92rem;
+      margin-bottom: 0.5rem;
+      font-family: var(--font-mono);
+    }
+
+    p {
+      margin: 0;
+      font-size: 0.88rem;
+      line-height: 1.6;
+      color: var(--text-muted);
+    }
+  }
+}

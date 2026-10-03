@@ -1,0 +1,76 @@
+@use 'mixins' as *;
+
+.content-rail {
+  section {
+    margin-bottom: 3.5rem;
+    scroll-margin-top: 5rem;
+
+    h2 {
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: var(--text-white);
+      letter-spacing: -0.02em;
+      margin-bottom: 1.25rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    p {
+      font-size: 1.02rem;
+      line-height: 1.75;
+      color: var(--text-main);
+      margin-bottom: 1.25rem;
+
+      strong {
+        color: var(--text-white);
+        font-weight: 600;
+      }
+
+      code {
+        font-family: var(--font-mono);
+        font-size: 0.88em;
+        background: rgba(255, 255, 255, 0.06);
+        padding: 0.15rem 0.4rem;
+        border-radius: 4px;
+        color: var(--accent-light);
+      }
+    }
+
+    ul {
+      margin-bottom: 1.5rem;
+      padding-left: 1.25rem;
+
+      li {
+        font-size: 1rem;
+        line-height: 1.7;
+        color: var(--text-main);
+        margin-bottom: 0.65rem;
+
+        strong {
+          color: var(--text-white);
+        }
+
+        code {
+          font-family: var(--font-mono);
+          font-size: 0.88em;
+          background: rgba(255, 255, 255, 0.06);
+          padding: 0.15rem 0.4rem;
+          border-radius: 4px;
+          color: var(--accent-light);
+        }
+      }
+    }
+
+    blockquote {
+      margin: 1.75rem 0;
+      padding: 1rem 1.25rem;
+      border-left: 3px solid var(--accent);
+      background: rgba(228, 0, 58, 0.04);
+      border-radius: 0 8px 8px 0;
+      font-size: 1.05rem;
+      font-style: italic;
+      line-height: 1.65;
+      color: var(--text-white);
+    }
+  }
+}

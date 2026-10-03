@@ -1,0 +1,103 @@
+<header (dblclick)="toggleMaximize()">
+  <div>
+    <svg lucideTerminal size="14"></svg>
+    <span>igni@dev: ~</span>
+  </div>
+
+  <div>
+    <button
+      appIconButton
+      (click)="toggleMaximize()"
+      [attr.aria-label]="isMaximized() ? 'Восстановить' : 'Развернуть'"
+      title="{{ isMaximized() ? 'Восстановить' : 'Развернуть' }}"
+    >
+      @if (isMaximized()) {
+        <svg lucideMinimize2 size="13"></svg>
+      } @else {
+        <svg lucideMaximize2 size="13"></svg>
+      }
+    </button>
+    <button appDialogClose appIconButton aria-label="Закрыть" title="Закрыть">
+      <svg lucideX size="14"></svg>
+    </button>
+  </div>
+</header>
+
+<div class="terminal-viewport" #viewport>
+  @for (entry of terminal.history(); track $index) {
+    <div class="terminal-entry">
+      <div class="prompt-line">
+        <span class="user-host">igni@dev</span>
+        <span class="prompt-colon">:</span>
+        <span class="prompt-path">~</span>
+        <span class="prompt-char">$</span>
+        <span class="cmd-text">{{ entry.command }}</span>
+      </div>
+
+      <div class="output-block">
+        @for (line of entry.lines; track $index) {
+          <div>{{ line }}</div>
+        }
+      </div>
+    </div>
+  }
+</div>
+
+<form (submit)="onSubmit($event)">
+  <div class="input-line">
+    <span class="user-host">igni@dev</span>
+    <span class="prompt-colon">:</span>
+    <span class="prompt-path">~</span>
+    <span class="prompt-char">$</span>
+    <input
+      #cmdInput
+      type="text"
+      [value]="currentInput()"
+      (input)="onInput($event)"
+      name="commandInput"
+      autocomplete="off"
+      spellcheck="false"
+      placeholder=""
+    />
+    <button type="submit" aria-label="Выполнить">
+      <svg lucideCornerDownLeft size="14"></svg>
+    </button>
+  </div>
+</form>
+
+<footer>
+  <span>Быстрый запуск:</span>
+  @for (cmd of quickCommands; track cmd) {
+    <button type="button" (click)="runCommand(cmd)">{{ cmd }}</button>
+  }
+</footer>
+
+@if (!isMaximized()) {
+  <div
+    class="resize-handle"
+    (pointerdown)="onResizeStart($event)"
+    title="Изменить размер"
+    aria-hidden="true"
+  >
+    <svg viewBox="0 0 10 10" width="10" height="10">
+      <line
+        x1="9"
+        y1="1"
+        x2="1"
+        y2="9"
+        stroke="currentColor"
+        stroke-width="1.5"
+        stroke-linecap="round"
+      />
+      <line
+        x1="9"
+        y1="5"
+        x2="5"
+        y2="9"
+        stroke="currentColor"
+        stroke-width="1.5"
+        stroke-linecap="round"
+      />
+    </svg>
+  </div>
+}

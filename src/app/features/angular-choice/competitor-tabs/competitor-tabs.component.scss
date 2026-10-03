@@ -1,0 +1,13 @@
+@use 'mixins' as *;
+
+:host {
+  display: block;
+}
+
+.tagline {
+  font-size: 0.95rem;
+  color: var(--text-terminal);
+  line-height: 1.6;
+  margin: -0.75rem 0 2rem;
+  padding: 0 0.25rem;
+}

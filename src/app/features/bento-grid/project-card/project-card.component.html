@@ -1,0 +1,60 @@
+<article
+  role="button"
+  tabindex="0"
+  [attr.aria-label]="'Открыть детали проекта ' + project().name"
+  (click)="inspect.emit(project())"
+  (keydown.enter)="inspect.emit(project())"
+  (keydown.space)="$event.preventDefault(); inspect.emit(project())"
+>
+  <header>
+    <div>
+      <small>
+        <span>{{ project().year }}</span>
+        <span>•</span>
+        <span>{{ project().role }}</span>
+      </small>
+      <h3>{{ project().name }}</h3>
+    </div>
+
+    <nav (click)="$event.stopPropagation()">
+      @if (project().githubUrl) {
+        <a
+          appOutlineButton
+          size="sm"
+          [href]="project().githubUrl"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Репозиторий на GitHub"
+        >
+          <svg lucideFolderGit2 size="14"></svg>
+          <span>Код</span>
+          <svg lucideExternalLink size="12"></svg>
+        </a>
+      } @else {
+        <span appBadge="muted">
+          <svg lucideLock size="12"></svg>
+          <span>Приватный</span>
+        </span>
+      }
+    </nav>
+  </header>
+
+  <p>{{ project().shortDesc }}</p>
+
+  <ul class="feature-list">
+    @for (item of project().highlights; track item) {
+      <li>
+        <span>{{ item }}</span>
+      </li>
+    }
+  </ul>
+
+  <footer>
+    <app-tech-pills [items]="project().techStack" />
+
+    <button type="button" appGhostButton size="sm">
+      <svg lucideCodeXml size="14"></svg>
+      <span>Разбор</span>
+    </button>
+  </footer>
+</article>

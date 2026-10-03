@@ -1,0 +1,45 @@
+<header>
+  <a routerLink="/" class="brand" aria-label="IgnI — Главная">
+    <app-logo-icon [size]="20" />
+    <span class="name">IgnI</span>
+    <span class="sep">/</span>
+    <span class="tag">angular dev</span>
+  </a>
+
+  <nav>
+    <a routerLink="/" fragment="projects">Проекты</a>
+    <a routerLink="/" fragment="skills">Стек</a>
+    <a routerLink="/blog" routerLinkActive="active">Блог</a>
+    <a routerLink="/" fragment="contact">Контакты</a>
+  </nav>
+
+  <div class="header-actions">
+    <button
+      (click)="terminal.open()"
+      type="button"
+      [attr.aria-label]="isMac ? 'Терминал (⌘K)' : 'Терминал (Ctrl+K)'"
+    >
+      <svg lucideTerminal size="14"></svg>
+      <span>CLI</span>
+      <span class="key-combo">
+        <kbd>{{ isMac ? '⌘' : 'Ctrl' }}</kbd>
+        <kbd>K</kbd>
+      </span>
+    </button>
+
+    <hr />
+
+    <a
+      href="https://github.com/IVKLD"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="GitHub профиль"
+    >
+      <svg app-github-icon size="16"></svg>
+    </a>
+
+    <a href="https://t.me/IVKLCD" target="_blank" rel="noopener noreferrer" aria-label="Telegram">
+      <svg lucideSend size="16"></svg>
+    </a>
+  </div>
+</header>

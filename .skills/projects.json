@@ -1,0 +1,168 @@
+[
+  {
+    "name": "Arcania-workspace",
+    "category": "product",
+    "role": "Primary Git contributor on dev checkout (155/164 author-attributed commits in observed history)",
+    "year": "2026",
+    "version": null,
+    "branch": "dev",
+    "githubUrl": "https://github.com/ArcaniaCMS/Frontend-workspace",
+    "sameOriginAs": "Frontend-workspace",
+    "shortDesc": "Актуальная Arcania ветка: Angular/Nx frontend, admin panel и отдельная UI library для магазина и контентной платформы.",
+    "fullDesc": "Nx/Yarn monorepo с apps/frontend, apps/admin-panel и libs/ui-kit. Frontend обслуживает каталог и покупки, payment flow, blog/news, landing pages, правила и документы. Admin содержит каталоги/вложенные товары, скидки, промокоды, новости, аналитику, users, prompt helper и операции data wipe. Workspace использует Angular SSR/server configuration, common UI library, performance audit и GitHub Actions для affected builds и dev/prod release в EU/RU.",
+    "whyCool": "Содержит предметно сложный Angular продукт и внутренний контентно-коммерческий back office в одном workspace, а затем автоматически собирает и выкладывает изменившиеся части. GitHub Actions разделяет frontend/admin и dev/prod deployment, передаёт собранные артефакты на EU/RU узлы и очищает Cloudflare cache.",
+    "highlights": [
+      "Nx 22 monorepo: frontend application, admin application и Angular UI library",
+      "Store/payment flows, nested catalog editors, promotions, news, analytics и user tools",
+      "Angular SSR dependencies/config, charts, rich text editor, Three.js/model-viewer и translations",
+      "Affected-project CI, production builds, SSH/SCP release workflow и cache purge",
+      "Performance audit, compression и dependency/boundary tooling"
+    ],
+    "techStack": ["TypeScript", "Angular 21", "Nx 22", "Yarn", "RxJS", "Angular Material/CDK", "Express/Angular SSR", "SCSS", "GitHub Actions", "Three.js", "ngx-charts", "ngx-editor"],
+    "evidence": {"trackedFiles": 1485, "typescriptFiles": 413, "gitHeadDate": "2026-04-27", "workingTree": "clean", "confidence": "high"},
+    "codeSnippet": {
+      "filename": ".github/workflows/ci.yml",
+      "description": "CI определяет затронутые приложения Nx и включает выборочный deployment.",
+      "whyThisCode": "Это конкретное свидетельство monorepo CI: построение списка affected apps становится условием запуска отдельных deploy jobs.",
+      "code": "AFFECTED=$(npx nx show projects --affected --base=$NX_BASE --head=HEAD --type=app)\nif [ \"$FORCE_FRONTEND\" == \"true\" ] || echo \"$AFFECTED\" | grep -qE 'desktop|mobile'; then\n  echo \"frontend=true\" >> $GITHUB_OUTPUT\nfi"
+    }
+  },
+  {
+    "name": "AUSWP",
+    "category": "networking utility / prototype",
+    "role": "Sole Git author in two-commit history; repository message says AI-created 100% and demonstration",
+    "year": "2026",
+    "version": "0.1.0",
+    "branch": "main",
+    "githubUrl": "https://github.com/IVKLD/AUSWP",
+    "shortDesc": "Асинхронный Rust proxy rotator и SOCKS5 load balancer с preflight health/speed checks, VLESS и опциональным TUN.",
+    "fullDesc": "Cargo workspace состоит из auswp-cli и auswp-core. CLI читает JSON config, может создать пример конфигурации и запускает daemon с graceful Ctrl-C shutdown. Core объединяет subscription loading, health/speed checks, VLESS URI parsing, конфиги sing-box/Mihomo, SOCKS5 server/balancer/failover, доменную привязку прокси, GeoIP helpers и TUN routing.",
+    "whyCool": "Связывает async networking с несколькими внешними routing cores и Linux routing mode. В исходнике балансировщик использует shared async state и атомарный round-robin счётчик; failover пересоздаёт SOCKS5 connection и может закрепить удачный прокси за доменом. Git явно помечает проект как 100% AI-created demonstration, поэтому это технологический прототип и ограниченное доказательство самостоятельного авторства.",
+    "highlights": [
+      "Startup health/latency и download-speed checks, выбор top-M узлов",
+      "SOCKS5 handshake/server, round-robin, health pool и failover",
+      "Поддержка proxy config URI и JSON object форматов",
+      "sing-box/Mihomo adapters; README заявляет VLESS TCP, WebSocket, gRPC и xhttp",
+      "Subscription refresh, GeoIP lookup и optional TUN mode"
+    ],
+    "techStack": ["Rust 2024", "Tokio", "reqwest/rustls", "tokio-socks", "SOCKS5", "VLESS", "sing-box", "Mihomo", "TUN", "serde_json", "MaxMindDB", "Nix Flakes"],
+    "evidence": {"trackedFiles": 34, "rustFiles": 21, "gitHeadDate": "2026-07-20", "workingTree": "clean", "aiAuthorshipNote": "explicit in Git commit", "confidence": "high with authorship caveat"},
+    "codeSnippet": {
+      "filename": "auswp-core/src/protocols/socks5/balancer.rs",
+      "description": "Выдача следующего активного proxy port в round-robin порядке.",
+      "whyThisCode": "Показывает асинхронный доступ к общему пулу и безопасный атомарный индекс между конкурентными соединениями.",
+      "code": "pub async fn get_next_port(&self) -> Option<u16> {\n    let ports = self.active_ports.read().await;\n    if ports.is_empty() {\n        None\n    } else {\n        let idx = self.counter.fetch_add(1, Ordering::Relaxed) % ports.len();\n        Some(ports[idx])\n    }\n}"
+    }
+  },
+  {
+    "name": "Elux",
+    "category": "network control plane / full-stack application",
+    "role": "Primary Git author in inspected root and submodule histories; active checkout edits present",
+    "year": "2025",
+    "version": "1.0.0 core manifest",
+    "branch": "dev",
+    "githubUrl": "https://github.com/DeLattice/Elux",
+    "components": ["Elux root repository", "core submodule: DeLattice/Elux-core", "web submodule: DeLattice/Elux-web", "xray Rust/Go binding crate"],
+    "shortDesc": "Панель управления Xray: Rust REST/WebSocket control plane, Angular конфигурационный интерфейс и SQLite storage.",
+    "fullDesc": "Корневой репозиторий собирает submodules core и web. Rust core на Axum управляет Xray процессом и config files, предоставляет handlers для групп, конфигураций, settings и Xray status/start/stop/apply, парсит VLESS/VMess/Trojan/Shadowsocks форматы, хранит группы/configs через SQLite repositories и transactions, умеет читать/проверять конфиги, обновлять Xray и раздавать собранный frontend. Angular 20 frontend содержит Monaco config editor, группы подписок, dashboard/logs, settings, auth/API interceptors. Соседний xray crate компилирует Go Xray library в static C archive и создаёт Rust bindings.",
+    "whyCool": "В одном продукте сходятся config-driven proxy control plane, отдельная web панель, SQLite transactions, процессный lifecycle и mixed-language FFI. Docker multi-stage build отдельно собирает Angular, Rust core и Xray runtime assets, затем укладывает их в единый Linux image.",
+    "highlights": [
+      "REST endpoints для Xray status/on/off/config/outbounds и групп прокси",
+      "Parser modules для Shadowsocks, Trojan, VLESS и VMess",
+      "SQLite connection pool, repositories и transaction services",
+      "Angular + Taiga UI + Monaco editor с dashboard, config groups и settings",
+      "Rust-to-Go/C static-library build через build.rs и bindgen; Docker multi-stage packaging"
+    ],
+    "techStack": ["Rust 2024", "Tokio", "Axum", "reqwest", "SQLite/rusqlite", "serde", "Angular 20", "TypeScript", "Taiga UI", "Monaco Editor", "RxJS", "Yarn", "Devbox/Nix", "Docker", "Xray-core", "Go", "C ABI", "bindgen"],
+    "evidence": {"rootGitHeadDate": "2025-12-04", "coreHeadDate": "2025-12-03", "webHeadDate": "2025-12-03", "rootWorkingTreeChanges": 10, "coreChanges": true, "webChanges": true, "confidence": "high"},
+    "codeSnippet": {
+      "filename": "core/src/bin/server/http/server.rs",
+      "description": "AppState соединяет SQLite pool/transactions, Xray service и config file manager.",
+      "whyThisCode": "Показывает структуру приложения, где HTTP handlers работают с явным общим состоянием и изолированными сервисами.",
+      "code": "pub struct AppState {\n    pub db_pool: Pool<SqliteConnectionManager>,\n    pub xray_service: XrayService,\n    pub xray_file_manipulator: XrayFileCore,\n    pub elux_config_file: RwLock<EluxSettingsManager>,\n}\n\npub fn init() -> tokio::task::JoinHandle<()> {\n    let state: Arc<AppState> = Arc::new(AppState::init());\n    // Axum Router composes group, config, settings and Xray handlers\n    tokio::spawn(async move { /* serve API */ })\n}"
+    }
+  },
+  {
+    "name": "Frontend-workspace",
+    "category": "product frontend / admin tooling",
+    "role": "Primary Git contributor on main checkout (114/126 author-attributed commits in observed history)",
+    "year": "2026",
+    "version": null,
+    "branch": "main",
+    "githubUrl": "https://github.com/ArcaniaCMS/Frontend-workspace",
+    "sameOriginAs": "Arcania-workspace",
+    "shortDesc": "Arcania Angular workspace с отдельными desktop/mobile clients, admin panel и общей компонентной библиотекой.",
+    "fullDesc": "Nx/Yarn monorepo: frontend содержит Angular desktop и mobile app projects; отдельно есть admin-panel и @arcania-inc/ui-kit. Клиентская часть включает catalog/payment flows, landing pages, blog/news, rules и legal docs. Admin поддерживает каталог и вложенные товары, discount/promo management, новости, аналитику, пользователей, правила и AI helper. Workflows выявляют затронутые приложения, собирают desktop/mobile/admin и выполняют environment-aware deployment в EU/RU с Cloudflare cache purge.",
+    "whyCool": "Ветка сохраняет явную desktop/mobile организацию в одном клиентском продукте, рядом с admin и shared Angular library. CI учитывает зависимости workspace и выпускает отдельные приложения независимо. Это другой архитектурный snapshot того же Git origin, что Arcania-workspace, а не независимый origin.",
+    "highlights": [
+      "Desktop и mobile — отдельные Angular app projects",
+      "Отдельные admin panel и @arcania-inc/ui-kit workspace projects",
+      "Store/payment, blog, rules/documents, analytics, promos и user management",
+      "Nx affected CI и environment-aware production deployment",
+      "Tracked checkout: 562 TypeScript, 250 SCSS и 237 HTML файлов"
+    ],
+    "techStack": ["TypeScript", "Angular 21", "Nx 22", "Yarn", "RxJS", "Angular Material/CDK", "Angular SSR", "Three.js/model-viewer", "ngx-charts", "ngx-editor", "HTML", "SCSS", "GitHub Actions", "SSH/SCP", "Cloudflare"],
+    "evidence": {"trackedFiles": 1287, "typescriptFiles": 562, "gitHeadDate": "2026-03-10", "workingTree": "clean", "duplicateOrigin": true, "confidence": "high"},
+    "codeSnippet": {
+      "filename": "apps/admin-panel/src/app/admin/catalog/services/shop-items.service.ts",
+      "description": "В репозитории предметные области отделены на views, state/services, DTO/RDO и типы.",
+      "whyThisCode": "Каталожная структура даёт свидетельство работы со сложными admin CRUD workflows. Полный фрагмент не включён, чтобы не подменять проектный пример общим framework boilerplate.",
+      "code": "// Workspace-level CI uses affected app graph:\nAFFECTED=$(npx nx show projects --affected --base=$NX_BASE --head=HEAD --type=app)\nyarn nx affected -t build --configuration=production --base=origin/$BASE_BRANCH"
+    }
+  },
+  {
+    "name": "VortexDL",
+    "category": "released full-stack media application",
+    "role": "Primary author/maintainer by Git history (163 commits under IgnIVertiKalCaD; release automation also present)",
+    "year": "2026",
+    "version": "0.4.16",
+    "branch": "main",
+    "githubUrl": "https://github.com/IVKLD/VortexDL",
+    "shortDesc": "Rust CLI/server и Angular music library для SoundCloud/YouTube download, playback, backup и Android ADB sync.",
+    "fullDesc": "Rust 2024 backend объединяет CLI и Axum web API. Pipeline определяет source, раскрывает tracks/playlists, фильтрует уже скачанные записи и ограниченно параллелит загрузки с progress, cancellation и persistence. Providers работают через локальные crates soundcloud-rs и yt-audio-downloader-rs. Axum отдаёт поиск, очередь, download events, streaming и settings; redb хранит состояние/кэш; metadata хранится в ID3; ADB modules находят Android устройства и синхронизируют diff музыкальной библиотеки. Backup layer поддерживает local, URL и WebDAV. Angular 22 UI содержит dashboard/charts, search, track library, player/media session, settings, proxy management и ADB device screens.",
+    "whyCool": "Продукт проходит весь пользовательский сценарий: поиск в двух провайдерах → ограниченная параллельная загрузка → metadata/library → проигрывание в browser → резервная копия или синхронизация с Android. Сервер транслирует queue/progress events; web panel встроена в Rust binary. Release v0.4.16 и автоматизированная release workflow показывают выпускную инфраструктуру.",
+    "highlights": [
+      "SoundCloud and YouTube track/playlist search, stream resolve and downloads",
+      "Bounded concurrent download pipeline, progress, cancellation and queue management",
+      "Axum REST/WebSocket API and embedded Angular web panel",
+      "redb persistence, metadata scanning/ID3 and local library management",
+      "ADB device scan/storage/two-way sync, watchdog and local/URL/WebDAV backups",
+      "Nix package/NixOS module and GitHub release workflows"
+    ],
+    "techStack": ["Rust 2024", "Tokio", "Axum", "reqwest", "futures", "Angular 22", "TypeScript 6", "RxJS", "Angular Material/CDK", "Vitest", "redb", "Symphonia", "ID3", "SoundCloud", "YouTube", "ADB", "WebDAV", "FFmpeg runtime", "Nix Flakes", "Just", "GitHub Actions"],
+    "evidence": {"trackedRootFiles": 339, "rustFiles": 90, "typescriptFiles": 106, "gitHeadDate": "2026-09-15", "release": "v0.4.16", "workingTreeChanges": 73, "confidence": "high"},
+    "codeSnippet": {
+      "filename": "src/downloader/parallel.rs",
+      "description": "Загрузка ограничивается max_concurrent и уважает cancellation channel для каждой задачи.",
+      "whyThisCode": "Показывает реальную конкурентную orchestration логику: параллелизм ограничен настройкой пользователя, а отдельный track task завершается через общий cancellation flow.",
+      "code": "let results: Vec<_> = stream::iter(tracks)\n    .map(|track| {\n        let ctx = ctx.clone();\n        async move { tokio::spawn(process_parallel_track(ctx, track, naming_template, output_dir, pb)).await.ok().flatten() }\n    })\n    .buffer_unordered(max_concurrent)\n    .collect()\n    .await;\njoin_all(handles).await;"
+    }
+  },
+  {
+    "name": "Zonex",
+    "category": "Linux desktop / archive utility",
+    "role": "Sole Git author in five-commit history; substantial uncommitted refactor in current working tree",
+    "year": "2026",
+    "version": "0.1.0",
+    "branch": "main",
+    "githubUrl": "https://github.com/IVKLD/Zonex",
+    "shortDesc": "GTK4/libadwaita Wayland archive manager с ZIP/TAR, read-only FUSE filesystem и drag-out без временного копирования.",
+    "fullDesc": "Native Rust Linux desktop app. Archive detector использует content signatures и fallback extensions; ZipEngine и TarEngine реализуют listing/extract/create/operations, TAR поддерживает gzip/zstd, а libarchive служит fallback engine. Archive manager отделён от GTK view/handlers. Read-only FUSE filesystem строит виртуальное дерево архива, чтобы desktop drag-and-drop мог ссылаться на paths в mountpoint. UI содержит archive dialogs, preview, sorting/filtering, keyboard/drag handlers и temporary cache/recent state. Nix flake поставляет desktop entry, icons и NixOS package/module.",
+    "whyCool": "FUSE интеграция связывает абстрактную структуру архива с файловой системой рабочего стола: приложение может выдавать пути к выбранным файлам без предварительного распаковывания всего архива. Security tests явно моделируют Zip Slip traversal, пароли ZIP и проверку целостности после повреждения данных.",
+    "highlights": [
+      "Format detection по magic bytes и расширениям: ZIP, TAR, TAR.GZ, TAR.ZST",
+      "Archive manager с ZIP/TAR engines и libarchive fallback",
+      "Read-only FUSE mount tree для archive browsing/drag-and-drop",
+      "ZIP password and integrity operations; tests на повреждённый архив и Zip Slip",
+      "GTK4/libadwaita Wayland app, NixOS package/module и строгие Clippy settings"
+    ],
+    "techStack": ["Rust 2021", "GTK4", "libadwaita", "GDK", "GLib/GIO", "Wayland", "FUSE3/fuser", "ZIP", "TAR", "GZip", "Zstandard", "libarchive", "Nix Flakes", "Just", "Clippy", "rustfmt"],
+    "evidence": {"trackedFilesAtHead": 39, "gitHeadDate": "2026-07-26", "workingTreeChanges": 43, "testAreas": ["archive engine", "manager", "drag-and-drop", "FUSE", "integration formats", "security"], "confidence": "high"},
+    "codeSnippet": {
+      "filename": "src/fuse/mount_manager.rs",
+      "description": "Создаётся read-only FUSE mount с именем исходного архива.",
+      "whyThisCode": "Показывает соединение собственного ArchiveFuseFs с Linux filesystem mount API и его cleanup lifecycle.",
+      "code": "let fs = ArchiveFuseFs::new(archive_path, entries);\nlet mut config = fuser::Config::default();\nconfig.mount_options.push(MountOption::RO);\nconfig.mount_options.push(MountOption::FSName(format!(\"zonex:{}\", archive_stem)));\nlet session = fuser::spawn_mount(fs, &mount_path, &config)?;"
+    }
+  }
+]

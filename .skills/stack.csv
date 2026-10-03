@@ -1,0 +1,40 @@
+technology,category,folders_with_evidence,of_6_folders,unique_root_origins,of_5_origins,projects,evidence,confidence
+Rust,language,4,67%,4,80%,AUSWP|Elux|VortexDL|Zonex,Cargo source/manifests in four project roots,high
+TypeScript,language,4,67%,3,60%,Arcania-workspace|Elux|Frontend-workspace|VortexDL,Angular source trees; Arcania folders share origin,high
+Angular,frontend_framework,4,67%,3,60%,Arcania-workspace|Elux|Frontend-workspace|VortexDL,Angular manifests/source and Angular CLI project config,high
+HTML,frontend,4,67%,3,60%,Arcania-workspace|Elux|Frontend-workspace|VortexDL,Tracked templates in Angular projects,high
+SCSS,frontend,4,67%,3,60%,Arcania-workspace|Elux|Frontend-workspace|VortexDL,Tracked component/global styles,high
+Yarn,package_manager,4,67%,3,60%,Arcania-workspace|Elux|Frontend-workspace|VortexDL,Yarn lockfiles/packageManager/workflows,high
+Nix or Devbox,Nix_environment,4,67%,4,80%,AUSWP|Elux|VortexDL|Zonex,Flakes in three roots; Devbox manifests in Elux,high
+Tokio,async_runtime,3,50%,3,60%,AUSWP|Elux|VortexDL,Direct Rust dependency and async source,high
+reqwest,http_client,3,50%,3,60%,AUSWP|Elux|VortexDL,Direct dependency and HTTP/proxy clients,high
+serde and serde_json,serialization,3,50%,3,60%,AUSWP|Elux|VortexDL,Direct Rust dependencies and typed JSON/config use,high
+clap,cli,3,50%,3,60%,AUSWP|Elux|VortexDL,CLI parser dependency,high
+GitHub Actions,ci_cd,3,50%,2,40%,Arcania-workspace|Frontend-workspace|VortexDL,CI/deploy workflows; Arcania two folders share origin,high
+Nx,monorepo_build,2,33%,1,20%,Arcania-workspace|Frontend-workspace,Nx workspace configs/scripts in two branches of same origin,high
+Angular Material/CDK,frontend_ui,3,50%,2,40%,Arcania-workspace|Frontend-workspace|VortexDL,Direct dependencies in Angular package manifests,high
+Angular test tooling (Karma/Jasmine),testing,3,50%,2,40%,Arcania-workspace|Elux|Frontend-workspace,Angular test scripts and Karma/Jasmine dependencies,medium
+Vitest,testing,1,17%,1,20%,VortexDL,Vitest dependency and test script,medium
+Axum,backend_web,2,33%,2,40%,Elux|VortexDL,Direct dependency and router/handler source,high
+WebSocket,networking_api,2,33%,2,40%,Elux|VortexDL,Axum WS API and client live event integrations,high
+SQLite,storage,1,17%,1,20%,Elux,rusqlite pooled repository/transaction services,high
+redb,storage,1,17%,1,20%,VortexDL,Embedded key-value database dependency and module,high
+Docker,multi_stage_build,1,17%,1,20%,Elux,Dockerfile builds Angular assets Rust server and Xray runtime,high
+Xray-core,proxy_control,1,17%,1,20%,Elux,config/process services and xray bindings,high
+Go/C FFI,language_interop,1,17%,1,20%,Elux,xray-sys build compiles Go C archive and bindgen Rust API,high
+VLESS,proxy_protocol,2,33%,2,40%,AUSWP|Elux,URI parsing / outbound protocol modules,high
+SOCKS5,proxy_protocol,1,17%,1,20%,AUSWP,Custom handshake/server/balancer/failover implementation,high
+sing-box/Mihomo,proxy_core,1,17%,1,20%,AUSWP,Core manager and generated core configuration,high
+TUN,network_routing,1,17%,1,20%,AUSWP,TUN inbound/routing configuration,high
+GTK4/libadwaita,native_ui,1,17%,1,20%,Zonex,GTK UI dependencies and desktop app modules,high
+FUSE3,filesystem_integration,1,17%,1,20%,Zonex,fuser read-only mount and Nix package dependency,high
+ZIP/TAR archives,archive_processing,1,17%,1,20%,Zonex,Engines for ZIP/TAR/TAR.GZ/TAR.ZST,high
+GZip/Zstandard,compression,1,17%,1,20%,Zonex,flate2/zstd dependencies and format tests,high
+SoundCloud,media_integration,1,17%,1,20%,VortexDL,Local client crate and provider/search/download modules,high
+YouTube,media_integration,1,17%,1,20%,VortexDL,Local downloader crate and provider/search/download modules,high
+ADB,device_integration,1,17%,1,20%,VortexDL,device discovery/storage/sync and transport modules,high
+WebDAV,backup_integration,1,17%,1,20%,VortexDL,backup strategy/provider modules,high
+ID3,media_metadata,1,17%,1,20%,VortexDL,id3 dependency and metadata read/write modules,high
+Symphonia,audio_processing,1,17%,1,20%,VortexDL,Audio format probing/processing dependency,medium
+NixOS modules and overlays,linux_packaging,2,33%,2,40%,VortexDL|Zonex,Flake exports NixOS integration/package,high
+Clippy and rustfmt,code_quality,2,33%,2,40%,AUSWP|Zonex,Nix shell tools; Zonex explicit lint targets and deny lints,medium

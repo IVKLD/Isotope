@@ -1,0 +1,24 @@
+<header>
+  <code>igni@dev</code>
+  :
+  <code>~/architecture</code>
+  <span>$</span>
+  <kbd>{{ competitor().verdict.command }}</kbd>
+</header>
+
+<ul>
+  @for (chk of competitor().verdict.checks; track chk.name) {
+    <li>
+      <small>[ {{ chk.status }} ]</small>
+      <strong>{{ chk.name }}</strong>
+      <span>→</span>
+      <p>{{ chk.description }}</p>
+    </li>
+  }
+</ul>
+
+<footer>
+  <small>Итоговый вердикт (2026)</small>
+  <h3>{{ competitor().verdict.title }}</h3>
+  <p>{{ competitor().verdict.summary }}</p>
+</footer>

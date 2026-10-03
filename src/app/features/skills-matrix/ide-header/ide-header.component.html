@@ -1,0 +1,18 @@
+<div class="workspace-label" aria-hidden="true">
+  <svg lucideTerminal size="13" class="workspace-icon"></svg>
+  <span>stack/</span>
+</div>
+
+<nav appTabList aria-label="Архитектурные модули">
+  @for (mod of modules(); track mod.id) {
+    <button
+      type="button"
+      appTab
+      [active]="selected().id === mod.id"
+      (click)="moduleSelect.emit(mod)"
+    >
+      <svg lucideFileCode size="13" class="tab-icon" aria-hidden="true"></svg>
+      <span>{{ mod.fileName }}</span>
+    </button>
+  }
+</nav>

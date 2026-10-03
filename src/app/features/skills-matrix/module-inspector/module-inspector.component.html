@@ -1,0 +1,25 @@
+<header>
+  <div class="inspector-icon" aria-hidden="true">
+    <svg [lucideIcon]="module().icon" size="20"></svg>
+  </div>
+  <div>
+    <h3>{{ module().title }}</h3>
+    <p>{{ module().description }}</p>
+  </div>
+</header>
+
+<section>
+  <h4>Ключевые практики & стандарты</h4>
+  <ul class="feature-list">
+    @for (item of module().highlights; track item) {
+      <li>
+        <span>{{ item }}</span>
+      </li>
+    }
+  </ul>
+</section>
+
+<section>
+  <h4>Технологии & инструменты</h4>
+  <app-tech-pills [items]="module().techStack" />
+</section>

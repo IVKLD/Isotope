@@ -1,0 +1,80 @@
+@use 'mixins' as *;
+@use 'button_icon';
+
+.btn,
+a[appSolidButton],
+button[appSolidButton],
+a[appOutlineButton],
+button[appOutlineButton],
+a[appGhostButton],
+button[appGhostButton],
+a[appIconButton],
+button[appIconButton] {
+  &.btn-solid,
+  &.solid,
+  &[appSolidButton] {
+    gap: 7px;
+    background-color: var(--text-white);
+    color: var(--bg-primary);
+    border-color: var(--text-white);
+    font-weight: 600;
+
+    @include hover {
+      &:hover {
+        background-color: var(--text-main);
+        border-color: var(--text-main);
+      }
+    }
+
+    &:active {
+      opacity: 0.88;
+    }
+  }
+
+  &.btn-outline,
+  &.outline,
+  &[appOutlineButton] {
+    gap: 7px;
+    font-weight: 500;
+    background-color: rgba(255, 255, 255, 0.04);
+    color: var(--text-white);
+    border-color: rgba(255, 255, 255, 0.1);
+
+    @include hover {
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.08);
+        border-color: rgba(255, 255, 255, 0.2);
+      }
+    }
+
+    &:active {
+      background-color: rgba(255, 255, 255, 0.12);
+    }
+  }
+
+  &.btn-ghost,
+  &.ghost,
+  &[appGhostButton] {
+    gap: 6px;
+    padding: 0 12px;
+    border-color: transparent;
+    color: var(--text-muted);
+
+    &.sm {
+      padding: 0 8px;
+
+      @include bp-2k {
+        padding: 0 10px;
+      }
+    }
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.06);
+      color: var(--text-white);
+    }
+
+    &:active {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+  }
+}

@@ -1,0 +1,53 @@
+// Breakpoints (mobile-first min-width)
+@mixin bp-xs {
+  @media (min-width: 480px) {
+    @content;
+  }
+}
+@mixin bp-sm {
+  @media (min-width: 640px) {
+    @content;
+  }
+}
+@mixin bp-md {
+  @media (min-width: 768px) {
+    @content;
+  }
+}
+@mixin bp-lg {
+  @media (min-width: 880px) {
+    @content;
+  }
+}
+@mixin bp-hd {
+  @media (min-width: 1920px) {
+    @content;
+  }
+}
+@mixin bp-2k {
+  @media (min-width: 2560px) {
+    @content;
+  }
+}
+@mixin bp-4k {
+  @media (min-width: 3400px) {
+    @content;
+  }
+}
+
+// Max-width queries (graceful degradation)
+@mixin max-sm {
+  @media (max-width: 640px) {
+    @content;
+  }
+}
+@mixin max-md {
+  @media (max-width: 768px) {
+    @content;
+  }
+}
+@mixin max-lg {
+  @media (max-width: 880px) {
+    @content;
+  }
+}

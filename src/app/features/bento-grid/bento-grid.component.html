@@ -1,0 +1,29 @@
+<section id="projects">
+  <div class="container">
+    <header>
+      <span>Опыт и проекты</span>
+      <h2>Проекты</h2>
+      <p>Коммерческая разработка и open-source проекты с исходным кодом и инженерным разбором.</p>
+    </header>
+
+    <nav appTabList aria-label="Фильтр категорий проектов">
+      @for (cat of categories; track cat.id) {
+        <button
+          type="button"
+          appTab
+          [active]="activeCategory() === cat.id"
+          (click)="activeCategory.set(cat.id)"
+        >
+          <span>{{ cat.label }}</span>
+          <span class="count">{{ cat.count }}</span>
+        </button>
+      }
+    </nav>
+
+    <div class="projects-list">
+      @for (project of filteredProjects(); track project.name) {
+        <app-project-card [project]="project" (inspect)="openProjectModal($event)" />
+      }
+    </div>
+  </div>
+</section>
