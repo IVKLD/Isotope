@@ -36,17 +36,12 @@
     align-items: center;
     gap: 0.5rem;
 
-    a.action-icon-btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
+    a[appIconButton] {
       width: 2rem;
       height: 2rem;
       border-radius: 6px;
-      color: var(--text-muted);
       border: 1px solid var(--border-card);
       background: rgba(255, 255, 255, 0.03);
-      transition: all var(--transition-fast);
 
       &:hover {
         color: var(--text-white);
@@ -54,25 +49,6 @@
         background: rgba(255, 255, 255, 0.08);
       }
     }
-
-    button {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      padding: 0.35rem 0.75rem;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid var(--border-card);
-      border-radius: 6px;
-      color: var(--text-muted);
-      font-size: 0.8rem;
-      font-family: var(--font-mono);
-      transition: all var(--transition-fast);
-
-      &:hover {
-        color: var(--text-white);
-        background: rgba(255, 255, 255, 0.1);
-        border-color: var(--border-hover);
-      }
-    }
   }
 }
+

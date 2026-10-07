@@ -12,8 +12,10 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "format": "prettier --write .",
-    "format:check": "prettier --check .",
-    "serve:ssr:portfolio": "node dist/portfolio/server/server.mjs"
+    "serve:ssr:portfolio": "node dist/portfolio/server/server.mjs",
+    "audit:metrics": "node scripts/audit-metrics.mjs",
+    "audit:metrics:desktop": "node scripts/audit-metrics.mjs --desktop",
+    "audit:metrics:all": "node scripts/audit-metrics.mjs --desktop && node scripts/audit-metrics.mjs"
   },
   "dependencies": {
     "@angular/cdk": "^22.1.4",
@@ -39,6 +41,7 @@
     "angular-eslint": "^22.5.0",
     "eslint": "^10.11.0",
     "eslint-config-prettier": "^10.1.8",
+    "lighthouse": "^13.5.0",
     "prettier": "^3.9.9",
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.71.0"

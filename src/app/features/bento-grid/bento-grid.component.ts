@@ -1,7 +1,7 @@
-import { Component, computed, signal } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
+import { Dialog } from '@angular/cdk/dialog';
 import { Project, ProjectFilterCategory } from '@shared/models';
 import { TabListDirective, TabDirective } from '@shared/ui/tabs';
-import { injectLazyDialog } from '@shared/ui/dialog';
 import { PROJECTS_DATA, PROJECT_CATEGORIES } from './bento-grid.data';
 import { ProjectCardComponent } from './project-card/project-card.component';
 
@@ -12,7 +12,7 @@ import { ProjectCardComponent } from './project-card/project-card.component';
   styleUrl: './bento-grid.component.scss'
 })
 export class BentoGridComponent {
-  private readonly loadDialog = injectLazyDialog();
+  private readonly dialog = inject(Dialog);
 
   protected readonly projects: readonly Project[] = PROJECTS_DATA;
   protected readonly categories = PROJECT_CATEGORIES;
@@ -25,12 +25,8 @@ export class BentoGridComponent {
   });
 
   protected async openProjectModal(project: Project): Promise<void> {
-    const [dialog, { ProjectModalComponent }] = await Promise.all([
-      this.loadDialog(),
-      import('./project-modal/project-modal.component')
-    ]);
-
-    dialog.open(ProjectModalComponent, {
+    const { ProjectModalComponent } = await import('./project-modal/project-modal.component');
+    this.dialog.open(ProjectModalComponent, {
       data: project
     });
   }

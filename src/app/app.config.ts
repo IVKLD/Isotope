@@ -2,6 +2,7 @@ import { ApplicationConfig, provideZonelessChangeDetection } from '@angular/core
 import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
 import { provideRouter, withComponentInputBinding, withInMemoryScrolling } from '@angular/router';
 import { DEFAULT_DIALOG_CONFIG } from '@angular/cdk/dialog';
+import { provideWebVitals } from '@core/services';
 import { routes } from './app.routes';
 
 export const appConfig: ApplicationConfig = {
@@ -16,6 +17,7 @@ export const appConfig: ApplicationConfig = {
       })
     ),
     provideClientHydration(withEventReplay()),
+    provideWebVitals(),
     {
       provide: DEFAULT_DIALOG_CONFIG,
       useValue: {

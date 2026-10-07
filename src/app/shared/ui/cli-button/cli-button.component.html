@@ -1,0 +1,14 @@
+<button
+  type="button"
+  [attr.aria-label]="isMac ? 'Терминал (⌘K)' : 'Терминал (Ctrl+K)'"
+  (click)="openTerminal()"
+>
+  <svg lucideTerminal size="14"></svg>
+  <span>CLI</span>
+  @if (showShortcut()) {
+    <span class="key-combo">
+      <kbd>{{ isMac ? '⌘' : 'Ctrl' }}</kbd>
+      <kbd>K</kbd>
+    </span>
+  }
+</button>

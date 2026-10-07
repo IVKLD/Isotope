@@ -33,7 +33,8 @@
           target="_blank"
           rel="noopener noreferrer"
           aria-label="GitHub профиль"
-          class="action-icon-btn"
+          appIconButton
+          shape="square"
         >
           <svg app-github-icon size="16"></svg>
         </a>
@@ -42,14 +43,12 @@
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Telegram"
-          class="action-icon-btn"
+          appIconButton
+          shape="square"
         >
           <svg lucideSend size="16"></svg>
         </a>
-        <button type="button" (click)="terminal.open()" aria-label="Открыть CLI">
-          <svg lucideTerminal size="14"></svg>
-          <span>CLI</span>
-        </button>
+        <app-cli-button [showShortcut]="false" />
       </div>
     </div>
   </header>

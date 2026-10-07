@@ -1,11 +1,4 @@
-<article
-  role="button"
-  tabindex="0"
-  [attr.aria-label]="'Открыть детали проекта ' + project().name"
-  (click)="inspect.emit(project())"
-  (keydown.enter)="inspect.emit(project())"
-  (keydown.space)="$event.preventDefault(); inspect.emit(project())"
->
+<article (click)="inspect.emit(project())">
   <header>
     <div>
       <small>
@@ -42,7 +35,7 @@
   <p>{{ project().shortDesc }}</p>
 
   <ul class="feature-list">
-    @for (item of project().highlights; track item) {
+    @for (item of project().highlights; track $index) {
       <li>
         <span>{{ item }}</span>
       </li>
@@ -52,7 +45,13 @@
   <footer>
     <app-tech-pills [items]="project().techStack" />
 
-    <button type="button" appGhostButton size="sm">
+    <button
+      type="button"
+      appGhostButton
+      size="sm"
+      (click)="inspect.emit(project())"
+      [attr.aria-label]="'Открыть детали проекта ' + project().name"
+    >
       <svg lucideCodeXml size="14"></svg>
       <span>Разбор</span>
     </button>

@@ -1,11 +1,10 @@
-import { Component, computed, inject, input } from '@angular/core';
+import { Component, computed, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import {
   LucideArrowLeft,
   LucideClock,
   LucideTriangleAlert,
   LucideCircleCheck,
-  LucideTerminal,
   LucideShieldAlert,
   LucideBrain,
   LucideBug,
@@ -14,13 +13,16 @@ import {
 import { TechPillsComponent } from '@shared/ui/tech-pills';
 import { CodeBlockComponent } from '@shared/ui/code-block';
 import { LogoIconComponent, GithubIconComponent } from '@shared/ui/icons';
-import { TerminalService } from '@features/terminal';
+import { IconButtonDirective } from '@shared/ui/button';
+import { CliButtonComponent } from '@shared/ui/cli-button';
 import { BlogPost } from '../blog.types';
 
 @Component({
   selector: 'app-blog-post',
   imports: [
     RouterLink,
+    IconButtonDirective,
+    CliButtonComponent,
     TechPillsComponent,
     CodeBlockComponent,
     LogoIconComponent,
@@ -29,7 +31,6 @@ import { BlogPost } from '../blog.types';
     LucideClock,
     LucideTriangleAlert,
     LucideCircleCheck,
-    LucideTerminal,
     LucideShieldAlert,
     LucideBrain,
     LucideBug,
@@ -40,7 +41,6 @@ import { BlogPost } from '../blog.types';
 })
 export class BlogPostComponent {
   public readonly post = input.required<BlogPost>();
-  protected readonly terminal = inject(TerminalService);
 
   protected readonly tocItems = computed(() => {
     return this.post().sections.map(section => ({

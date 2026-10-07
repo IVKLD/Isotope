@@ -1,4 +1,6 @@
 /
+/projects
+/why-angular
 /blog
 /blog/harm-of-ai-in-projects
 /blog/zoneless-angular-signals-production

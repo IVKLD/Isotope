@@ -7,38 +7,21 @@
   </a>
 
   <nav>
-    <a routerLink="/" fragment="projects">Проекты</a>
-    <a routerLink="/" fragment="skills">Стек</a>
-    <a routerLink="/blog" routerLinkActive="active">Блог</a>
-    <a routerLink="/" fragment="contact">Контакты</a>
+    <a routerLink="/projects" routerLinkActive="active">Проекты</a>
+    <a routerLink="/why-angular" routerLinkActive="active">Почему Angular</a>
+    <!-- <a routerLink="/blog" routerLinkActive="active">Блог</a> -->
   </nav>
 
   <div class="header-actions">
-    <button
-      (click)="terminal.open()"
-      type="button"
-      [attr.aria-label]="isMac ? 'Терминал (⌘K)' : 'Терминал (Ctrl+K)'"
-    >
-      <svg lucideTerminal size="14"></svg>
-      <span>CLI</span>
-      <span class="key-combo">
-        <kbd>{{ isMac ? '⌘' : 'Ctrl' }}</kbd>
-        <kbd>K</kbd>
-      </span>
-    </button>
+    <app-cli-button />
 
     <hr />
 
-    <a
-      href="https://github.com/IVKLD"
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label="GitHub профиль"
-    >
+    <a appIconButton href="https://github.com/IVKLD" target="_blank" rel="noopener noreferrer" aria-label="GitHub профиль">
       <svg app-github-icon size="16"></svg>
     </a>
 
-    <a href="https://t.me/IVKLCD" target="_blank" rel="noopener noreferrer" aria-label="Telegram">
+    <a appIconButton href="https://t.me/IVKLCD" target="_blank" rel="noopener noreferrer" aria-label="Telegram">
       <svg lucideSend size="16"></svg>
     </a>
   </div>

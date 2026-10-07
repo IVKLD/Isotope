@@ -8,6 +8,20 @@ export const routes: Routes = [
     title: 'IgnI — Frontend / Angular Developer'
   },
   {
+    path: 'projects',
+    loadComponent: () =>
+      import('@features/bento-grid/bento-grid.component').then(m => m.BentoGridComponent),
+    title: 'Проекты — Коммерческая разработка и open-source | IgnI'
+  },
+  {
+    path: 'why-angular',
+    loadComponent: () =>
+      import('@features/angular-choice/angular-choice.component').then(
+        m => m.AngularChoiceComponent
+      ),
+    title: 'Почему Angular, а не React, Vue или Svelte | IgnI'
+  },
+  {
     path: 'blog',
     loadComponent: () =>
       import('@features/blog/blog-list/blog-list.component').then(m => m.BlogListComponent),

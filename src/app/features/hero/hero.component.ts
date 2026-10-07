@@ -1,14 +1,16 @@
-import { Component, inject } from '@angular/core';
+import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { LucideArrowDown, LucideTerminal } from '@lucide/angular';
 import { GithubIconComponent, AngularIconComponent } from '@shared/ui/icons';
 import { SolidButtonDirective, OutlineButtonDirective } from '@shared/ui/button';
 import { StatusBadgeDirective, BadgeDirective } from '@shared/ui/badge';
 import { TechPillsComponent } from '@shared/ui/tech-pills';
-import { TerminalService } from '@features/terminal';
+import { injectTerminalDialog } from '@features/terminal';
 
 @Component({
   selector: 'app-hero',
   imports: [
+    RouterLink,
     LucideArrowDown,
     LucideTerminal,
     GithubIconComponent,
@@ -23,7 +25,7 @@ import { TerminalService } from '@features/terminal';
   styleUrl: './hero.component.scss'
 })
 export class HeroComponent {
-  protected readonly terminal = inject(TerminalService);
+  protected readonly openTerminal = injectTerminalDialog();
 
   protected readonly techStack = [
     'Angular 22',

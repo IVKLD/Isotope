@@ -22,11 +22,11 @@
     </p>
 
     <nav>
-      <a appSolidButton href="#projects">
+      <a appSolidButton routerLink="/projects">
         <span>Проекты</span>
         <svg lucideArrowDown size="15"></svg>
       </a>
-      <button appOutlineButton (click)="terminal.open()">
+      <button appOutlineButton (click)="openTerminal()">
         <svg lucideTerminal size="15"></svg>
         <span>Терминал</span>
       </button>

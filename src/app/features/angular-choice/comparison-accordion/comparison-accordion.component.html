@@ -44,7 +44,7 @@
           <h5>{{ aspect.competitor.title }}</h5>
         </header>
         <ul>
-          @for (point of aspect.competitor.points; track point) {
+          @for (point of aspect.competitor.points; track $index) {
             <li>{{ point }}</li>
           }
         </ul>
@@ -65,7 +65,7 @@
           <h5>{{ aspect.angular.title }}</h5>
         </header>
         <ul>
-          @for (point of aspect.angular.points; track point) {
+          @for (point of aspect.angular.points; track $index) {
             <li>{{ point }}</li>
           }
         </ul>

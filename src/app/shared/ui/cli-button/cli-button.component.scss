@@ -1,0 +1,90 @@
+@use 'mixins' as *;
+
+:host {
+  display: inline-flex;
+}
+
+button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  padding: 0.35rem 0.65rem;
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 9999px;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  line-height: 1;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  transition:
+    background-color 0.15s ease,
+    border-color 0.15s ease,
+    color 0.15s ease;
+
+  @include bp-md {
+    padding: 0.35rem 0.75rem;
+  }
+
+  svg {
+    color: var(--text-dim);
+    flex-shrink: 0;
+    transition: color 0.15s ease;
+  }
+
+  span {
+    font-weight: 500;
+    letter-spacing: 0.3px;
+  }
+
+  .key-combo {
+    display: none;
+    align-items: center;
+    gap: 0.2rem;
+
+    @include bp-md {
+      display: inline-flex;
+    }
+
+    kbd {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 1.15rem;
+      padding: 0.12rem 0.36rem;
+      background-color: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 0.25rem;
+      font-size: 0.65rem;
+      font-weight: 600;
+      line-height: 1;
+      color: var(--text-dim);
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+      letter-spacing: 0;
+      transition:
+        color 0.15s ease,
+        border-color 0.15s ease;
+    }
+  }
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+    color: var(--text-white);
+    border-color: rgba(255, 255, 255, 0.2);
+
+    svg {
+      color: var(--text-white);
+    }
+
+    .key-combo kbd {
+      color: var(--text-white);
+      border-color: rgba(255, 255, 255, 0.24);
+    }
+  }
+
+  &:active {
+    background-color: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.3);
+  }
+}

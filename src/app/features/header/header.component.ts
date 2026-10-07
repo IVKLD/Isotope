@@ -1,16 +1,18 @@
-import { Component, inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
-import { LucideTerminal, LucideSend } from '@lucide/angular';
+import { LucideSend } from '@lucide/angular';
 import { GithubIconComponent, LogoIconComponent } from '@shared/ui/icons';
-import { PlatformService } from '@core/services';
-import { TerminalService } from '@features/terminal';
+import { IconButtonDirective } from '@shared/ui/button';
+import { CliButtonComponent } from '@shared/ui/cli-button';
+import { injectTerminalDialog } from '@features/terminal';
 
 @Component({
   selector: 'app-header',
   imports: [
     RouterLink,
     RouterLinkActive,
-    LucideTerminal,
+    CliButtonComponent,
+    IconButtonDirective,
     LucideSend,
     GithubIconComponent,
     LogoIconComponent
@@ -22,15 +24,12 @@ import { TerminalService } from '@features/terminal';
   }
 })
 export class HeaderComponent {
-  private readonly platform = inject(PlatformService);
-  protected readonly terminal = inject(TerminalService);
-
-  protected readonly isMac = this.platform.isMac;
+  private readonly openTerminal = injectTerminalDialog();
 
   protected onKeydown(event: KeyboardEvent): void {
     if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === 'k') {
       event.preventDefault();
-      void this.terminal.open();
+      this.openTerminal();
     }
   }
 }

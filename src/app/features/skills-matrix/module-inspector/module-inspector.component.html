@@ -11,7 +11,7 @@
 <section>
   <h4>Ключевые практики & стандарты</h4>
   <ul class="feature-list">
-    @for (item of module().highlights; track item) {
+    @for (item of module().highlights; track $index) {
       <li>
         <span>{{ item }}</span>
       </li>
