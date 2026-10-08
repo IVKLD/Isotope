@@ -4,7 +4,7 @@ import { DialogCloseDirective, DialogContentDirective } from '@shared/ui/dialog'
 import { Project } from '@shared/models';
 import { LucideX, LucideExternalLink, LucideFolderGit2, LucideLock } from '@lucide/angular';
 import { OutlineButtonDirective, IconButtonDirective } from '@shared/ui/button';
-import { BadgeDirective } from '@shared/ui/badge';
+import { MutedBadgeDirective } from '@shared/ui/badge';
 import { TechPillsComponent } from '@shared/ui/tech-pills';
 import { CodeBlockComponent } from '@shared/ui/code-block';
 import { detectLanguageFromFilename } from '@shared/ui/syntax-highlighter';
@@ -23,7 +23,7 @@ import { detectLanguageFromFilename } from '@shared/ui/syntax-highlighter';
     LucideLock,
     OutlineButtonDirective,
     IconButtonDirective,
-    BadgeDirective,
+    MutedBadgeDirective,
     TechPillsComponent,
     CodeBlockComponent
   ],

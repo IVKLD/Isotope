@@ -33,6 +33,7 @@
   }
 }
 
+nav[app-tab-list],
 nav[appTabList] {
   display: flex;
   align-items: stretch;
@@ -43,6 +44,7 @@ nav[appTabList] {
   overflow-x: auto;
   scrollbar-width: none;
 
+  button[app-tab],
   button[appTab] {
     height: 100%;
     padding: 0 1rem;

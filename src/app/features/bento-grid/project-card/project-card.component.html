@@ -12,7 +12,7 @@
     <nav (click)="$event.stopPropagation()">
       @if (project().githubUrl) {
         <a
-          appOutlineButton
+          app-outline-button
           size="sm"
           [href]="project().githubUrl"
           target="_blank"
@@ -24,7 +24,7 @@
           <svg lucideExternalLink size="12"></svg>
         </a>
       } @else {
-        <span appBadge="muted">
+        <span app-muted-badge>
           <svg lucideLock size="12"></svg>
           <span>Приватный</span>
         </span>
@@ -47,7 +47,7 @@
 
     <button
       type="button"
-      appGhostButton
+      app-ghost-button
       size="sm"
       (click)="inspect.emit(project())"
       [attr.aria-label]="'Разбор проекта ' + project().name"

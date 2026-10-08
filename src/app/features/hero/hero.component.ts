@@ -3,7 +3,7 @@ import { RouterLink } from '@angular/router';
 import { LucideArrowDown, LucideTerminal } from '@lucide/angular';
 import { GithubIconComponent, AngularIconComponent } from '@shared/ui/icons';
 import { SolidButtonDirective, OutlineButtonDirective } from '@shared/ui/button';
-import { StatusBadgeDirective, BadgeDirective } from '@shared/ui/badge';
+import { StatusBadgeDirective, AccentBadgeDirective } from '@shared/ui/badge';
 import { TechPillsComponent } from '@shared/ui/tech-pills';
 import { injectTerminalDialog } from '@features/terminal';
 
@@ -18,7 +18,7 @@ import { injectTerminalDialog } from '@features/terminal';
     SolidButtonDirective,
     OutlineButtonDirective,
     StatusBadgeDirective,
-    BadgeDirective,
+    AccentBadgeDirective,
     TechPillsComponent
   ],
   templateUrl: './hero.component.html',

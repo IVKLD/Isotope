@@ -6,7 +6,7 @@
 
   <div>
     <button
-      appIconButton
+      app-icon-button
       (click)="toggleMaximize()"
       [attr.aria-label]="isMaximized() ? 'Восстановить' : 'Развернуть'"
       title="{{ isMaximized() ? 'Восстановить' : 'Развернуть' }}"
@@ -17,7 +17,7 @@
         <svg lucideMaximize2 size="13"></svg>
       }
     </button>
-    <button appDialogClose appIconButton aria-label="Закрыть" title="Закрыть">
+    <button app-dialog-close app-icon-button aria-label="Закрыть" title="Закрыть">
       <svg lucideX size="14"></svg>
     </button>
   </div>
@@ -59,7 +59,7 @@
       spellcheck="false"
       placeholder=""
     />
-    <button appIconButton class="xs" type="submit" aria-label="Выполнить">
+    <button app-icon-button class="xs" type="submit" aria-label="Выполнить">
       <svg lucideCornerDownLeft size="14"></svg>
     </button>
   </div>
@@ -68,7 +68,7 @@
 <footer>
   <span>Быстрый запуск:</span>
   @for (cmd of quickCommands; track cmd) {
-    <button appOutlineButton class="xs" type="button" (click)="runCommand(cmd)">{{ cmd }}</button>
+    <button app-outline-button class="xs" type="button" (click)="runCommand(cmd)">{{ cmd }}</button>
   }
 </footer>
 

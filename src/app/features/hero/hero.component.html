@@ -1,11 +1,11 @@
 <section class="container">
   <article>
-    <small appStatusBadge>Открыт к предложениям · Remote / Middle+</small>
+    <small app-status-badge>Открыт к предложениям · Remote / Middle+</small>
 
     <header>
       <h1>IgnI</h1>
       <span class="sep">/</span>
-      <small appBadge="accent">
+      <small app-accent-badge>
         <app-angular-icon [size]="20" />
         <span>Angular Dev</span>
       </small>
@@ -22,15 +22,15 @@
     </p>
 
     <nav>
-      <a appSolidButton routerLink="/projects">
+      <a app-solid-button routerLink="/projects">
         <span>Проекты</span>
         <svg lucideArrowDown size="15"></svg>
       </a>
-      <button appOutlineButton (click)="openTerminal()">
+      <button app-outline-button (click)="openTerminal()">
         <svg lucideTerminal size="15"></svg>
         <span>Терминал</span>
       </button>
-      <a appOutlineButton href="https://github.com/IVKLD" target="_blank" rel="noopener noreferrer">
+      <a app-outline-button href="https://github.com/IVKLD" target="_blank" rel="noopener noreferrer">
         <svg app-github-icon size="15"></svg>
         <span>GitHub</span>
       </a>

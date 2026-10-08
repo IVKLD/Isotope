@@ -14,7 +14,7 @@ import { TechPillsComponent } from '@shared/ui/tech-pills';
 import { CodeBlockComponent } from '@shared/ui/code-block';
 import { LogoIconComponent, GithubIconComponent } from '@shared/ui/icons';
 import { GhostButtonDirective, IconButtonDirective, OutlineButtonDirective } from '@shared/ui/button';
-import { BadgeDirective } from '@shared/ui/badge';
+import { MutedBadgeDirective } from '@shared/ui/badge';
 import { CliButtonComponent } from '@shared/ui/cli-button';
 import { BlogPost } from '../blog.types';
 
@@ -25,7 +25,7 @@ import { BlogPost } from '../blog.types';
     IconButtonDirective,
     GhostButtonDirective,
     OutlineButtonDirective,
-    BadgeDirective,
+    MutedBadgeDirective,
     CliButtonComponent,
     TechPillsComponent,
     CodeBlockComponent,

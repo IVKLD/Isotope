@@ -6,11 +6,11 @@
       <p>Коммерческая разработка и open-source проекты с исходным кодом и инженерным разбором.</p>
     </header>
 
-    <nav appTabList aria-label="Фильтр категорий проектов">
+    <nav app-tab-list aria-label="Фильтр категорий проектов">
       @for (cat of categories; track cat.id) {
         <button
           type="button"
-          appTab
+          app-tab
           [active]="activeCategory() === cat.id"
           (click)="activeCategory.set(cat.id)"
         >

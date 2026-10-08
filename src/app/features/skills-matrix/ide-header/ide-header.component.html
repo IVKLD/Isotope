@@ -3,11 +3,11 @@
   <span>stack/</span>
 </div>
 
-<nav appTabList aria-label="Архитектурные модули">
+<nav app-tab-list aria-label="Архитектурные модули">
   @for (mod of modules(); track mod.id) {
     <button
       type="button"
-      appTab
+      app-tab
       [active]="selected().id === mod.id"
       (click)="moduleSelect.emit(mod)"
     >

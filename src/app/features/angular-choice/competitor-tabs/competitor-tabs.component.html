@@ -1,8 +1,8 @@
-<nav appTabList aria-label="Сравнение фреймворков">
+<nav app-tab-list aria-label="Сравнение фреймворков">
   @for (comp of competitors(); track comp.key) {
     <button
       type="button"
-      appTab
+      app-tab
       [active]="selectedKey() === comp.key"
       (click)="competitorSelect.emit(comp.key)"
     >

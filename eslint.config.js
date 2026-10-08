@@ -17,7 +17,7 @@ export default defineConfig(
         {
           type: 'attribute',
           prefix: ['app', 'svg'],
-          style: 'camelCase'
+          style: 'kebab-case'
         }
       ],
       '@angular-eslint/component-selector': [

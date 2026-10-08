@@ -5,13 +5,13 @@
   </div>
 
   <div>
-    <button appDialogClose appIconButton aria-label="Закрыть">
+    <button app-dialog-close app-icon-button aria-label="Закрыть">
       <svg lucideX size="14"></svg>
     </button>
   </div>
 </header>
 
-<article appDialogContent>
+<article app-dialog-content>
   <header>
     <div>
       <h2>{{ project.name }}</h2>
@@ -24,7 +24,7 @@
 
     @if (project.githubUrl) {
       <a
-        appOutlineButton
+        app-outline-button
         size="sm"
         [href]="project.githubUrl"
         target="_blank"
@@ -36,7 +36,7 @@
         <svg lucideExternalLink size="11"></svg>
       </a>
     } @else {
-      <span appBadge="muted">
+      <span app-muted-badge>
         <svg lucideLock size="12"></svg>
         <span>Приватный</span>
       </span>

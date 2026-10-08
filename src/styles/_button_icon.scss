@@ -1,14 +1,15 @@
 .btn,
-a[appSolidButton],
-button[appSolidButton],
-a[appOutlineButton],
-button[appOutlineButton],
-a[appGhostButton],
-button[appGhostButton],
-a[appIconButton],
-button[appIconButton] {
+[app-solid-button],
+[appSolidButton],
+[app-outline-button],
+[appOutlineButton],
+[app-ghost-button],
+[appGhostButton],
+[app-icon-button],
+[appIconButton] {
   &.btn-icon,
   &.icon,
+  &[app-icon-button],
   &[appIconButton] {
     padding: 0;
     width: 2.25rem;

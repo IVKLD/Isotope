@@ -4,7 +4,8 @@ import { ButtonBaseDirective } from './button-base.directive';
 export type IconButtonShape = 'circle' | 'square';
 
 @Directive({
-  selector: 'button[appIconButton], a[appIconButton]',
+  selector:
+    'button[app-icon-button], a[app-icon-button], button[appIconButton], a[appIconButton]',
   host: {
     class: 'btn-icon',
     '[class.circle]': 'shape() === "circle"'

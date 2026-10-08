@@ -2,6 +2,7 @@
 @use 'tab_states';
 
 nav[role='tablist'],
+[app-tab-list],
 [appTabList] {
   display: flex;
   align-items: center;
@@ -20,6 +21,7 @@ nav[role='tablist'],
 
 .tab,
 [role='tab'],
+[app-tab],
 [appTab] {
   @include flex-center;
   position: relative;

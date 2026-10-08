@@ -3,7 +3,7 @@ import { AngularIconComponent, FrameworkIconComponent } from '@shared/ui/icons';
 import { LucideChevronDown } from '@lucide/angular';
 import { CodeBlockComponent } from '@shared/ui/code-block';
 import { GhostButtonDirective } from '@shared/ui/button';
-import { BadgeDirective } from '@shared/ui/badge';
+import { AccentBadgeDirective, MutedBadgeDirective } from '@shared/ui/badge';
 import { CompetitorComparison } from '../angular-choice.types';
 
 @Component({
@@ -14,7 +14,8 @@ import { CompetitorComparison } from '../angular-choice.types';
     LucideChevronDown,
     CodeBlockComponent,
     GhostButtonDirective,
-    BadgeDirective
+    AccentBadgeDirective,
+    MutedBadgeDirective
   ],
   templateUrl: './comparison-accordion.component.html',
   styleUrl: './comparison-accordion.component.scss'
