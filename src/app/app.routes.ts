@@ -34,7 +34,10 @@ export const routes: Routes = [
     resolve: {
       post: blogPostResolver
     },
-    title: 'Статья блога | IgnI'
+    title: route => {
+      const post = route.data?.['post'];
+      return post?.title ? `${post.title} — Блог | IgnI` : 'Статья блога | IgnI';
+    }
   },
   {
     path: '**',

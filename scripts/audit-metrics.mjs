@@ -1,6 +1,7 @@
 import http from 'node:http';
 import fs from 'node:fs';
 import path from 'node:path';
+import zlib from 'node:zlib';
 import { fileURLToPath } from 'node:url';
 import lighthouse from 'lighthouse';
 import * as chromeLauncher from 'chrome-launcher';
@@ -45,12 +46,22 @@ function createStaticServer(baseDir) {
 
       const ext = path.extname(filePath).toLowerCase();
       const contentType = MIME_TYPES[ext] || 'application/octet-stream';
+      const acceptEncoding = req.headers['accept-encoding'] || '';
 
-      res.writeHead(200, {
-        'Content-Type': contentType,
-        'Cache-Control': 'no-cache'
-      });
-      fs.createReadStream(filePath).pipe(res);
+      if (acceptEncoding.includes('gzip') && ext !== '.woff2' && ext !== '.woff') {
+        res.writeHead(200, {
+          'Content-Type': contentType,
+          'Content-Encoding': 'gzip',
+          'Cache-Control': ext === '.html' ? 'no-cache' : 'public, max-age=31536000, immutable'
+        });
+        fs.createReadStream(filePath).pipe(zlib.createGzip()).pipe(res);
+      } else {
+        res.writeHead(200, {
+          'Content-Type': contentType,
+          'Cache-Control': ext === '.html' ? 'no-cache' : 'public, max-age=31536000, immutable'
+        });
+        fs.createReadStream(filePath).pipe(res);
+      }
     } catch {
       res.writeHead(500);
       res.end('Server Error');

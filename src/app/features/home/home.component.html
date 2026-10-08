@@ -1,2 +1,5 @@
 <app-hero />
-<app-skills-matrix />
+
+@defer (hydrate on idle) {
+  <app-skills-matrix />
+}

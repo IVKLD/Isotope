@@ -17,7 +17,7 @@
           [href]="project().githubUrl"
           target="_blank"
           rel="noopener noreferrer"
-          aria-label="Репозиторий на GitHub"
+          aria-label="Код на GitHub"
         >
           <svg lucideFolderGit2 size="14"></svg>
           <span>Код</span>
@@ -50,7 +50,7 @@
       appGhostButton
       size="sm"
       (click)="inspect.emit(project())"
-      [attr.aria-label]="'Открыть детали проекта ' + project().name"
+      [attr.aria-label]="'Разбор проекта ' + project().name"
     >
       <svg lucideCodeXml size="14"></svg>
       <span>Разбор</span>

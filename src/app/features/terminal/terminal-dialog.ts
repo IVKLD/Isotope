@@ -1,13 +1,17 @@
-import { inject } from '@angular/core';
-import { Dialog } from '@angular/cdk/dialog';
-
-export function openTerminalDialog(dialog: Dialog): void {
-  import('./terminal-modal.component').then(m => {
-    dialog.open(m.TerminalModalComponent, { id: 'terminal' });
-  });
-}
+import { inject, Injector } from '@angular/core';
 
 export function injectTerminalDialog(): () => void {
-  const dialog = inject(Dialog);
-  return () => openTerminalDialog(dialog);
+  const injector = inject(Injector);
+  return () => {
+    Promise.all([import('@angular/cdk/dialog'), import('./terminal-modal.component')]).then(
+      ([{ Dialog }, { TerminalModalComponent }]) => {
+        const dialog = injector.get(Dialog);
+        dialog.open(TerminalModalComponent, {
+          id: 'terminal',
+          hasBackdrop: true,
+          panelClass: 'dialog-pane'
+        });
+      }
+    );
+  };
 }

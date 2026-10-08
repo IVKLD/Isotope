@@ -1,5 +1,5 @@
 <header>
-  <a routerLink="/" class="brand" aria-label="IgnI — Главная">
+  <a routerLink="/" class="brand" aria-label="IgnI / angular dev — Главная">
     <app-logo-icon [size]="20" />
     <span class="name">IgnI</span>
     <span class="sep">/</span>
@@ -9,7 +9,7 @@
   <nav>
     <a routerLink="/projects" routerLinkActive="active">Проекты</a>
     <a routerLink="/why-angular" routerLinkActive="active">Почему Angular</a>
-    <!-- <a routerLink="/blog" routerLinkActive="active">Блог</a> -->
+    <a routerLink="/blog" routerLinkActive="active">Блог</a>
   </nav>
 
   <div class="header-actions">
@@ -17,11 +17,23 @@
 
     <hr />
 
-    <a appIconButton href="https://github.com/IVKLD" target="_blank" rel="noopener noreferrer" aria-label="GitHub профиль">
+    <a
+      appIconButton
+      href="https://github.com/IVKLD"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="GitHub профиль"
+    >
       <svg app-github-icon size="16"></svg>
     </a>
 
-    <a appIconButton href="https://t.me/IVKLCD" target="_blank" rel="noopener noreferrer" aria-label="Telegram">
+    <a
+      appIconButton
+      href="https://t.me/IVKLCD"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Telegram"
+    >
       <svg lucideSend size="16"></svg>
     </a>
   </div>

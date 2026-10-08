@@ -18,14 +18,14 @@ article {
 
     small {
       font-size: 0.82rem;
-      color: var(--text-dim);
+      color: var(--text-muted);
       margin-bottom: 4px;
       display: flex;
       align-items: center;
       gap: 6px;
 
       span:nth-child(2) {
-        color: rgba(255, 255, 255, 0.2);
+        color: var(--text-dim);
       }
     }
 

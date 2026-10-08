@@ -1,7 +1,13 @@
 import { ApplicationConfig, provideZonelessChangeDetection } from '@angular/core';
 import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
-import { provideRouter, withComponentInputBinding, withInMemoryScrolling } from '@angular/router';
-import { DEFAULT_DIALOG_CONFIG } from '@angular/cdk/dialog';
+import {
+  PreloadAllModules,
+  provideRouter,
+  withComponentInputBinding,
+  withInMemoryScrolling,
+  withPreloading,
+  withViewTransitions
+} from '@angular/router';
 import { provideWebVitals } from '@core/services';
 import { routes } from './app.routes';
 
@@ -11,19 +17,14 @@ export const appConfig: ApplicationConfig = {
     provideRouter(
       routes,
       withComponentInputBinding(),
+      withViewTransitions(),
+      withPreloading(PreloadAllModules),
       withInMemoryScrolling({
         anchorScrolling: 'enabled',
-        scrollPositionRestoration: 'enabled'
+        scrollPositionRestoration: 'top'
       })
     ),
     provideClientHydration(withEventReplay()),
-    provideWebVitals(),
-    {
-      provide: DEFAULT_DIALOG_CONFIG,
-      useValue: {
-        hasBackdrop: true,
-        panelClass: 'dialog-pane'
-      }
-    }
+    provideWebVitals()
   ]
 };

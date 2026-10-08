@@ -23,7 +23,7 @@
       <small>0{{ idx + 1 }}</small>
 
       <div>
-        <h4>{{ aspect.title }}</h4>
+        <h3>{{ aspect.title }}</h3>
         <p>
           <span>{{ aspect.competitor.title }}</span>
           <em>vs</em>
@@ -41,7 +41,7 @@
             <app-framework-icon [framework]="competitor().key" [size]="14" />
             {{ competitor().name }}
           </small>
-          <h5>{{ aspect.competitor.title }}</h5>
+          <h4>{{ aspect.competitor.title }}</h4>
         </header>
         <ul>
           @for (point of aspect.competitor.points; track $index) {
@@ -62,7 +62,7 @@
             <app-angular-icon [size]="14" />
             Angular
           </small>
-          <h5>{{ aspect.angular.title }}</h5>
+          <h4>{{ aspect.angular.title }}</h4>
         </header>
         <ul>
           @for (point of aspect.angular.points; track $index) {
