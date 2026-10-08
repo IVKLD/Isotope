@@ -14,20 +14,6 @@ section {
     flex-direction: column;
     gap: 0.5rem;
 
-    small {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 0.74rem;
-      font-weight: 600;
-      padding: 3px 8px;
-      border-radius: 6px;
-      border: 1px solid var(--white-10);
-      background: var(--white-5);
-      color: var(--text-terminal);
-      width: fit-content;
-    }
-
     h4 {
       font-size: 1.02rem;
       font-weight: 600;
@@ -76,12 +62,6 @@ section {
   &.angular {
     background: rgba(var(--accent-rgb), 0.035);
     border-color: rgba(var(--accent-rgb), 0.22);
-
-    header small {
-      background: rgba(var(--accent-rgb), 0.12);
-      border-color: rgba(var(--accent-rgb), 0.3);
-      color: var(--accent-light);
-    }
 
     ul li {
       color: var(--text-main);

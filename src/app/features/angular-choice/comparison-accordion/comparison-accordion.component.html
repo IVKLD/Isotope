@@ -1,11 +1,13 @@
 <header>
   <p>
     <span>Аспекты архитектурного сравнения</span>
-    <small>{{ competitor().aspects.length }}</small>
+    <small appBadge="muted" size="sm">{{ competitor().aspects.length }}</small>
   </p>
 
   <button
     type="button"
+    appGhostButton
+    class="sm"
     (click)="toggleAll()"
     [attr.aria-label]="hasOpenAspects() ? 'Свернуть все списки' : 'Развернуть все списки'"
   >
@@ -37,9 +39,9 @@
     <div class="panel">
       <section>
         <header>
-          <small>
+          <small appBadge="muted" size="sm">
             <app-framework-icon [framework]="competitor().key" [size]="14" />
-            {{ competitor().name }}
+            <span>{{ competitor().name }}</span>
           </small>
           <h4>{{ aspect.competitor.title }}</h4>
         </header>
@@ -58,9 +60,9 @@
 
       <section class="angular">
         <header>
-          <small>
+          <small appBadge="accent" size="sm">
             <app-angular-icon [size]="14" />
-            Angular
+            <span>Angular</span>
           </small>
           <h4>{{ aspect.angular.title }}</h4>
         </header>

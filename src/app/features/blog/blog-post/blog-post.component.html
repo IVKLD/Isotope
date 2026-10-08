@@ -1,9 +1,9 @@
 <nav class="blog-nav" aria-label="Навигация по блогу">
-  <a routerLink="/blog" class="back-link">
+  <a routerLink="/blog" appGhostButton size="sm">
     <svg lucideArrowLeft size="16"></svg>
     <span>Все статьи</span>
   </a>
-  <small>Инженерные заметки</small>
+  <small appBadge="muted" size="sm">Инженерные заметки</small>
 </nav>
 
 <article>
@@ -141,7 +141,7 @@
           </div>
         </div>
         <div class="end-actions">
-          <a routerLink="/blog" class="back-home-btn">
+          <a routerLink="/blog" appOutlineButton>
             <svg lucideArrowLeft size="16"></svg>
             <span>Ко всем статьям блога</span>
           </a>

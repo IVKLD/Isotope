@@ -1,8 +1,8 @@
 <header class="blog-hero">
   <div class="hero-top">
-    <small>
+    <small appBadge="accent">
       <svg lucideBookOpen size="14"></svg>
-      Инженерный блог &amp; заметки
+      <span>Инженерный блог &amp; заметки</span>
     </small>
     <h1>Статьи об архитектуре, производительности и ремесле разработки</h1>
     <p>
@@ -12,9 +12,14 @@
   </div>
 
   <div class="filter-bar">
-    <nav class="tags-filter" aria-label="Фильтр по темам">
+    <nav appTabList class="tags-filter" aria-label="Фильтр по темам">
       @for (tag of allTags; track tag) {
-        <button type="button" [class.active]="selectedTag() === tag" (click)="onTagSelect(tag)">
+        <button
+          type="button"
+          appTab
+          [active]="selectedTag() === tag"
+          (click)="onTagSelect(tag)"
+        >
           {{ tag }}
         </button>
       }
@@ -55,9 +60,9 @@
 
       <footer>
         <app-tech-pills [items]="featured.tags" />
-        <a [routerLink]="['/blog', featured.slug]" class="read-link">
+        <a [routerLink]="['/blog', featured.slug]" appGhostButton size="sm">
           <span>Читать статью</span>
-          <svg lucideArrowRight size="16"></svg>
+          <svg lucideArrowRight size="15"></svg>
         </a>
       </footer>
     </article>
@@ -83,18 +88,21 @@
           <app-tech-pills [items]="post.tags" />
           <a
             [routerLink]="['/blog', post.slug]"
-            class="read-link"
+            appGhostButton
+            size="sm"
             [attr.aria-label]="'Читать: ' + post.title"
           >
             <span>Читать</span>
-            <svg lucideArrowRight size="15"></svg>
+            <svg lucideArrowRight size="14"></svg>
           </a>
         </footer>
       </article>
     } @empty {
       <div class="empty-state">
         <p>Статей по заданному фильтру не найдено.</p>
-        <button type="button" (click)="selectedTag.set('Все')">Сбросить фильтр</button>
+        <button appOutlineButton type="button" (click)="selectedTag.set('Все')">
+          <span>Сбросить фильтр</span>
+        </button>
       </div>
     }
   </section>

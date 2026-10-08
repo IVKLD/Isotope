@@ -9,6 +9,8 @@ import {
 } from '@lucide/angular';
 import { TechPillsComponent } from '@shared/ui/tech-pills';
 import { BadgeDirective } from '@shared/ui/badge';
+import { GhostButtonDirective, OutlineButtonDirective } from '@shared/ui/button';
+import { TabDirective, TabListDirective } from '@shared/ui/tabs';
 import { ALL_BLOG_TAGS, BlogSummary } from '../blog.types';
 import { BLOG_SUMMARIES } from '../blog-summaries.data';
 
@@ -18,6 +20,10 @@ import { BLOG_SUMMARIES } from '../blog-summaries.data';
     RouterLink,
     TechPillsComponent,
     BadgeDirective,
+    GhostButtonDirective,
+    OutlineButtonDirective,
+    TabListDirective,
+    TabDirective,
     LucideClock,
     LucideArrowRight,
     LucideSearch,

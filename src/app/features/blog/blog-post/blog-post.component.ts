@@ -13,7 +13,8 @@ import {
 import { TechPillsComponent } from '@shared/ui/tech-pills';
 import { CodeBlockComponent } from '@shared/ui/code-block';
 import { LogoIconComponent, GithubIconComponent } from '@shared/ui/icons';
-import { IconButtonDirective } from '@shared/ui/button';
+import { GhostButtonDirective, IconButtonDirective, OutlineButtonDirective } from '@shared/ui/button';
+import { BadgeDirective } from '@shared/ui/badge';
 import { CliButtonComponent } from '@shared/ui/cli-button';
 import { BlogPost } from '../blog.types';
 
@@ -22,6 +23,9 @@ import { BlogPost } from '../blog.types';
   imports: [
     RouterLink,
     IconButtonDirective,
+    GhostButtonDirective,
+    OutlineButtonDirective,
+    BadgeDirective,
     CliButtonComponent,
     TechPillsComponent,
     CodeBlockComponent,

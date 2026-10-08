@@ -53,17 +53,5 @@ footer {
       align-items: center;
       gap: 0.5rem;
     }
-
-    a {
-      color: var(--text-muted);
-      padding: 0.25rem 0.4rem;
-      border-radius: 0.25rem;
-      text-decoration: none;
-      transition: color 0.15s ease;
-
-      &:hover {
-        color: var(--text-white);
-      }
-    }
   }
 }

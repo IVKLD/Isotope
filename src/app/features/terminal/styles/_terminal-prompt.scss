@@ -40,18 +40,5 @@ form {
       font: inherit;
       margin-left: 3px;
     }
-
-    button {
-      color: var(--text-dim);
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 2px 4px;
-      height: auto;
-
-      &:hover {
-        color: var(--text-white);
-      }
-    }
   }
 }

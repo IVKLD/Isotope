@@ -20,33 +20,6 @@
       font-size: 0.84rem;
       color: var(--text-muted);
       margin: 0;
-
-      small {
-        padding: 2px 7px;
-        font-size: 0.72rem;
-        font-weight: 700;
-        font-family: var(--font-mono);
-        border-radius: 999px;
-        background: var(--white-8);
-        border: 1px solid var(--white-12);
-        color: var(--text-white);
-      }
-    }
-
-    button {
-      border: 1px solid transparent;
-      border-radius: 6px;
-      padding: 4px 10px;
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      transition:
-        color 0.15s,
-        border-color 0.15s;
-
-      &:hover {
-        color: var(--text-white);
-        border-color: var(--border-subtle);
-      }
     }
   }
 }

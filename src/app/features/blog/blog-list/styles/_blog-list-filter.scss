@@ -13,27 +13,6 @@
     display: flex;
     flex-wrap: wrap;
     gap: 0.4rem;
-
-    button {
-      padding: 0.35rem 0.8rem;
-      border-radius: 9999px;
-      background: var(--bg-card);
-      border: 1px solid var(--border-card);
-      color: var(--text-muted);
-      font-size: 0.8rem;
-      font-weight: 500;
-      transition: all var(--transition-fast);
-
-      &:hover {
-        color: var(--text-white);
-        border-color: var(--border-hover);
-      }
-      &.active {
-        color: var(--text-white);
-        background: rgba(228, 0, 58, 0.15);
-        border-color: rgba(228, 0, 58, 0.4);
-      }
-    }
   }
 
   .search-box {
