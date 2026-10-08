@@ -13,7 +13,7 @@ button[appIconButton] {
   &.btn-solid,
   &.solid,
   &[appSolidButton] {
-    gap: 7px;
+    gap: 0.45rem;
     background-color: var(--text-white);
     color: var(--bg-primary);
     border-color: var(--text-white);
@@ -34,7 +34,7 @@ button[appIconButton] {
   &.btn-outline,
   &.outline,
   &[appOutlineButton] {
-    gap: 7px;
+    gap: 0.45rem;
     font-weight: 500;
     background-color: rgba(255, 255, 255, 0.04);
     color: var(--text-white);
@@ -55,16 +55,16 @@ button[appIconButton] {
   &.btn-ghost,
   &.ghost,
   &[appGhostButton] {
-    gap: 6px;
-    padding: 0 12px;
+    gap: 0.4rem;
+    padding: 0 0.75rem;
     border-color: transparent;
     color: var(--text-muted);
 
     &.sm {
-      padding: 0 8px;
+      padding: 0 0.5rem;
 
       @include bp-2k {
-        padding: 0 10px;
+        padding: 0 0.65rem;
       }
     }
 

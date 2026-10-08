@@ -6,11 +6,15 @@ footer {
   background: var(--bg-primary);
 
   .container > div:first-child {
-    max-width: 600px;
+    max-width: 44rem;
     margin-bottom: 3rem;
 
     @include bp-2k {
-      max-width: 880px;
+      max-width: 56rem;
+    }
+
+    @include bp-4k {
+      max-width: 68rem;
     }
 
     h2 {
@@ -47,13 +51,13 @@ footer {
     .brand {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
+      gap: 0.5rem;
     }
 
     a {
       color: var(--text-muted);
-      padding: 4px 6px;
-      border-radius: 4px;
+      padding: 0.25rem 0.4rem;
+      border-radius: 0.25rem;
       text-decoration: none;
       transition: color 0.15s ease;
 

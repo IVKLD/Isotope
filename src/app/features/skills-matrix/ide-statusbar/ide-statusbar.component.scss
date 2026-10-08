@@ -25,12 +25,12 @@
 .status-item {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 0.4rem;
 
   &.ok::before {
     content: '';
-    width: 6px;
-    height: 6px;
+    width: 0.4rem;
+    height: 0.4rem;
     border-radius: 50%;
     background: var(--color-green);
     box-shadow: 0 0 6px var(--color-green-glow);

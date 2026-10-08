@@ -23,15 +23,15 @@ html {
   interpolate-size: allow-keywords;
 
   @include bp-hd {
-    font-size: 17px;
+    font-size: 17.5px;
   }
 
   @include bp-2k {
-    font-size: 18px;
+    font-size: 21px;
   }
 
   @include bp-4k {
-    font-size: 20px;
+    font-size: 26px;
   }
 }
 

@@ -34,6 +34,10 @@ section {
     @include bp-2k {
       font-size: 1.35rem;
     }
+
+    @include bp-4k {
+      font-size: 1.55rem;
+    }
   }
 
   .summary {
@@ -45,6 +49,13 @@ section {
     @include bp-2k {
       font-size: 1.15rem;
       margin-bottom: 2.25rem;
+      max-width: 58rem;
+    }
+
+    @include bp-4k {
+      font-size: 1.3rem;
+      margin-bottom: 2.75rem;
+      max-width: 70rem;
     }
 
     strong {

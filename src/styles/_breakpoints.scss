@@ -19,6 +19,11 @@
     @content;
   }
 }
+@mixin bp-xl {
+  @media (min-width: 1280px) {
+    @content;
+  }
+}
 @mixin bp-hd {
   @media (min-width: 1920px) {
     @content;
@@ -30,7 +35,7 @@
   }
 }
 @mixin bp-4k {
-  @media (min-width: 3400px) {
+  @media (min-width: 3000px) {
     @content;
   }
 }

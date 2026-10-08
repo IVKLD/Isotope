@@ -15,16 +15,22 @@
   --container-max-width: 980px;
   --dialog-width-project: min(44rem, calc(100vw - 2rem));
 
+  @include bp-xl {
+    --container-max-width: 1120px;
+  }
+
   @include bp-hd {
-    --container-max-width: 1200px;
+    --container-max-width: 1320px;
   }
 
   @include bp-2k {
-    --container-max-width: 1440px;
+    --container-max-width: 1720px;
+    --dialog-width-project: min(56rem, calc(100vw - 4rem));
   }
 
   @include bp-4k {
-    --container-max-width: 1720px;
+    --container-max-width: 2280px;
+    --dialog-width-project: min(68rem, calc(100vw - 6rem));
   }
 
   --border-subtle: rgba(255, 255, 255, 0.07);

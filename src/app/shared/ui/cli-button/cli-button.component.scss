@@ -28,6 +28,8 @@ button {
   }
 
   svg {
+    width: 0.95rem;
+    height: 0.95rem;
     color: var(--text-dim);
     flex-shrink: 0;
     transition: color 0.15s ease;

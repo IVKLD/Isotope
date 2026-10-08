@@ -49,24 +49,34 @@ section > header {
     letter-spacing: -0.02em;
     color: var(--text-white);
     margin-bottom: 0.35rem;
+
+    @include bp-2k {
+      font-size: 2rem;
+    }
+
+    @include bp-4k {
+      font-size: 2.35rem;
+    }
   }
 
   p {
     font-size: 0.92rem;
     color: var(--text-muted);
-    max-width: 600px;
+    max-width: 44rem;
     line-height: 1.6;
 
     @include bp-hd {
-      max-width: 760px;
+      max-width: 52rem;
     }
 
     @include bp-2k {
-      max-width: 1040px;
+      max-width: 62rem;
+      font-size: 1.05rem;
     }
 
     @include bp-4k {
-      max-width: 1380px;
+      max-width: 74rem;
+      font-size: 1.15rem;
     }
   }
 }
