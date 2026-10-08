@@ -15,7 +15,7 @@ import {
   LucideMinimize2
 } from '@lucide/angular';
 import { DialogCloseDirective, createWindowResizeController } from '@shared/ui/dialog';
-import { IconButtonDirective } from '@shared/ui/button';
+import { IconButtonDirective, OutlineButtonDirective } from '@shared/ui/button';
 import { TerminalService } from './terminal.service';
 
 @Component({
@@ -33,7 +33,8 @@ import { TerminalService } from './terminal.service';
     LucideMaximize2,
     LucideMinimize2,
     DialogCloseDirective,
-    IconButtonDirective
+    IconButtonDirective,
+    OutlineButtonDirective
   ],
   templateUrl: './terminal-modal.component.html',
   styleUrl: './terminal-modal.component.scss'

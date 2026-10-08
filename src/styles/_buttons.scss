@@ -35,7 +35,8 @@ button[appIconButton] {
     line-height: 1;
   }
 
-  svg {
+  svg,
+  .app-icon {
     flex-shrink: 0;
   }
 
@@ -52,5 +53,14 @@ button[appIconButton] {
       gap: 0.45rem;
       padding: 0 0.75rem;
     }
+  }
+
+  &.xs {
+    height: 1.45rem;
+    padding: 0 0.5rem;
+    font-size: 0.72rem;
+    font-family: inherit;
+    gap: 0.25rem;
+    border-radius: 0.25rem;
   }
 }

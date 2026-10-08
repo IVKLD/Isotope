@@ -68,7 +68,7 @@
 <footer>
   <span>Быстрый запуск:</span>
   @for (cmd of quickCommands; track cmd) {
-    <button type="button" (click)="runCommand(cmd)">{{ cmd }}</button>
+    <button appOutlineButton class="xs" type="button" (click)="runCommand(cmd)">{{ cmd }}</button>
   }
 </footer>
 
