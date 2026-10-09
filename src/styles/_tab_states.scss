@@ -1,6 +1,6 @@
 .tab,
 [role='tab'],
-[appTab] {
+[app-tab] {
   &:hover:not(.active):not([aria-selected='true']) {
     color: var(--text-white);
     background: rgba(255, 255, 255, 0.03);

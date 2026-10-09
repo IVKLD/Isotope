@@ -3,13 +3,9 @@
 
 .btn,
 [app-solid-button],
-[appSolidButton],
 [app-outline-button],
-[appOutlineButton],
 [app-ghost-button],
-[appGhostButton],
-[app-icon-button],
-[appIconButton] {
+[app-icon-button] {
   @include flex-center;
   height: 2.25rem;
   padding: 0 1rem;

@@ -9,8 +9,7 @@
   max-height: 85vh;
   outline: none;
 
-  [app-dialog-content],
-  [appDialogContent] {
+  [app-dialog-content] {
     header {
       display: flex;
       align-items: flex-start;

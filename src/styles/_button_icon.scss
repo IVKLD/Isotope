@@ -1,16 +1,11 @@
 .btn,
 [app-solid-button],
-[appSolidButton],
 [app-outline-button],
-[appOutlineButton],
 [app-ghost-button],
-[appGhostButton],
-[app-icon-button],
-[appIconButton] {
+[app-icon-button] {
   &.btn-icon,
   &.icon,
-  &[app-icon-button],
-  &[appIconButton] {
+  &[app-icon-button] {
     padding: 0;
     width: 2.25rem;
     height: 2.25rem;

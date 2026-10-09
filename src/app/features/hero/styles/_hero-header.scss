@@ -1,7 +1,6 @@
 @use 'mixins' as *;
 
-small[app-status-badge],
-small[appStatusBadge] {
+small[app-status-badge] {
   margin-bottom: 1.5rem;
 }
 

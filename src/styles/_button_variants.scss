@@ -2,17 +2,13 @@
 @use 'button_icon';
 
 .btn,
-a[appSolidButton],
-button[appSolidButton],
-a[appOutlineButton],
-button[appOutlineButton],
-a[appGhostButton],
-button[appGhostButton],
-a[appIconButton],
-button[appIconButton] {
+[app-solid-button],
+[app-outline-button],
+[app-ghost-button],
+[app-icon-button] {
   &.btn-solid,
   &.solid,
-  &[appSolidButton] {
+  &[app-solid-button] {
     gap: 0.45rem;
     background-color: var(--text-white);
     color: var(--bg-primary);
@@ -33,7 +29,7 @@ button[appIconButton] {
 
   &.btn-outline,
   &.outline,
-  &[appOutlineButton] {
+  &[app-outline-button] {
     gap: 0.45rem;
     font-weight: 500;
     background-color: rgba(255, 255, 255, 0.04);
@@ -54,7 +50,7 @@ button[appIconButton] {
 
   &.btn-ghost,
   &.ghost,
-  &[appGhostButton] {
+  &[app-ghost-button] {
     gap: 0.4rem;
     padding: 0 0.75rem;
     border-color: transparent;

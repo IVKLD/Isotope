@@ -1,7 +1,7 @@
 import { Directive, input } from '@angular/core';
 
 @Directive({
-  selector: 'button[app-tab], a[app-tab], button[appTab], a[appTab]',
+  selector: 'button[app-tab], a[app-tab]',
   host: {
     role: 'tab',
     class: 'tab',
