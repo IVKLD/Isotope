@@ -32,30 +32,6 @@ just audit       # запуск аудита метрик производите
 
 Результат сборки компилируется в `dist/portfolio/browser`.
 
-## Структура
-
-```text
-src/
-├── app/
-│   ├── components/
-│   │   ├── bento-grid/          # Карточки проектов
-│   │   ├── canvas-background/   # Фоновый canvas
-│   │   ├── footer/              # Контакты и копирование email
-│   │   ├── header/              # Плавающий док с навигацией
-│   │   ├── hero/                # Главный экран
-│   │   ├── icons/               # Кастомные SVG-иконки (GitHub)
-│   │   ├── project-modal/       # Модалка с описанием и сниппетами
-│   │   ├── skills-matrix/       # Список технологий
-│   │   └── terminal-modal/      # GNOME-терминал (⌘K / Ctrl+K)
-│   ├── models/
-│   │   └── project.model.ts     # Типизация проектов и сниппетов
-│   ├── services/
-│   │   └── terminal.service.ts  # Состояние и команды CLI-терминала
-│   ├── app.component.ts
-│   └── app.config.ts
-├── styles/                      # Токены и сброс стилей
-└── index.html
-```
 
 ## Деплой
 

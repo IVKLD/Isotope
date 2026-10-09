@@ -54,28 +54,37 @@ export class CanvasBackgroundComponent {
       const ctx = canvas.getContext('2d');
       if (!ctx) return;
 
-      this.engine = new ParticleEngine(canvas, ctx);
+      const startEngine = () => {
+        if (this.abort.signal.aborted) return;
+        this.engine = new ParticleEngine(canvas, ctx);
 
-      this.ngZone.runOutsideAngular(() => {
-        this.engine?.init();
+        this.ngZone.runOutsideAngular(() => {
+          this.engine?.init();
 
-        const opts: AddEventListenerOptions = { passive: true, signal: this.abort.signal };
-        window.addEventListener('resize', this.onResize, opts);
-        window.addEventListener('mousemove', this.onMouseMove, opts);
-        window.addEventListener('scroll', this.onScroll, opts);
+          const opts: AddEventListenerOptions = { passive: true, signal: this.abort.signal };
+          window.addEventListener('resize', this.onResize, opts);
+          window.addEventListener('mousemove', this.onMouseMove, opts);
+          window.addEventListener('scroll', this.onScroll, opts);
 
-        document.addEventListener(
-          'visibilitychange',
-          () => {
-            if (document.hidden) {
-              this.engine?.pause();
-            } else {
-              this.engine?.resume();
-            }
-          },
-          opts
-        );
-      });
+          document.addEventListener(
+            'visibilitychange',
+            () => {
+              if (document.hidden) {
+                this.engine?.pause();
+              } else {
+                this.engine?.resume();
+              }
+            },
+            opts
+          );
+        });
+      };
+
+      if (typeof requestIdleCallback !== 'undefined') {
+        requestIdleCallback(startEngine);
+      } else {
+        setTimeout(startEngine, 60);
+      }
     });
   }
 
