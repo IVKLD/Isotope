@@ -5,10 +5,8 @@ import {
   viewChild,
   inject,
   afterNextRender,
-  PLATFORM_ID,
   DestroyRef
 } from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
 import { ParticleEngine } from './particle-engine';
 
 @Component({
@@ -33,7 +31,6 @@ import { ParticleEngine } from './particle-engine';
   `
 })
 export class CanvasBackgroundComponent {
-  private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
   private readonly ngZone = inject(NgZone);
   private readonly destroyRef = inject(DestroyRef);
   private readonly canvasRef = viewChild.required<ElementRef<HTMLCanvasElement>>('canvas');
@@ -42,8 +39,6 @@ export class CanvasBackgroundComponent {
   private readonly abort = new AbortController();
 
   constructor() {
-    if (!this.isBrowser) return;
-
     this.destroyRef.onDestroy(() => {
       this.abort.abort();
       this.engine?.destroy();
@@ -54,37 +49,28 @@ export class CanvasBackgroundComponent {
       const ctx = canvas.getContext('2d');
       if (!ctx) return;
 
-      const startEngine = () => {
-        if (this.abort.signal.aborted) return;
-        this.engine = new ParticleEngine(canvas, ctx);
+      this.engine = new ParticleEngine(canvas, ctx);
 
-        this.ngZone.runOutsideAngular(() => {
-          this.engine?.init();
+      this.ngZone.runOutsideAngular(() => {
+        this.engine?.init();
 
-          const opts: AddEventListenerOptions = { passive: true, signal: this.abort.signal };
-          window.addEventListener('resize', this.onResize, opts);
-          window.addEventListener('mousemove', this.onMouseMove, opts);
-          window.addEventListener('scroll', this.onScroll, opts);
+        const opts: AddEventListenerOptions = { passive: true, signal: this.abort.signal };
+        window.addEventListener('resize', this.onResize, opts);
+        window.addEventListener('mousemove', this.onMouseMove, opts);
+        window.addEventListener('scroll', this.onScroll, opts);
 
-          document.addEventListener(
-            'visibilitychange',
-            () => {
-              if (document.hidden) {
-                this.engine?.pause();
-              } else {
-                this.engine?.resume();
-              }
-            },
-            opts
-          );
-        });
-      };
-
-      if (typeof requestIdleCallback !== 'undefined') {
-        requestIdleCallback(startEngine);
-      } else {
-        setTimeout(startEngine, 60);
-      }
+        document.addEventListener(
+          'visibilitychange',
+          () => {
+            if (document.hidden) {
+              this.engine?.pause();
+            } else {
+              this.engine?.resume();
+            }
+          },
+          opts
+        );
+      });
     });
   }
 
