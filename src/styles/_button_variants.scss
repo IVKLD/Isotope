@@ -2,7 +2,6 @@
 @use 'button_icon';
 
 [app-solid-button] {
-  gap: 0.45rem;
   background-color: var(--text-white);
   color: var(--bg-primary);
   border-color: var(--text-white);
@@ -21,7 +20,6 @@
 }
 
 [app-outline-button] {
-  gap: 0.45rem;
   font-weight: 500;
   background-color: rgba(255, 255, 255, 0.04);
   color: var(--text-white);

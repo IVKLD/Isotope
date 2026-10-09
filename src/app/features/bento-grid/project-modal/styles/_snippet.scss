@@ -27,10 +27,7 @@
   }
 
   app-code-block {
-    background: var(--bg-code);
-    border: 1px solid var(--border-subtle);
-    border-radius: 8px;
-    padding: 1rem;
+    @include code-frame(1rem);
     max-height: 380px;
     overflow-y: auto;
 

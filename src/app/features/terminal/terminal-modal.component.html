@@ -27,10 +27,7 @@
   @for (entry of terminal.history(); track $index) {
     <div class="terminal-entry">
       <div class="prompt-line">
-        <span class="user-host">igni@dev</span>
-        <span class="prompt-colon">:</span>
-        <span class="prompt-path">~</span>
-        <span class="prompt-char">$</span>
+        <span class="prompt"><b>igni@dev</b>:<em>~</em>$</span>
         <span class="cmd-text">{{ entry.command }}</span>
       </div>
 
@@ -45,10 +42,7 @@
 
 <form (submit)="onSubmit($event)">
   <div class="input-line">
-    <span class="user-host">igni@dev</span>
-    <span class="prompt-colon">:</span>
-    <span class="prompt-path">~</span>
-    <span class="prompt-char">$</span>
+    <span class="prompt"><b>igni@dev</b>:<em>~</em>$</span>
     <input
       #cmdInput
       type="text"

@@ -26,13 +26,13 @@
   flex-shrink: 0;
   user-select: none;
 
-  .workspace-icon {
+  svg {
     color: var(--accent);
     flex-shrink: 0;
   }
 }
 
-nav[app-tab-list] {
+nav {
   display: flex;
   align-items: stretch;
   flex: 1;
@@ -42,7 +42,7 @@ nav[app-tab-list] {
   overflow-x: auto;
   scrollbar-width: none;
 
-  button[app-tab] {
+  button {
     height: 100%;
     padding: 0 1rem;
     border-radius: 0;

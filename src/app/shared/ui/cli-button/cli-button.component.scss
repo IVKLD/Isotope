@@ -5,9 +5,7 @@
 }
 
 button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+  @include flex-center;
   gap: 0.45rem;
   padding: 0.35rem 0.65rem;
   background-color: rgba(255, 255, 255, 0.05);
@@ -50,9 +48,7 @@ button {
     }
 
     kbd {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
+      @include flex-center;
       min-width: 1.15rem;
       padding: 0.12rem 0.36rem;
       background-color: rgba(255, 255, 255, 0.08);

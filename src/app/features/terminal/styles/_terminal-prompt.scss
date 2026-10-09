@@ -2,23 +2,25 @@
 .input-line {
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 6px;
   line-height: 1.3;
 
-  .user-host {
-    color: var(--color-green);
-    font-weight: 500;
-  }
-
-  .prompt-colon,
-  .prompt-char {
+  .prompt {
+    display: inline-flex;
+    align-items: center;
+    gap: 1px;
     color: var(--text-dim);
     font-weight: 500;
-  }
 
-  .prompt-path {
-    color: var(--code-ident);
-    font-weight: 500;
+    b {
+      color: var(--color-green);
+      font-weight: 500;
+    }
+
+    em {
+      color: var(--code-ident);
+      font-style: normal;
+    }
   }
 }
 

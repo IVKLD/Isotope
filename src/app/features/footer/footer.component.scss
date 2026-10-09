@@ -5,7 +5,7 @@ footer {
   border-top: 1px solid var(--border-subtle);
   background: var(--bg-primary);
 
-  .container > div:first-child {
+  section {
     max-width: 44rem;
     margin-bottom: 3rem;
 
@@ -35,7 +35,7 @@ footer {
       }
     }
 
-    .contact-links {
+    nav {
       display: flex;
       flex-wrap: wrap;
       gap: 0.75rem;

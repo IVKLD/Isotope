@@ -50,10 +50,7 @@ section {
 
   app-code-block {
     margin-top: 0.25rem;
-    background: var(--bg-code);
-    border: 1px solid var(--border-subtle);
-    border-radius: 8px;
-    padding: 0.75rem 0.85rem;
+    @include code-frame(0.75rem 0.85rem);
     overflow-x: auto;
     font-size: 0.76rem;
     line-height: 1.5;

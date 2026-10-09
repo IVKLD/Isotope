@@ -1,5 +1,5 @@
 <div class="workspace-label" aria-hidden="true">
-  <svg lucideTerminal size="13" class="workspace-icon"></svg>
+  <svg lucideTerminal size="13"></svg>
   <span>stack/</span>
 </div>
 
@@ -11,7 +11,7 @@
       [active]="selected().id === mod.id"
       (click)="moduleSelect.emit(mod)"
     >
-      <svg lucideFileCode size="13" class="tab-icon" aria-hidden="true"></svg>
+      <svg lucideFileCode size="13" aria-hidden="true"></svg>
       <span>{{ mod.fileName }}</span>
     </button>
   }

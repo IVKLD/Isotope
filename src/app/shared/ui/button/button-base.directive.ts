@@ -4,7 +4,6 @@ export type ButtonSize = 'sm' | 'md';
 
 @Directive({
   host: {
-    class: 'btn',
     '[class.sm]': 'size() === "sm"'
   }
 })

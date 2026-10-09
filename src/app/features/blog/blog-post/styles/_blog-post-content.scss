@@ -15,25 +15,25 @@
       border-bottom: 1px solid var(--border-subtle);
     }
 
+    strong {
+      color: var(--text-white);
+      font-weight: 600;
+    }
+
+    code {
+      font-family: var(--font-mono);
+      font-size: 0.88em;
+      background: rgba(255, 255, 255, 0.06);
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+      color: var(--accent-light);
+    }
+
     p {
       font-size: 1.02rem;
       line-height: 1.75;
       color: var(--text-main);
       margin-bottom: 1.25rem;
-
-      strong {
-        color: var(--text-white);
-        font-weight: 600;
-      }
-
-      code {
-        font-family: var(--font-mono);
-        font-size: 0.88em;
-        background: rgba(255, 255, 255, 0.06);
-        padding: 0.15rem 0.4rem;
-        border-radius: 4px;
-        color: var(--accent-light);
-      }
     }
 
     ul {
@@ -45,19 +45,6 @@
         line-height: 1.7;
         color: var(--text-main);
         margin-bottom: 0.65rem;
-
-        strong {
-          color: var(--text-white);
-        }
-
-        code {
-          font-family: var(--font-mono);
-          font-size: 0.88em;
-          background: rgba(255, 255, 255, 0.06);
-          padding: 0.15rem 0.4rem;
-          border-radius: 4px;
-          color: var(--accent-light);
-        }
       }
     }
 

@@ -43,3 +43,10 @@
   align-items: center;
   justify-content: space-between;
 }
+
+@mixin code-frame($padding: 1rem) {
+  background: var(--bg-code);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  padding: $padding;
+}

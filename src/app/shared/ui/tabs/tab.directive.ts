@@ -4,7 +4,6 @@ import { Directive, input } from '@angular/core';
   selector: '[app-tab]',
   host: {
     role: 'tab',
-    class: 'tab',
     '[class.active]': 'active()',
     '[attr.aria-selected]': 'active()'
   }

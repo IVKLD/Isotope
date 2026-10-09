@@ -19,14 +19,3 @@
     gap: 2.5rem;
   }
 }
-
-[app-dialog-actions] {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 0.75rem;
-  padding: 0.75rem 1.5rem;
-  border-top: 1px solid var(--border-subtle);
-  background: var(--bg-window-header);
-  flex-shrink: 0;
-}
