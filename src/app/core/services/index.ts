@@ -1,2 +1,2 @@
 export * from './platform.service';
-export * from './web-vitals.service';
+export * from './vercel.provider';

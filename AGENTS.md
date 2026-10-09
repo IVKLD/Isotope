@@ -26,3 +26,10 @@
 
 - The app uses `provideZonelessChangeDetection()` globally.
 - **NEVER** write redundant `changeDetection: ChangeDetectionStrategy.OnPush` boilerplate.
+
+## Tooling & Package Management
+
+- **ALWAYS** use `yarn` and `just` for package management, running scripts, builds, lints, and audits.
+- **NEVER** use `npm`, `npx`, `pnpm`, or `bun`.
+- Prefer `just` recipes from `Justfile` (`just check`, `just build`, `just lint`, `just audit`, `just preview`).
+

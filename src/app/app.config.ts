@@ -6,7 +6,7 @@ import {
   withInMemoryScrolling,
   withViewTransitions
 } from '@angular/router';
-import { provideWebVitals } from '@core/services';
+import { provideVercelMonitoring } from '@core/services';
 import { routes } from './app.routes';
 
 export const appConfig: ApplicationConfig = {
@@ -22,6 +22,6 @@ export const appConfig: ApplicationConfig = {
       })
     ),
     provideClientHydration(withEventReplay()),
-    provideWebVitals()
+    provideVercelMonitoring()
   ]
 };
