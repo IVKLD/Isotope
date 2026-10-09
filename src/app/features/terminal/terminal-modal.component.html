@@ -53,7 +53,7 @@
       #cmdInput
       type="text"
       [value]="currentInput()"
-      (input)="onInput($event)"
+      (input)="currentInput.set(cmdInput.value)"
       name="commandInput"
       autocomplete="off"
       spellcheck="false"

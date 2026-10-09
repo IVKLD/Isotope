@@ -63,13 +63,4 @@ export class BlogListComponent {
     if (!featured) return this.filteredPosts();
     return this.filteredPosts().filter(post => post.slug !== featured.slug);
   });
-
-  protected onTagSelect(tag: string): void {
-    this.selectedTag.set(tag);
-  }
-
-  protected onSearchInput(event: Event): void {
-    const input = event.target as HTMLInputElement;
-    this.searchQuery.set(input.value);
-  }
 }

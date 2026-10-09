@@ -94,11 +94,6 @@ export class TerminalModalComponent {
     });
   }
 
-  protected onInput(event: Event): void {
-    const target = event.target as HTMLInputElement;
-    this.currentInput.set(target.value);
-  }
-
   protected onSubmit(event: SubmitEvent): void {
     event.preventDefault();
     const value = this.currentInput().trim();

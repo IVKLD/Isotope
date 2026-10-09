@@ -18,7 +18,7 @@
           type="button"
           app-tab
           [active]="selectedTag() === tag"
-          (click)="onTagSelect(tag)"
+          (click)="selectedTag.set(tag)"
         >
           {{ tag }}
         </button>
@@ -28,10 +28,11 @@
     <div class="search-box">
       <svg lucideSearch size="16"></svg>
       <input
+        #searchInput
         type="search"
         placeholder="Поиск по статьям и тегам..."
         [value]="searchQuery()"
-        (input)="onSearchInput($event)"
+        (input)="searchQuery.set(searchInput.value)"
         aria-label="Поиск по статьям"
       />
     </div>
