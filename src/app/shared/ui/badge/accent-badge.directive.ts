@@ -1,13 +1,8 @@
-import { Directive, input } from '@angular/core';
-import { BadgeSize } from './badge.types';
+import { Directive } from '@angular/core';
+import { BadgeBaseDirective } from './badge-base.directive';
 
 @Directive({
-  selector: 'small[app-accent-badge], span[app-accent-badge], div[app-accent-badge], a[app-accent-badge]',
-  host: {
-    class: 'badge badge-accent',
-    '[class.sm]': 'size() === "sm"'
-  }
+  selector:
+    'small[app-accent-badge], span[app-accent-badge], div[app-accent-badge], a[app-accent-badge]'
 })
-export class AccentBadgeDirective {
-  public readonly size = input<BadgeSize>('md');
-}
+export class AccentBadgeDirective extends BadgeBaseDirective {}

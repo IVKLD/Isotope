@@ -12,7 +12,8 @@ import {
   LucideTerminal,
   LucideCornerDownLeft,
   LucideMaximize2,
-  LucideMinimize2
+  LucideMinimize2,
+  LucideMoveDiagonal2
 } from '@lucide/angular';
 import { DialogCloseDirective, createWindowResizeController } from '@shared/ui/dialog';
 import { IconButtonDirective, OutlineButtonDirective } from '@shared/ui/button';
@@ -32,6 +33,7 @@ import { TerminalService } from './terminal.service';
     LucideCornerDownLeft,
     LucideMaximize2,
     LucideMinimize2,
+    LucideMoveDiagonal2,
     DialogCloseDirective,
     IconButtonDirective,
     OutlineButtonDirective

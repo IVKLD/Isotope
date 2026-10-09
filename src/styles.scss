@@ -6,7 +6,7 @@
 @use './styles/scrollbars';
 @use './styles/layout';
 @use './styles/feature_list';
-@use './styles/tabs';
 @use './styles/buttons';
-@use './styles/badges';
 @use './styles/modal';
+@use './app/shared/ui/tabs/tabs';
+@use './app/shared/ui/badge/badges';

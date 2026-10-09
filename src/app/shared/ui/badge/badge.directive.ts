@@ -1,13 +1,7 @@
-import { Directive, input } from '@angular/core';
-import { BadgeSize } from './badge.types';
+import { Directive } from '@angular/core';
+import { BadgeBaseDirective } from './badge-base.directive';
 
 @Directive({
-  selector: 'small[app-badge], span[app-badge], div[app-badge], a[app-badge]',
-  host: {
-    class: 'badge',
-    '[class.sm]': 'size() === "sm"'
-  }
+  selector: 'small[app-badge], span[app-badge], div[app-badge], a[app-badge]'
 })
-export class BadgeDirective {
-  public readonly size = input<BadgeSize>('md');
-}
+export class BadgeDirective extends BadgeBaseDirective {}
