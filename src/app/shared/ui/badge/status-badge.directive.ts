@@ -3,7 +3,7 @@ import { BadgeDotColor } from './badge.types';
 import { BadgeBaseDirective } from './badge-base.directive';
 
 @Directive({
-  selector: 'small[app-status-badge], span[app-status-badge], div[app-status-badge]',
+  selector: '[app-status-badge]',
   host: {
     '[attr.data-dot]': 'dot()'
   }

@@ -1,24 +1,10 @@
 @use 'mixins' as *;
 
-small[app-badge],
-span[app-badge],
-div[app-badge],
-a[app-badge],
-small[app-status-badge],
-span[app-status-badge],
-div[app-status-badge],
-small[app-accent-badge],
-span[app-accent-badge],
-div[app-accent-badge],
-a[app-accent-badge],
-small[app-muted-badge],
-span[app-muted-badge],
-div[app-muted-badge],
-a[app-muted-badge],
-small[app-outline-badge],
-span[app-outline-badge],
-div[app-outline-badge],
-a[app-outline-badge] {
+[app-badge],
+[app-status-badge],
+[app-accent-badge],
+[app-muted-badge],
+[app-outline-badge] {
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;

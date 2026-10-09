@@ -1,76 +1,64 @@
 @use 'mixins' as *;
 @use 'button_icon';
 
-.btn,
-[app-solid-button],
-[app-outline-button],
-[app-ghost-button],
-[app-icon-button] {
-  &.btn-solid,
-  &.solid,
-  &[app-solid-button] {
-    gap: 0.45rem;
-    background-color: var(--text-white);
-    color: var(--bg-primary);
-    border-color: var(--text-white);
-    font-weight: 600;
+[app-solid-button] {
+  gap: 0.45rem;
+  background-color: var(--text-white);
+  color: var(--bg-primary);
+  border-color: var(--text-white);
+  font-weight: 600;
 
-    @include hover {
-      &:hover {
-        background-color: var(--text-main);
-        border-color: var(--text-main);
-      }
-    }
-
-    &:active {
-      opacity: 0.88;
-    }
-  }
-
-  &.btn-outline,
-  &.outline,
-  &[app-outline-button] {
-    gap: 0.45rem;
-    font-weight: 500;
-    background-color: rgba(255, 255, 255, 0.04);
-    color: var(--text-white);
-    border-color: rgba(255, 255, 255, 0.1);
-
-    @include hover {
-      &:hover {
-        background-color: rgba(255, 255, 255, 0.08);
-        border-color: rgba(255, 255, 255, 0.2);
-      }
-    }
-
-    &:active {
-      background-color: rgba(255, 255, 255, 0.12);
-    }
-  }
-
-  &.btn-ghost,
-  &.ghost,
-  &[app-ghost-button] {
-    gap: 0.4rem;
-    padding: 0 0.75rem;
-    border-color: transparent;
-    color: var(--text-muted);
-
-    &.sm {
-      padding: 0 0.5rem;
-
-      @include bp-2k {
-        padding: 0 0.65rem;
-      }
-    }
-
+  @include hover {
     &:hover {
-      background-color: rgba(255, 255, 255, 0.06);
-      color: var(--text-white);
+      background-color: var(--text-main);
+      border-color: var(--text-main);
     }
+  }
 
-    &:active {
-      background-color: rgba(255, 255, 255, 0.1);
+  &:active {
+    opacity: 0.88;
+  }
+}
+
+[app-outline-button] {
+  gap: 0.45rem;
+  font-weight: 500;
+  background-color: rgba(255, 255, 255, 0.04);
+  color: var(--text-white);
+  border-color: rgba(255, 255, 255, 0.1);
+
+  @include hover {
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.2);
     }
+  }
+
+  &:active {
+    background-color: rgba(255, 255, 255, 0.12);
+  }
+}
+
+[app-ghost-button] {
+  gap: 0.4rem;
+  padding: 0 0.75rem;
+  border-color: transparent;
+  color: var(--text-muted);
+
+  &.sm {
+    padding: 0 0.5rem;
+
+    @include bp-2k {
+      padding: 0 0.65rem;
+    }
+  }
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.06);
+    color: var(--text-white);
+  }
+
+  &:active {
+    background-color: rgba(255, 255, 255, 0.1);
   }
 }

@@ -2,7 +2,7 @@ import { Directive, inject, input } from '@angular/core';
 import { DialogRef } from '@angular/cdk/dialog';
 
 @Directive({
-  selector: 'button[app-dialog-close], a[app-dialog-close], [app-dialog-close]',
+  selector: '[app-dialog-close]',
   host: {
     '(click)': 'close()'
   }

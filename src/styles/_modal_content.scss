@@ -1,6 +1,5 @@
 @use 'mixins' as *;
 
-.dialog-content,
 [app-dialog-content] {
   display: flex;
   flex-direction: column;
@@ -21,8 +20,7 @@
   }
 }
 
-.dialog-actions,
-[appDialogActions] {
+[app-dialog-actions] {
   display: flex;
   align-items: center;
   justify-content: flex-end;

@@ -1,6 +1,5 @@
 @use 'mixins' as *;
 
-nav[app-tab-list],
 [app-tab-list] {
   display: flex;
   align-items: center;
@@ -17,8 +16,6 @@ nav[app-tab-list],
   }
 }
 
-button[app-tab],
-a[app-tab],
 [app-tab] {
   @include flex-center;
   position: relative;

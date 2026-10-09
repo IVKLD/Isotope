@@ -1,46 +1,38 @@
-.btn,
-[app-solid-button],
-[app-outline-button],
-[app-ghost-button],
 [app-icon-button] {
-  &.btn-icon,
-  &.icon,
-  &[app-icon-button] {
-    padding: 0;
-    width: 2.25rem;
-    height: 2.25rem;
-    border-color: transparent;
-    color: var(--text-muted);
+  padding: 0;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-color: transparent;
+  color: var(--text-muted);
+  flex-shrink: 0;
+
+  svg,
+  .app-icon {
+    width: 1.25em;
+    height: 1.25em;
     flex-shrink: 0;
+  }
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+    color: var(--text-white);
+  }
+
+  &:active {
+    background-color: rgba(255, 255, 255, 0.12);
+  }
+
+  &.circle,
+  &[shape='circle'] {
+    width: 1.65rem;
+    height: 1.65rem;
+    border-radius: 50%;
 
     svg,
     .app-icon {
-      width: 1.25em;
-      height: 1.25em;
+      width: 1em;
+      height: 1em;
       flex-shrink: 0;
-    }
-
-    &:hover {
-      background-color: rgba(255, 255, 255, 0.08);
-      color: var(--text-white);
-    }
-
-    &:active {
-      background-color: rgba(255, 255, 255, 0.12);
-    }
-
-    &.circle,
-    &[shape='circle'] {
-      width: 1.65rem;
-      height: 1.65rem;
-      border-radius: 50%;
-
-      svg,
-      .app-icon {
-        width: 1em;
-        height: 1em;
-        flex-shrink: 0;
-      }
     }
   }
 }
