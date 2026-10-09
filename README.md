@@ -18,25 +18,19 @@
 yarn install
 ```
 
-Запуск dev-сервера (http://localhost:4200):
+Управление через [just](https://github.com/casey/just) или `yarn`:
 
 ```bash
-yarn start
+just dev         # или yarn start (http://localhost:4200)
+just build       # или yarn build (продакшен-сборка)
+just check       # линтинг + проверка сборки
+just lint        # или yarn lint
+just format      # форматирование через Prettier
+just preview     # предпросмотр сборки из dist/
+just audit       # запуск аудита метрик производительности
 ```
 
-Сборка продакшена:
-
-```bash
-yarn build
-```
-
-Результат компилируется в `dist/portfolio/browser`.
-
-Предпросмотр сборки:
-
-```bash
-yarn preview
-```
+Результат сборки компилируется в `dist/portfolio/browser`.
 
 ## Структура
 
