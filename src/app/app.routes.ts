@@ -1,10 +1,11 @@
 import { Routes } from '@angular/router';
 import { blogPostResolver } from '@features/blog/blog.resolver';
+import { HomeComponent } from '@features/home/home.component';
 
 export const routes: Routes = [
   {
     path: '',
-    loadComponent: () => import('@features/home/home.component').then(m => m.HomeComponent),
+    component: HomeComponent,
     title: 'IgnI — Frontend / Angular Developer'
   },
   {

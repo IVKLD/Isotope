@@ -44,9 +44,9 @@ export class ParticleEngine {
   ) {}
 
   public init(): void {
-    this.resize();
     this.targetScrollY = typeof window !== 'undefined' ? window.scrollY || 0 : 0;
     this.currentScrollY = this.targetScrollY;
+    this.resize();
     this.initParticles();
     this.animate();
   }
@@ -95,10 +95,15 @@ export class ParticleEngine {
     this.width = window.innerWidth;
     this.height = window.innerHeight;
 
-    this.canvas.width = Math.floor(this.width * this.dpr);
-    this.canvas.height = Math.floor(this.height * this.dpr);
-    this.canvas.style.width = `${this.width}px`;
-    this.canvas.style.height = `${this.height}px`;
+    const targetWidth = Math.floor(this.width * this.dpr);
+    const targetHeight = Math.floor(this.height * this.dpr);
+
+    if (this.canvas.width !== targetWidth) {
+      this.canvas.width = targetWidth;
+    }
+    if (this.canvas.height !== targetHeight) {
+      this.canvas.height = targetHeight;
+    }
 
     this.ctx.setTransform(this.dpr, 0, 0, this.dpr, 0, 0);
   }
