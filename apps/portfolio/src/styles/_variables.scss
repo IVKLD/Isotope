@@ -1,0 +1,84 @@
+@use 'mixins' as *;
+
+:root {
+  --bg-primary: #09090b;
+  --bg-surface: #121216;
+  --bg-card: rgba(255, 255, 255, 0.025);
+  --bg-card-hover: rgba(255, 255, 255, 0.045);
+  --bg-overlay: rgba(0, 0, 0, 0.75);
+  --bg-terminal: #0c0c0f;
+  --bg-code: #111115;
+  --bg-deep: #09090b;
+  --bg-window: #0e0e12;
+  --bg-window-header: #141418;
+
+  --container-max-width: 980px;
+  --dialog-width-project: min(44rem, calc(100vw - 2rem));
+
+  @include bp-xl {
+    --container-max-width: 1120px;
+  }
+
+  @include bp-hd {
+    --container-max-width: 1320px;
+  }
+
+  @include bp-2k {
+    --container-max-width: 1720px;
+    --dialog-width-project: min(56rem, calc(100vw - 4rem));
+  }
+
+  @include bp-4k {
+    --container-max-width: 2280px;
+    --dialog-width-project: min(68rem, calc(100vw - 6rem));
+  }
+
+  --border-subtle: rgba(255, 255, 255, 0.07);
+  --border-card: rgba(255, 255, 255, 0.08);
+  --border-hover: rgba(255, 255, 255, 0.16);
+
+  --white-2: rgba(255, 255, 255, 0.02);
+  --white-3: rgba(255, 255, 255, 0.03);
+  --white-4: rgba(255, 255, 255, 0.04);
+  --white-5: rgba(255, 255, 255, 0.05);
+  --white-6: rgba(255, 255, 255, 0.06);
+  --white-8: rgba(255, 255, 255, 0.08);
+  --white-10: rgba(255, 255, 255, 0.1);
+  --white-12: rgba(255, 255, 255, 0.12);
+  --white-14: rgba(255, 255, 255, 0.14);
+  --white-20: rgba(255, 255, 255, 0.2);
+
+  --accent: #e4003a;
+  --accent-light: #f43f5e;
+  --accent-pale: #fda4af;
+  --accent-rgb: 228, 0, 58;
+
+  --color-green: #22c55e;
+  --color-green-glow: rgba(34, 197, 94, 0.4);
+
+  --text-white: #ffffff;
+  --text-main: #f4f4f5;
+  --text-muted: #a1a1aa;
+  --text-dim: #71717a;
+  --text-terminal: #d4d4d8;
+
+  --code-keyword: #f43f5e;
+  --code-ident: #38bdf8;
+  --code-prop: #94a3b8;
+  --code-string: #a7f3d0;
+
+  --shadow-modal: 0 24px 48px -12px rgba(0, 0, 0, 0.75), 0 0 0 1px rgba(255, 255, 255, 0.08);
+  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.2);
+
+  --scrollbar-thumb: rgba(255, 255, 255, 0.12);
+  --scrollbar-thumb-hover: rgba(255, 255, 255, 0.25);
+
+  --transition-fast: 0.15s ease;
+
+  --font-sans:
+    'JetBrains Mono', 'JetBrains Mono Fallback', ui-monospace, SFMono-Regular, Menlo, Monaco,
+    Consolas, monospace;
+  --font-mono:
+    'JetBrains Mono', 'JetBrains Mono Fallback', ui-monospace, SFMono-Regular, Menlo, Monaco,
+    Consolas, monospace;
+}

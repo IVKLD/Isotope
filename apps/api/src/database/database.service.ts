@@ -1,0 +1,41 @@
+import { Injectable, OnModuleDestroy } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
+import { drizzle, PostgresJsDatabase } from 'drizzle-orm/postgres-js';
+import postgres from 'postgres';
+import * as schema from './schema';
+
+export type DrizzleDb = PostgresJsDatabase<typeof schema>;
+
+@Injectable()
+export class DatabaseService implements OnModuleDestroy {
+  public readonly client: postgres.Sql;
+  public readonly db: DrizzleDb;
+
+  constructor(config: ConfigService) {
+    const connectionString =
+      config.get<string>('DATABASE_URL') ||
+      'postgresql://portfolio:portfolio_dev_pwd@localhost:5432/portfolio_db';
+
+    this.client = postgres(connectionString, {
+      max: 10,
+      idle_timeout: 20,
+      connect_timeout: 5,
+      onnotice: () => undefined
+    });
+
+    this.db = drizzle(this.client, { schema });
+  }
+
+  public async checkHealth(): Promise<boolean> {
+    try {
+      await this.client`SELECT 1`;
+      return true;
+    } catch {
+      return false;
+    }
+  }
+
+  public async onModuleDestroy(): Promise<void> {
+    await this.client.end({ timeout: 2 });
+  }
+}

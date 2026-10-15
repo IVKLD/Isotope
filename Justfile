@@ -1,17 +1,26 @@
 default:
     @just --list
 
-# Start development server
+# Start frontend development server
 dev:
     yarn start
 
-# Build production bundle
+# Start NestJS backend development server
+dev-api:
+    yarn start:api
+
+# Build production frontend bundle
 build:
     yarn build
 
-# Build for GitHub Pages
-build-gh:
-    yarn build:gh
+# Build production NestJS backend bundle
+build-api:
+    yarn build:api
+
+# Build both frontend and backend
+build-all:
+    yarn build
+    yarn build:api
 
 # Preview production build locally
 preview:
@@ -33,6 +42,31 @@ format:
 check:
     yarn lint
     yarn build
+    yarn build:api
+
+# Start local PostgreSQL database container
+db-up:
+    docker compose up -d
+
+# Stop local PostgreSQL database container
+db-down:
+    docker compose down
+
+# Generate Drizzle database migrations
+db-generate:
+    yarn db:generate
+
+# Apply Drizzle database migrations
+db-migrate:
+    yarn db:migrate
+
+# Push schema directly to database (rapid prototyping)
+db-push:
+    yarn db:push
+
+# Open Drizzle Studio visual database inspector
+db-studio:
+    yarn db:studio
 
 # Run performance and audit metrics
 audit:

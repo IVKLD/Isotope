@@ -9,7 +9,7 @@ import * as chromeLauncher from 'chrome-launcher';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const rootDir = path.resolve(__dirname, '..');
-const distDir = path.join(rootDir, 'dist', 'portfolio', 'browser');
+const distDir = path.join(rootDir, 'dist', 'apps', 'portfolio', 'browser');
 
 const isDesktop = process.argv.includes('--desktop');
 
@@ -34,6 +34,13 @@ function createStaticServer(baseDir) {
   return http.createServer((req, res) => {
     try {
       const urlPath = req.url.split('?')[0];
+
+      if (urlPath.startsWith('/_vercel/')) {
+        res.writeHead(204);
+        res.end();
+        return;
+      }
+
       let filePath = path.join(baseDir, decodeURIComponent(urlPath));
 
       if (fs.existsSync(filePath) && fs.statSync(filePath).isDirectory()) {
@@ -95,6 +102,10 @@ function formatRating(value, goodLimit, poorLimit, unit = '', isScore = false) {
   return `${color}${value}${unit} (${status})${reset}`;
 }
 
+const routeArg = process.argv.find(arg => arg.startsWith('--route='));
+const specificRoute = routeArg ? routeArg.split('=')[1] : null;
+const isAllRoutes = process.argv.includes('--all-routes');
+
 async function runAudit() {
   if (!fs.existsSync(distDir)) {
     console.error(
@@ -103,101 +114,101 @@ async function runAudit() {
     process.exit(1);
   }
 
+  const routesFile = path.join(rootDir, 'apps', 'portfolio', 'prerender-routes.txt');
+  let routes = ['/'];
+  if (specificRoute) {
+    routes = [specificRoute];
+  } else if (isAllRoutes && fs.existsSync(routesFile)) {
+    routes = fs.readFileSync(routesFile, 'utf8').split('\n').map(r => r.trim()).filter(Boolean);
+  }
+
   const server = createStaticServer(distDir);
   await new Promise(resolve => server.listen(0, '127.0.0.1', resolve));
   const port = server.address().port;
-  const url = `http://127.0.0.1:${port}/`;
 
-  console.log(`\n🚀 Локальный сервер запущен на ${url}`);
-  console.log(`⏱️  Запуск Lighthouse (${isDesktop ? 'Desktop' : 'Mobile'})...\n`);
+  console.log(`\n🚀 Локальный сервер запущен на http://127.0.0.1:${port}`);
+  console.log(`⏱️  Запуск Lighthouse (${isDesktop ? 'Desktop' : 'Mobile'}) для ${routes.length} маршрутов...\n`);
 
   const chrome = await chromeLauncher.launch({
     chromeFlags: ['--headless=new', '--no-sandbox', '--disable-gpu', '--disable-dev-shm-usage']
   });
 
-  try {
-    const config = isDesktop
-      ? {
-          extends: 'lighthouse:default',
-          settings: {
-            formFactor: 'desktop',
-            screenEmulation: {
-              mobile: false,
-              width: 1350,
-              height: 940,
-              deviceScaleFactor: 1,
-              disabled: false
-            },
-            throttling: {
-              rttMs: 40,
-              throughputKbps: 10240,
-              cpuSlowdownMultiplier: 1
-            }
+  const config = isDesktop
+    ? {
+        extends: 'lighthouse:default',
+        settings: {
+          formFactor: 'desktop',
+          screenEmulation: {
+            mobile: false,
+            width: 1350,
+            height: 940,
+            deviceScaleFactor: 1,
+            disabled: false
+          },
+          throttling: {
+            rttMs: 40,
+            throughputKbps: 10240,
+            cpuSlowdownMultiplier: 1
           }
         }
-      : undefined;
+      }
+    : undefined;
 
-    const runnerResult = await lighthouse(
-      url,
-      {
-        port: chrome.port,
-        output: 'html',
-        logLevel: 'silent',
-        onlyCategories: ['performance', 'accessibility', 'best-practices', 'seo']
-      },
-      config
-    );
+  const results = [];
 
-    const { lhr, report } = runnerResult;
-    const cats = lhr.categories;
-    const audits = lhr.audits;
+  try {
+    for (const route of routes) {
+      const pageUrl = `http://127.0.0.1:${port}${route.startsWith('/') ? route : '/' + route}`;
+      console.log(`\n🔎 Тестирование страницы: ${route}`);
 
-    console.log('='.repeat(60));
-    console.log(`📊 РЕЗУЛЬТАТЫ АУДИТА LIGHTHOUSE (${isDesktop ? 'DESKTOP' : 'MOBILE'})`);
-    console.log('='.repeat(60));
+      const runnerResult = await lighthouse(
+        pageUrl,
+        {
+          port: chrome.port,
+          output: 'html',
+          logLevel: 'silent',
+          onlyCategories: ['performance', 'accessibility', 'best-practices', 'seo']
+        },
+        config
+      );
 
-    const perfScore = Math.round(cats.performance.score * 100);
-    const a11yScore = Math.round(cats.accessibility.score * 100);
-    const bpScore = Math.round(cats['best-practices'].score * 100);
-    const seoScore = Math.round(cats.seo.score * 100);
+      const { lhr, report } = runnerResult;
+      const cats = lhr.categories;
+      const audits = lhr.audits;
 
-    console.log(`⚡ Performance:    ${formatRating(perfScore, 90, 50, '%', true)}`);
-    console.log(`♿ Accessibility:  ${formatRating(a11yScore, 90, 50, '%', true)}`);
-    console.log(`🛡️  Best Practices: ${formatRating(bpScore, 90, 50, '%', true)}`);
-    console.log(`🔍 SEO:             ${formatRating(seoScore, 90, 50, '%', true)}`);
-    console.log('-'.repeat(60));
+      const perfScore = Math.round(cats.performance.score * 100);
+      const a11yScore = Math.round(cats.accessibility.score * 100);
+      const bpScore = Math.round(cats['best-practices'].score * 100);
+      const seoScore = Math.round(cats.seo.score * 100);
+      const cls = audits['cumulative-layout-shift'].numericValue;
+      const lcp = audits['largest-contentful-paint'].numericValue / 1000;
+      const fcp = audits['first-contentful-paint'].numericValue / 1000;
+      const tbt = Math.round(audits['total-blocking-time'].numericValue);
 
-    const cls = audits['cumulative-layout-shift'].numericValue;
-    const lcp = audits['largest-contentful-paint'].numericValue / 1000;
-    const fcp = audits['first-contentful-paint'].numericValue / 1000;
-    const tbt = Math.round(audits['total-blocking-time'].numericValue);
-    const si = audits['speed-index'].numericValue / 1000;
+      results.push({
+        route,
+        perf: perfScore,
+        a11y: a11yScore,
+        bp: bpScore,
+        seo: seoScore,
+        lcp: lcp.toFixed(2),
+        cls: cls.toFixed(3),
+        tbt
+      });
 
-    console.log('📈 CORE WEB VITALS & METRICS:');
-    console.log(
-      `  • CLS (Cumulative Layout Shift):  ${formatRating(cls.toFixed(3), 0.1, 0.25)} (target: ≤ 0.10)`
-    );
-    console.log(
-      `  • LCP (Largest Contentful Paint): ${formatRating(lcp.toFixed(2), 2.5, 4.0, 's')} (target: ≤ 2.5s)`
-    );
-    console.log(
-      `  • FCP (First Contentful Paint):    ${formatRating(fcp.toFixed(2), 1.8, 3.0, 's')} (target: ≤ 1.8s)`
-    );
-    console.log(
-      `  • TBT (Total Blocking Time):       ${formatRating(tbt, 200, 600, 'ms')} (target: ≤ 200ms)`
-    );
-    console.log(
-      `  • Speed Index:                     ${formatRating(si.toFixed(2), 3.4, 5.8, 's')} (target: ≤ 3.4s)`
-    );
-    console.log('='.repeat(60));
+      console.log(`  ⚡ Perf: ${perfScore}% | ♿ A11y: ${a11yScore}% | 🛡️ BP: ${bpScore}% | 🔍 SEO: ${seoScore}% | LCP: ${lcp.toFixed(2)}s | CLS: ${cls.toFixed(3)} | TBT: ${tbt}ms`);
 
-    const reportDir = path.join(rootDir, '.reports');
-    if (!fs.existsSync(reportDir)) {
-      fs.mkdirSync(reportDir, { recursive: true });
+      const reportDir = path.join(rootDir, '.reports');
+      if (!fs.existsSync(reportDir)) fs.mkdirSync(reportDir, { recursive: true });
+      const safeName = route === '/' ? 'home' : route.replace(/\//g, '-').replace(/^-/, '');
+      const reportPath = path.join(reportDir, `lh-${safeName}-${isDesktop ? 'desktop' : 'mobile'}.html`);
+      fs.writeFileSync(reportPath, report);
     }
-    const reportPath = path.join(reportDir, `lighthouse-${isDesktop ? 'desktop' : 'mobile'}.html`);
-    fs.writeFileSync(reportPath, report);
-    console.log(`📁 Полный HTML-отчёт сохранён в: ${path.relative(rootDir, reportPath)}\n`);
+
+    console.log('\n' + '='.repeat(80));
+    console.log(`📊 СВОДНЫЙ ОТЧЁТ LIGHTHOUSE (${isDesktop ? 'DESKTOP' : 'MOBILE'}) ДЛЯ ВСЕХ СТРАНИЦ:`);
+    console.log('='.repeat(80));
+    console.table(results);
   } finally {
     await chrome.kill();
     server.close();

@@ -27,9 +27,15 @@
 - The app uses `provideZonelessChangeDetection()` globally.
 - **NEVER** write redundant `changeDetection: ChangeDetectionStrategy.OnPush` boilerplate.
 
+## Minimal & Direct Code (Zero Bloat, Zero Speculative Code)
+
+- **Solve problems with the absolute minimum amount of code required.**
+- **NEVER** write speculative wrappers, unnecessary conditional guards (e.g. ad-hoc `window.location.hostname` checks, redundant defensive null-checks when types/framework guarantee state), dummy fallback branches, or verbose workarounds.
+- Prefer declarative, idiomatic framework/library primitives over ad-hoc procedural hacks.
+- If an environment or tooling issue occurs (e.g. test runner, audit script, proxy), fix it at the configuration or tooling level rather than polluting application production runtime code.
+
 ## Tooling & Package Management
 
 - **ALWAYS** use `yarn` and `just` for package management, running scripts, builds, lints, and audits.
 - **NEVER** use `npm`, `npx`, `pnpm`, or `bun`.
 - Prefer `just` recipes from `Justfile` (`just check`, `just build`, `just lint`, `just audit`, `just preview`).
-

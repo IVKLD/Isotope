@@ -35,3 +35,9 @@
 
 - `src/styles/_reset.scss` globally sets `cursor: pointer`, `border: none`, `background-color: transparent`, and `user-select: none` on `button`.
 - **NEVER** duplicate these reset styles in component-level SCSS.
+
+## 7. Minimal & Direct Code (Zero Bloat, Zero Speculative Code)
+
+- **Write the absolute minimum code to solve the problem.** No speculative wrappers, dummy guards, or boilerplate.
+- Never pollute application runtime code with environment hacks (e.g. ad-hoc `window.location.hostname` checks); solve tooling/test environment issues at the tooling configuration level.
+

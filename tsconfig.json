@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    "outDir": "./dist/out-tsc",
     "strict": true,
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
@@ -9,18 +8,19 @@
     "skipLibCheck": true,
     "isolatedModules": true,
     "esModuleInterop": true,
+    "experimentalDecorators": true,
     "moduleResolution": "bundler",
-    "ignoreDeprecations": "6.0",
     "importHelpers": true,
     "target": "ES2022",
     "module": "ES2022",
-    "baseUrl": "./",
     "paths": {
-      "@/*": ["src/*"],
-      "@app/*": ["src/app/*"],
-      "@core/*": ["src/app/core/*"],
-      "@shared/*": ["src/app/shared/*"],
-      "@features/*": ["src/app/features/*"]
+      "@/*": ["./apps/portfolio/src/*"],
+      "@app/*": ["./apps/portfolio/src/app/*"],
+      "@core/*": ["./apps/portfolio/src/app/core/*"],
+      "@shared/*": ["./apps/portfolio/src/app/shared/*"],
+      "@features/*": ["./apps/portfolio/src/app/features/*"],
+      "@portfolio/contracts": ["./libs/shared/contracts/src/index.d.ts"],
+      "@api/*": ["./apps/api/src/*"]
     }
   },
   "angularCompilerOptions": {
