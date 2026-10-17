@@ -20,7 +20,9 @@ async function bootstrap(): Promise<void> {
     }
   });
 
-  app.setGlobalPrefix('api');
+  app.setGlobalPrefix('api', {
+    exclude: ['health']
+  });
 
   app.useGlobalPipes(
     new ValidationPipe({
@@ -58,7 +60,7 @@ async function bootstrap(): Promise<void> {
 
   logger.log(`Portfolio API server is running on: http://localhost:${port}`);
   logger.log(`Swagger OpenAPI docs available at: http://localhost:${port}/api/docs`);
-  logger.log(`Health check accessible at: http://localhost:${port}/api/health`);
+  logger.log(`Health check accessible at: http://localhost:${port}/health`);
 }
 
 bootstrap();
