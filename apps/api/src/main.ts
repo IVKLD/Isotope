@@ -10,7 +10,7 @@ async function bootstrap(): Promise<void> {
   const logger = new Logger('Bootstrap');
   const allowedOrigins = process.env['CORS_ORIGIN']
     ? process.env['CORS_ORIGIN'].split(',').map(origin => origin.trim())
-    : ['http://localhost:4200', 'http://localhost:3000'];
+    : ['http://localhost:4200', 'http://localhost:3000', 'https://ignivkd.dev'];
 
   const app = await NestFactory.create(AppModule, {
     cors: {
@@ -52,7 +52,7 @@ async function bootstrap(): Promise<void> {
     customSiteTitle: 'Portfolio API Documentation — Swagger UI'
   });
 
-  const port = process.env['API_PORT'] || 3000;
+  const port = process.env['PORT'] || process.env['API_PORT'] || 3000;
   await app.listen(port);
 
   logger.log(`Portfolio API server is running on: http://localhost:${port}`);
