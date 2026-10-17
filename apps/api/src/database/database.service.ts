@@ -14,7 +14,6 @@ export class DatabaseService implements OnModuleDestroy {
   constructor(config: ConfigService) {
     const connectionString =
       config.get<string>('DATABASE_URL') ||
-      config.get<string>('POSTGRES_URL') ||
       'postgresql://portfolio:portfolio_dev_pwd@localhost:5432/portfolio_db';
 
     const isLocal = connectionString.includes('localhost') || connectionString.includes('127.0.0.1');
