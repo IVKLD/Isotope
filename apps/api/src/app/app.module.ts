@@ -7,7 +7,6 @@ import { FeedbackModule } from './feedback/feedback.module';
 import { BlogModule } from './blog/blog.module';
 import { TerminalModule } from './terminal/terminal.module';
 import { ProjectsModule } from './projects/projects.module';
-import { HealthModule } from './health/health.module';
 import { ComparisonsModule } from './comparisons/comparisons.module';
 import { SkillsModule } from './skills/skills.module';
 
@@ -28,7 +27,6 @@ import { SkillsModule } from './skills/skills.module';
     BlogModule,
     TerminalModule,
     ProjectsModule,
-    HealthModule,
     ComparisonsModule,
     SkillsModule
   ],

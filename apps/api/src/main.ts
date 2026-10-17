@@ -20,9 +20,7 @@ async function bootstrap(): Promise<void> {
     }
   });
 
-  app.setGlobalPrefix('api', {
-    exclude: ['health']
-  });
+  app.setGlobalPrefix('api');
 
   app.useGlobalPipes(
     new ValidationPipe({
@@ -43,7 +41,6 @@ async function bootstrap(): Promise<void> {
     .setTitle('Portfolio API')
     .setDescription('Enterprise Backend API for IgnI Portfolio (Blog, Feedback, Terminal, Metrics)')
     .setVersion('1.0.0')
-    .addTag('Health', 'System and database diagnostics')
     .addTag('Feedback', 'Contact requests and inquiries')
     .addTag('Blog', 'Blog posts, reader reactions & telemetry')
     .addTag('Terminal', 'Interactive shell command execution')
@@ -60,7 +57,6 @@ async function bootstrap(): Promise<void> {
 
   logger.log(`Portfolio API server is running on: http://localhost:${port}`);
   logger.log(`Swagger OpenAPI docs available at: http://localhost:${port}/api/docs`);
-  logger.log(`Health check accessible at: http://localhost:${port}/health`);
 }
 
 bootstrap();

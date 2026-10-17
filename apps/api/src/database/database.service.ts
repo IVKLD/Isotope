@@ -29,15 +29,6 @@ export class DatabaseService implements OnModuleDestroy {
     this.db = drizzle(this.client, { schema });
   }
 
-  public async checkHealth(): Promise<boolean> {
-    try {
-      await this.client`SELECT 1`;
-      return true;
-    } catch {
-      return false;
-    }
-  }
-
   public async onModuleDestroy(): Promise<void> {
     await this.client.end({ timeout: 2 });
   }
