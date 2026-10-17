@@ -10,6 +10,7 @@ export default defineConfig({
   dbCredentials: {
     url:
       process.env.DATABASE_URL ||
+      process.env.POSTGRES_URL ||
       'postgresql://portfolio:portfolio_dev_pwd@localhost:5432/portfolio_db'
   },
   verbose: true,

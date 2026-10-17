@@ -14,12 +14,16 @@ export class DatabaseService implements OnModuleDestroy {
   constructor(config: ConfigService) {
     const connectionString =
       config.get<string>('DATABASE_URL') ||
+      config.get<string>('POSTGRES_URL') ||
       'postgresql://portfolio:portfolio_dev_pwd@localhost:5432/portfolio_db';
 
+    const isLocal = connectionString.includes('localhost') || connectionString.includes('127.0.0.1');
+
     this.client = postgres(connectionString, {
-      max: 10,
+      max: isLocal ? 10 : 3,
       idle_timeout: 20,
-      connect_timeout: 5,
+      connect_timeout: 10,
+      ssl: isLocal ? false : 'require',
       onnotice: () => undefined
     });
 

@@ -1,8 +1,16 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "buildCommand": "yarn build",
+  "buildCommand": "yarn db:push && yarn build && yarn build:api",
   "outputDirectory": "dist/apps/portfolio/browser",
   "rewrites": [
+    {
+      "source": "/api/(.*)",
+      "destination": "/api"
+    },
+    {
+      "source": "/health",
+      "destination": "/api"
+    },
     {
       "source": "/(.*)",
       "destination": "/index.html"
