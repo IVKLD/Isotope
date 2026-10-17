@@ -16,13 +16,9 @@
   }
 }
 
-.dialog-pane {
-  display: flex;
+cdk-dialog-container {
   max-width: calc(100vw - 32px);
   max-height: calc(100vh - 32px);
-}
-
-.gnome-window {
   background: var(--bg-window);
   border: 1px solid var(--border-card);
   border-radius: 12px;
@@ -32,9 +28,13 @@
   flex-direction: column;
   box-shadow: var(--shadow-modal);
   overflow: hidden;
-  animation: gnomeScaleIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  animation: dialogEnter 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 
-  header {
+  &.is-closing {
+    animation: dialogExit 0.15s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  [app-dialog-header] {
     @include flex-between;
     height: 2.5rem;
     padding: 0 0.85rem;
@@ -72,7 +72,7 @@
   }
 }
 
-@keyframes gnomeScaleIn {
+@keyframes dialogEnter {
   from {
     opacity: 0;
     transform: scale(0.97) translateY(8px);
@@ -80,5 +80,16 @@
   to {
     opacity: 1;
     transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes dialogExit {
+  from {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.97) translateY(8px);
   }
 }

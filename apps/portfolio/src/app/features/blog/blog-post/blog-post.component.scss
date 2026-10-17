@@ -1,26 +1,19 @@
 @use 'mixins' as *;
-@use 'styles/blog-post-header';
-@use 'styles/blog-post-author';
-@use 'styles/blog-post-footer';
-@use 'styles/blog-post-content';
-@use 'styles/blog-post-callouts';
-@use 'styles/blog-post-rules';
-@use 'styles/blog-post-sidebar';
 
 :host {
-  display: block;
-  padding: 6.5rem 1.5rem 4rem;
-  max-width: var(--container-max-width);
-  margin: 0 auto;
+  @include page-host;
+}
 
-  @include max-md {
-    padding: 5rem 1rem 3rem;
-  }
+.blog-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border-subtle);
 }
 
 article {
-  width: 100%;
-
   .blog-body {
     display: grid;
     grid-template-columns: 1fr;
@@ -29,6 +22,17 @@ article {
     @include bp-lg {
       grid-template-columns: minmax(0, 1fr) 280px;
       gap: 3.5rem;
+    }
+  }
+
+  .sidebar-rail {
+    display: none;
+
+    @include bp-lg {
+      display: block;
+      position: sticky;
+      top: 5rem;
+      align-self: start;
     }
   }
 }

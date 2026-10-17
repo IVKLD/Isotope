@@ -1,5 +1,18 @@
 <header>
-  <svg [lucideIcon]="module().icon" size="20" aria-hidden="true"></svg>
+  @switch (module().icon) {
+    @case ('palette') {
+      <svg lucidePalette size="20" aria-hidden="true"></svg>
+    }
+    @case ('radio') {
+      <svg lucideRadio size="20" aria-hidden="true"></svg>
+    }
+    @case ('boxes') {
+      <svg lucideBoxes size="20" aria-hidden="true"></svg>
+    }
+    @default {
+      <svg lucideCpu size="20" aria-hidden="true"></svg>
+    }
+  }
   <div>
     <h3>{{ module().title }}</h3>
     <p>{{ module().description }}</p>
@@ -7,7 +20,7 @@
 </header>
 
 <section>
-  <h4>Ключевые практики & стандарты</h4>
+  <h4>Ключевые практики &amp; стандарты</h4>
   <ul class="feature-list">
     @for (item of module().highlights; track $index) {
       <li>
@@ -18,6 +31,6 @@
 </section>
 
 <section>
-  <h4>Технологии & инструменты</h4>
+  <h4>Технологии &amp; инструменты</h4>
   <app-tech-pills [items]="module().techStack" />
 </section>

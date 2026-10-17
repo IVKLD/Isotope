@@ -6,7 +6,7 @@ import {
   HttpStatus,
   Logger
 } from '@nestjs/common';
-import type { Request, Response } from 'express';
+import { Request, Response } from 'express';
 
 @Catch()
 export class GlobalExceptionFilter implements ExceptionFilter {
@@ -24,18 +24,6 @@ export class GlobalExceptionFilter implements ExceptionFilter {
 
     let message: string | string[] = 'Internal server error';
 
-    if (typeof exceptionResponse === 'string') {
-      message = exceptionResponse;
-    } else if (
-      exceptionResponse &&
-      typeof exceptionResponse === 'object' &&
-      'message' in exceptionResponse
-    ) {
-      message = (exceptionResponse as { message: string | string[] }).message;
-    } else if (exception instanceof Error) {
-      message = exception.message;
-    }
-
     if (status >= 500) {
       this.logger.error(
         `[${request.method}] ${request.url} >> ${status} Exception: ${
@@ -43,6 +31,23 @@ export class GlobalExceptionFilter implements ExceptionFilter {
         }`
       );
     } else {
+      if (typeof exceptionResponse === 'string') {
+        message = exceptionResponse;
+      } else if (
+        exceptionResponse &&
+        typeof exceptionResponse === 'object' &&
+        'message' in exceptionResponse
+      ) {
+        const respMsg = exceptionResponse.message;
+        if (typeof respMsg === 'string') {
+          message = respMsg;
+        } else if (Array.isArray(respMsg)) {
+          message = respMsg.map(String);
+        }
+      } else if (exception instanceof Error) {
+        message = exception.message;
+      }
+
       this.logger.warn(
         `[${request.method}] ${request.url} >> ${status} Client error: ${JSON.stringify(message)}`
       );

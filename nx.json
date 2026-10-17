@@ -6,9 +6,7 @@
     "production": [
       "default",
       "!{projectRoot}/**/?(*.)+(spec|test).[jt]s?(x)?(.snap)",
-      "!{projectRoot}/tsconfig.spec.json",
-      "!{projectRoot}/.eslintrc.json",
-      "!{projectRoot}/eslint.config.js"
+      "!{workspaceRoot}/eslint.config.mjs"
     ],
     "sharedGlobals": []
   },
@@ -17,10 +15,6 @@
       "cache": true,
       "dependsOn": ["^build"],
       "inputs": ["production", "^production"]
-    },
-    "lint": {
-      "cache": true,
-      "inputs": ["default"]
     }
   }
 }

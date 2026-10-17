@@ -1,4 +1,4 @@
-<header (dblclick)="toggleMaximize()">
+<header app-dialog-header (dblclick)="toggleMaximize()">
   <div>
     <svg lucideTerminal size="14"></svg>
     <span>igni@dev: ~</span>
@@ -46,9 +46,7 @@
     <input
       #cmdInput
       type="text"
-      [value]="currentInput()"
-      (input)="currentInput.set(cmdInput.value)"
-      name="commandInput"
+      [formField]="inputField"
       autocomplete="off"
       spellcheck="false"
       placeholder=""

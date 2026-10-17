@@ -1,14 +1,14 @@
 export type FeedbackSource = 'web-form' | 'terminal';
 
-export interface CreateFeedbackRequest {
+export type CreateFeedbackDto = {
   name: string;
   contact: string;
   message: string;
   source?: FeedbackSource;
-}
+};
 
-export interface FeedbackResponse {
+export type FeedbackRdo = {
   success: boolean;
   message: string;
   ticketId?: string;
-}
+};

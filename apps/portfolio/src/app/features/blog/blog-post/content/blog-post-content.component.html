@@ -1,0 +1,73 @@
+@for (section of sections(); track section.id) {
+  <section [id]="section.id">
+    <h2>{{ section.title }}</h2>
+
+    @for (paragraph of section.paragraphs; track $index) {
+      <p [innerHTML]="paragraph"></p>
+    }
+
+    @if (section.quote) {
+      <blockquote>{{ section.quote }}</blockquote>
+    }
+
+    @if (section.list) {
+      <ul>
+        @for (item of section.list; track $index) {
+          <li [innerHTML]="item"></li>
+        }
+      </ul>
+    }
+
+    @if (section.callout; as callout) {
+      <aside class="callout" [class]="callout.type">
+        @if (callout.type === 'danger') {
+          <svg lucideShieldAlert size="18"></svg>
+        } @else {
+          <svg lucideTriangleAlert size="18"></svg>
+        }
+        <div>
+          <strong>{{ callout.title }}</strong>
+          <p>{{ callout.text }}</p>
+        </div>
+      </aside>
+    }
+
+    @if (section.codeBlocks; as blocks) {
+      <div class="comparison-block">
+        @for (block of blocks; track block.title) {
+          <div class="code-card" [class]="block.type ?? 'neutral'">
+            <header>
+              @if (block.type === 'bad') {
+                <svg lucideBug size="16"></svg>
+              } @else {
+                <svg lucideCircleCheck size="16"></svg>
+              }
+              <span>{{ block.title }}</span>
+            </header>
+            <app-code-block
+              [code]="block.code"
+              [language]="block.language"
+              [showLineNumbers]="true"
+            />
+            @if (block.footerNote) {
+              <footer>
+                <small>{{ block.footerNote }}</small>
+              </footer>
+            }
+          </div>
+        }
+      </div>
+    }
+
+    @if (section.rules; as rules) {
+      <div class="rules-grid">
+        @for (rule of rules; track rule.title) {
+          <article>
+            <strong>{{ rule.title }}</strong>
+            <p>{{ rule.text }}</p>
+          </article>
+        }
+      </div>
+    }
+  </section>
+}

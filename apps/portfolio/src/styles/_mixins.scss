@@ -1,4 +1,5 @@
 @forward 'breakpoints';
+@use 'breakpoints' as *;
 
 // Interaction
 @mixin hover {
@@ -49,4 +50,47 @@
   border: 1px solid var(--border-subtle);
   border-radius: 8px;
   padding: $padding;
+}
+
+// Page layout & header
+@mixin page-host {
+  display: block;
+  padding: 6.5rem 1.5rem 5rem;
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+
+  @include max-md {
+    padding: 5rem 1rem 3rem;
+  }
+}
+
+@mixin page-header {
+  margin-bottom: 3.5rem;
+
+  .hero-top {
+    margin-bottom: 2.25rem;
+
+    small {
+      margin-bottom: 0.75rem;
+    }
+
+    h1 {
+      font-size: clamp(1.85rem, 4.5vw, 3rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      margin-bottom: 0.75rem;
+      background: linear-gradient(135deg, var(--text-white) 0%, var(--accent-light) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    p {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      max-width: 42rem;
+      line-height: 1.6;
+    }
+  }
 }

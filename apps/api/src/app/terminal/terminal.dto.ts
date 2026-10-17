@@ -1,8 +1,7 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { IsArray, IsNotEmpty, IsOptional, IsString } from 'class-validator';
-import type { TerminalCommandRequest } from '@portfolio/contracts';
 
-export class TerminalCommandDto implements TerminalCommandRequest {
+export class TerminalCommandDto {
   @ApiProperty({ description: 'Command name to execute', example: 'whoami' })
   @IsString()
   @IsNotEmpty()

@@ -1,8 +1,8 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { IsNotEmpty, IsOptional, IsString, MaxLength } from 'class-validator';
-import type { CreateFeedbackRequest, FeedbackSource } from '@portfolio/contracts';
+import { FeedbackSource } from '@portfolio/contracts';
 
-export class CreateFeedbackDto implements CreateFeedbackRequest {
+export class CreateFeedbackDto {
   @ApiProperty({ description: 'Sender name or handle', example: 'Alex' })
   @IsString()
   @IsNotEmpty()

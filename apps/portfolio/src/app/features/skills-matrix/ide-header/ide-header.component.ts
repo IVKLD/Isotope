@@ -1,7 +1,8 @@
 import { Component, input, output } from '@angular/core';
 import { LucideTerminal, LucideFileCode } from '@lucide/angular';
-import { TabListDirective, TabDirective } from '@shared/ui/tabs';
-import { StackModule } from '../skills-matrix.data';
+import { TabListDirective } from '@shared/ui/tabs/tab-list.directive';
+import { TabDirective } from '@shared/ui/tabs/tab.directive';
+import { StackModuleRdo } from '@portfolio/contracts';
 
 @Component({
   selector: 'app-ide-header',
@@ -10,7 +11,7 @@ import { StackModule } from '../skills-matrix.data';
   styleUrl: './ide-header.component.scss'
 })
 export class IdeHeaderComponent {
-  public readonly modules = input.required<readonly StackModule[]>();
-  public readonly selected = input.required<StackModule>();
-  public readonly moduleSelect = output<StackModule>();
+  public readonly modules = input.required<readonly StackModuleRdo[]>();
+  public readonly selected = input.required<StackModuleRdo>();
+  public readonly moduleSelect = output<StackModuleRdo>();
 }

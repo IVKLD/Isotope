@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { LucideSend, LucideMail } from '@lucide/angular';
-import { GithubIconComponent, LogoIconComponent } from '@shared/ui/icons';
-import { GhostButtonDirective, OutlineButtonDirective } from '@shared/ui/button';
+import { GithubIconComponent } from '@shared/ui/icons/github-icon.component';
+import { LogoIconComponent } from '@shared/ui/icons/logo-icon.component';
+import { GhostButtonDirective } from '@shared/ui/button/ghost-button.directive';
+import { OutlineButtonDirective } from '@shared/ui/button/outline-button.directive';
 
 @Component({
   selector: 'app-footer',

@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { LucideSend } from '@lucide/angular';
-import { GithubIconComponent, LogoIconComponent } from '@shared/ui/icons';
-import { IconButtonDirective } from '@shared/ui/button';
-import { CliButtonComponent } from '@shared/ui/cli-button';
-import { injectTerminalDialog } from '@features/terminal';
+import { GithubIconComponent } from '@shared/ui/icons/github-icon.component';
+import { LogoIconComponent } from '@shared/ui/icons/logo-icon.component';
+import { IconButtonDirective } from '@shared/ui/button/icon-button.directive';
+import { CliButtonComponent } from '@shared/ui/cli-button/cli-button.component';
+import { LazyDialogService } from '@core/services/lazy-dialog.service';
 
 @Component({
   selector: 'app-header',
@@ -24,7 +25,15 @@ import { injectTerminalDialog } from '@features/terminal';
   }
 })
 export class HeaderComponent {
-  private readonly openTerminal = injectTerminalDialog();
+  private readonly dialog = inject(LazyDialogService);
+
+  protected openTerminal(): void {
+    this.dialog
+      .openLazy(
+        () => import('@features/terminal/terminal-modal.component').then(m => m.TerminalModalComponent)
+      )
+      .subscribe();
+  }
 
   protected onKeydown(event: KeyboardEvent): void {
     if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === 'k') {

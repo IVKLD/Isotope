@@ -10,7 +10,7 @@ export const routes: Routes = [
   {
     path: 'projects',
     loadComponent: () =>
-      import('@features/bento-grid/bento-grid.component').then(m => m.BentoGridComponent),
+      import('@features/projects/projects.component').then(m => m.ProjectsComponent),
     title: 'Проекты — Коммерческая разработка и open-source | IgnI'
   },
   {

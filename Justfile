@@ -9,6 +9,11 @@ dev:
 dev-api:
     yarn start:api
 
+# Start both backend and frontend development servers concurrently
+dev-all:
+    @echo "Starting Backend (:3000) and Frontend (:4200)..."
+    @trap 'kill 0' SIGINT SIGTERM EXIT; yarn start:api & yarn start
+
 # Build production frontend bundle
 build:
     yarn build

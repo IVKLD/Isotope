@@ -1,4 +1,4 @@
-export interface Particle {
+export type Particle = {
   x: number;
   y: number;
   vx: number;
@@ -6,7 +6,7 @@ export interface Particle {
   radius: number;
   colorIndex: number;
   depth: number;
-}
+};
 
 const PARTICLE_COLORS = [
   'rgba(228, 0, 58, 0.75)',

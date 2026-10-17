@@ -1,11 +1,25 @@
-import { ApiProperty } from '@nestjs/swagger';
-import { IsIn } from 'class-validator';
-import type { PostReactionRequest, ReactionType } from '@portfolio/contracts';
+import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
+import { IsIn, IsOptional, IsString } from 'class-validator';
+import { ReactionType } from '@portfolio/contracts';
 
-const VALID_REACTIONS: ReactionType[] = ['like', 'fire', 'rocket', 'mindblown'];
+export class BlogFilterDto {
+  @ApiPropertyOptional({ description: 'Filter by tag/category', example: 'Angular 22' })
+  @IsOptional()
+  @IsString()
+  public tag?: string;
 
-export class PostReactionDto implements PostReactionRequest {
-  @ApiProperty({ description: 'Reaction type to add', enum: VALID_REACTIONS, example: 'fire' })
-  @IsIn(VALID_REACTIONS)
+  @ApiPropertyOptional({ description: 'Search query for articles', example: 'Signals' })
+  @IsOptional()
+  @IsString()
+  public search?: string;
+}
+
+export class PostReactionDto {
+  @ApiProperty({
+    description: 'Reaction type to add',
+    enum: ['like', 'fire', 'rocket', 'mindblown'],
+    example: 'fire'
+  })
+  @IsIn(['like', 'fire', 'rocket', 'mindblown'])
   public type!: ReactionType;
 }

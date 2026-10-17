@@ -1,0 +1,14 @@
+<nav class="toc" aria-label="Оглавление статьи">
+  <strong>Оглавление</strong>
+  @for (item of items(); track item.id) {
+    <a [href]="'#' + item.id">{{ item.title }}</a>
+  }
+</nav>
+
+<div class="summary-widget">
+  <header>
+    <svg lucideBrain size="16"></svg>
+    <strong>Ключевой вывод</strong>
+  </header>
+  <p>{{ takeaway() }}</p>
+</div>

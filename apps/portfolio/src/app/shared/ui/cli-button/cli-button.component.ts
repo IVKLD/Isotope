@@ -1,7 +1,6 @@
-import { Component, inject, input } from '@angular/core';
+import { Component, inject, input, output } from '@angular/core';
 import { LucideTerminal } from '@lucide/angular';
-import { PlatformService } from '@core/services';
-import { injectTerminalDialog } from '@features/terminal';
+import { PlatformService } from '@core/services/platform.service';
 
 @Component({
   selector: 'app-cli-button',
@@ -11,8 +10,8 @@ import { injectTerminalDialog } from '@features/terminal';
 })
 export class CliButtonComponent {
   private readonly platform = inject(PlatformService);
-  protected readonly openTerminal = injectTerminalDialog();
 
   public readonly showShortcut = input(true);
-  protected readonly isMac = this.platform.isMac;
+  public readonly isMac = input(this.platform.isMac);
+  public readonly opened = output();
 }

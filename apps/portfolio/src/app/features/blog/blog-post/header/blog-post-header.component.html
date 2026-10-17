@@ -1,0 +1,43 @@
+<div class="meta-row">
+  <small>
+    <svg lucideClock size="14"></svg>
+    <span>{{ post().readTime }} • {{ post().date }}</span>
+  </small>
+  <app-tech-pills [items]="post().tags" />
+</div>
+
+<h1>{{ post().title }}</h1>
+<p class="lead">{{ post().subtitle }}</p>
+
+<div class="author-bar">
+  <div class="author-info">
+    <app-logo-icon [size]="24" />
+    <div>
+      <strong>IgnI</strong>
+      <small>Frontend / Systems Engineer</small>
+    </div>
+  </div>
+  <div class="author-actions">
+    <a
+      href="https://github.com/IVKLD"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="GitHub профиль"
+      app-icon-button
+      shape="square"
+    >
+      <svg app-github-icon size="16"></svg>
+    </a>
+    <a
+      href="https://t.me/IVKLCD"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Telegram"
+      app-icon-button
+      shape="square"
+    >
+      <svg lucideSend size="16"></svg>
+    </a>
+    <app-cli-button [showShortcut]="false" (opened)="openTerminal()" />
+  </div>
+</div>

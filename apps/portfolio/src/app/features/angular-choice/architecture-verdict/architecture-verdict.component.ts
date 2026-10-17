@@ -1,5 +1,5 @@
 import { Component, input } from '@angular/core';
-import { CompetitorComparison } from '../angular-choice.types';
+import { CompetitorComparisonRdo } from '@portfolio/contracts';
 
 @Component({
   selector: 'app-architecture-verdict',
@@ -7,5 +7,5 @@ import { CompetitorComparison } from '../angular-choice.types';
   styleUrl: './architecture-verdict.component.scss'
 })
 export class ArchitectureVerdictComponent {
-  public readonly competitor = input.required<CompetitorComparison>();
+  public readonly competitor = input.required<CompetitorComparisonRdo>();
 }

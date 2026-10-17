@@ -1,7 +1,7 @@
 import { Inject, Injectable, Logger } from '@nestjs/common';
 import { DRIZZLE, DrizzleDb, terminalLogsTable } from '@api/database';
 import { TerminalCommandDto } from './terminal.dto';
-import type { TerminalCommandResponse } from '@portfolio/contracts';
+import { TerminalCommandRdo } from '@portfolio/contracts';
 
 const HELP_TEXT = [
   'Available server commands:',
@@ -32,14 +32,18 @@ export class TerminalService {
 
   constructor(@Inject(DRIZZLE) private readonly db: DrizzleDb) {}
 
-  public async executeCommand(dto: TerminalCommandDto): Promise<TerminalCommandResponse> {
+  public async executeCommand(dto: TerminalCommandDto): Promise<TerminalCommandRdo> {
     const rawCmd = dto.command.trim().toLowerCase();
     const args = dto.args || [];
 
     this.db
       .insert(terminalLogsTable)
       .values({ command: rawCmd, args: args.join(' ') })
-      .catch(err => this.logger.debug(`Could not log terminal command: ${(err as Error).message}`));
+      .catch(err =>
+        this.logger.debug(
+          `Could not log terminal command: ${err instanceof Error ? err.message : String(err)}`
+        )
+      );
 
     const commandMap: Record<string, () => string> = {
       whoami: () => WHOAMI_TEXT,
@@ -48,7 +52,7 @@ export class TerminalService {
         return `API Server Uptime: ${Math.floor(sec / 3600)}h ${Math.floor((sec % 3600) / 60)}m ${sec % 60}s (PID: ${process.pid}, Node.js: ${process.version})`;
       },
       version: () =>
-        'Portfolio Platform v1.0.0 (NestJS 11 + Fastify/Express + Angular 22 Zoneless + Drizzle ORM)',
+        'Portfolio Platform v1.0.0 (NestJS 12 + Express + Angular 22 Zoneless + Drizzle ORM)',
       stack: () => SKILLS_TEXT,
       skills: () => SKILLS_TEXT,
       echo: () => args.join(' '),

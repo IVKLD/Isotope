@@ -1,7 +1,7 @@
 import { Controller, Get } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { DatabaseService } from '@api/database';
-import type { HealthResponse } from '@portfolio/contracts';
+import { HealthRdo } from '@portfolio/contracts';
 
 @ApiTags('Health')
 @Controller('health')
@@ -13,7 +13,7 @@ export class HealthController {
   @Get()
   @ApiOperation({ summary: 'Backend system and database health status' })
   @ApiResponse({ status: 200, description: 'Health check result' })
-  public async check(): Promise<HealthResponse> {
+  public async check(): Promise<HealthRdo> {
     const isDbConnected = await this.dbService.checkHealth();
 
     return {

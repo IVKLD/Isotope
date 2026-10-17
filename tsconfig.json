@@ -14,8 +14,6 @@
     "target": "ES2022",
     "module": "ES2022",
     "paths": {
-      "@/*": ["./apps/portfolio/src/*"],
-      "@app/*": ["./apps/portfolio/src/app/*"],
       "@core/*": ["./apps/portfolio/src/app/core/*"],
       "@shared/*": ["./apps/portfolio/src/app/shared/*"],
       "@features/*": ["./apps/portfolio/src/app/features/*"],

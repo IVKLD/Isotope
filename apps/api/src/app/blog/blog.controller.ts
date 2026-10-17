@@ -1,26 +1,42 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Query, NotFoundException } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { BlogService } from './blog.service';
-import { PostReactionDto } from './blog.dto';
-import type { PostStats, PostReactionResponse } from '@portfolio/contracts';
+import { BlogFilterDto, PostReactionDto } from './blog.dto';
+import {
+  PostStatsRdo,
+  PostReactionRdo,
+  BlogSummaryRdo,
+  BlogPostRdo
+} from '@portfolio/contracts';
 
 @ApiTags('Blog')
 @Controller('blog')
 export class BlogController {
   constructor(private readonly blogService: BlogService) {}
 
-  @Get('posts/:slug/stats')
-  @ApiOperation({ summary: 'Get view count and reaction statistics for an article' })
-  @ApiResponse({ status: 200, description: 'Post metrics' })
-  public async getStats(@Param('slug') slug: string): Promise<PostStats> {
-    return this.blogService.getStats(slug);
+  @Get('posts')
+  @ApiOperation({ summary: 'Get published blog post summaries with optional filtering' })
+  @ApiResponse({ status: 200, description: 'List of blog post summaries' })
+  public async getPosts(@Query() query: BlogFilterDto): Promise<readonly BlogSummaryRdo[]> {
+    return this.blogService.getPosts(query);
   }
 
-  @Post('posts/:slug/view')
-  @ApiOperation({ summary: 'Increment page view count for an article' })
-  @ApiResponse({ status: 200, description: 'Updated view counter' })
-  public async incrementView(@Param('slug') slug: string): Promise<{ views: number }> {
-    return this.blogService.incrementViews(slug);
+  @Get('posts/:slug')
+  @ApiOperation({ summary: 'Get full blog post by slug' })
+  @ApiResponse({ status: 200, description: 'Full blog post details' })
+  public async getPost(@Param('slug') slug: string): Promise<BlogPostRdo> {
+    const post = await this.blogService.getPostBySlug(slug);
+    if (!post) {
+      throw new NotFoundException(`Article with slug "${slug}" not found`);
+    }
+    return post;
+  }
+
+  @Get('posts/:slug/stats')
+  @ApiOperation({ summary: 'Get reader reaction statistics for an article' })
+  @ApiResponse({ status: 200, description: 'Post metrics' })
+  public async getStats(@Param('slug') slug: string): Promise<PostStatsRdo> {
+    return this.blogService.getStats(slug);
   }
 
   @Post('posts/:slug/react')
@@ -29,7 +45,7 @@ export class BlogController {
   public async addReaction(
     @Param('slug') slug: string,
     @Body() dto: PostReactionDto
-  ): Promise<PostReactionResponse> {
+  ): Promise<PostReactionRdo> {
     return this.blogService.addReaction(slug, dto.type);
   }
 }

@@ -1,10 +1,10 @@
-export interface TerminalCommandRequest {
+export type TerminalCommandDto = {
   command: string;
   args?: string[];
-}
+};
 
-export interface TerminalCommandResponse {
+export type TerminalCommandRdo = {
   output: string;
   exitCode: number;
   format?: 'text' | 'json' | 'ansi';
-}
+};

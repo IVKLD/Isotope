@@ -1,12 +1,86 @@
-import { Injectable } from '@nestjs/common';
-import type { ProjectsSummaryResponse } from '@portfolio/contracts';
+import { Inject, Injectable, Logger, OnModuleInit } from '@nestjs/common';
+import { sql } from 'drizzle-orm';
+import {
+  DRIZZLE,
+  DrizzleDb,
+  projectsTable,
+  INITIAL_PROJECTS
+} from '@api/database';
+import {
+  ProjectCategoryTabRdo,
+  ProjectRdo,
+  ProjectsSummaryRdo
+} from '@portfolio/contracts';
 
 @Injectable()
-export class ProjectsService {
-  public getProjectsSummary(): ProjectsSummaryResponse {
+export class ProjectsService implements OnModuleInit {
+  private readonly logger = new Logger(ProjectsService.name);
+
+  constructor(@Inject(DRIZZLE) private readonly db: DrizzleDb) {}
+
+  public async onModuleInit(): Promise<void> {
+    try {
+      const [result] = await this.db
+        .select({ count: sql<number>`count(*)::int` })
+        .from(projectsTable);
+
+      if ((result?.count ?? 0) === 0) {
+        this.logger.log('Database projects table is empty. Seeding initial projects...');
+        await this.db.insert(projectsTable).values(INITIAL_PROJECTS);
+        this.logger.log('Initial projects successfully seeded into database.');
+      }
+    } catch (err) {
+      this.logger.warn(
+        `Could not verify/seed projects in DB: ${err instanceof Error ? err.message : String(err)}`
+      );
+    }
+  }
+
+  public async getProjects(): Promise<readonly ProjectRdo[]> {
+    const rows = await this.db
+      .select()
+      .from(projectsTable)
+      .orderBy(projectsTable.sortOrder);
+
+    return rows.map(r => ({
+      name: r.name,
+      category: r.category,
+      role: r.role,
+      year: r.year,
+      shortDesc: r.shortDesc,
+      fullDesc: r.fullDesc,
+      whyCool: r.whyCool ?? undefined,
+      githubUrl: r.githubUrl ?? undefined,
+      highlights: r.highlights,
+      techStack: r.techStack,
+      codeSnippet: r.codeSnippet ?? undefined
+    }));
+  }
+
+  public async getCategories(): Promise<readonly ProjectCategoryTabRdo[]> {
+    const projects = await this.getProjects();
+
+    return [
+      { id: 'all', label: 'Все', count: projects.length },
+      {
+        id: 'prod',
+        label: 'Продуктовые',
+        count: projects.filter(p => p.category === 'prod').length
+      },
+      {
+        id: 'geek',
+        label: 'Гиковские',
+        count: projects.filter(p => p.category === 'geek').length
+      }
+    ];
+  }
+
+  public async getProjectsSummary(): Promise<ProjectsSummaryRdo> {
+    const projects = await this.getProjects();
+
     return {
-      totalProjects: 6,
-      featuredProjects: 4,
+      totalProjects: projects.length,
+      featuredProjects: projects.filter(p => p.category === 'prod').length,
       stats: {
         'vortex-dl': {
           id: 'vortex-dl',

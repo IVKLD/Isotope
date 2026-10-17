@@ -45,9 +45,9 @@ async function bootstrap(): Promise<void> {
     .setVersion('1.0.0')
     .addTag('Health', 'System and database diagnostics')
     .addTag('Feedback', 'Contact requests and inquiries')
-    .addTag('Blog', 'Post telemetry, views counter & reactions')
+    .addTag('Blog', 'Blog posts, reader reactions & telemetry')
     .addTag('Terminal', 'Interactive shell command execution')
-    .addTag('Projects', 'Bento grid projects metadata & stats')
+    .addTag('Projects', 'Portfolio projects catalog, categories & engineering breakdown')
     .build();
 
   const document = SwaggerModule.createDocument(app, config);
@@ -55,7 +55,7 @@ async function bootstrap(): Promise<void> {
     customSiteTitle: 'Portfolio API Documentation — Swagger UI'
   });
 
-  const port = process.env['PORT'] || 3000;
+  const port = process.env['API_PORT'] || 3000;
   await app.listen(port);
 
   logger.log(`Portfolio API server is running on: http://localhost:${port}`);

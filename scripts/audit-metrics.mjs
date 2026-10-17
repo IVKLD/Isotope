@@ -119,7 +119,11 @@ async function runAudit() {
   if (specificRoute) {
     routes = [specificRoute];
   } else if (isAllRoutes && fs.existsSync(routesFile)) {
-    routes = fs.readFileSync(routesFile, 'utf8').split('\n').map(r => r.trim()).filter(Boolean);
+    routes = fs
+      .readFileSync(routesFile, 'utf8')
+      .split('\n')
+      .map(r => r.trim())
+      .filter(Boolean);
   }
 
   const server = createStaticServer(distDir);
@@ -127,7 +131,9 @@ async function runAudit() {
   const port = server.address().port;
 
   console.log(`\n🚀 Локальный сервер запущен на http://127.0.0.1:${port}`);
-  console.log(`⏱️  Запуск Lighthouse (${isDesktop ? 'Desktop' : 'Mobile'}) для ${routes.length} маршрутов...\n`);
+  console.log(
+    `⏱️  Запуск Lighthouse (${isDesktop ? 'Desktop' : 'Mobile'}) для ${routes.length} маршрутов...\n`
+  );
 
   const chrome = await chromeLauncher.launch({
     chromeFlags: ['--headless=new', '--no-sandbox', '--disable-gpu', '--disable-dev-shm-usage']
@@ -196,17 +202,24 @@ async function runAudit() {
         tbt
       });
 
-      console.log(`  ⚡ Perf: ${perfScore}% | ♿ A11y: ${a11yScore}% | 🛡️ BP: ${bpScore}% | 🔍 SEO: ${seoScore}% | LCP: ${lcp.toFixed(2)}s | CLS: ${cls.toFixed(3)} | TBT: ${tbt}ms`);
+      console.log(
+        `  ⚡ Perf: ${perfScore}% | ♿ A11y: ${a11yScore}% | 🛡️ BP: ${bpScore}% | 🔍 SEO: ${seoScore}% | LCP: ${lcp.toFixed(2)}s | CLS: ${cls.toFixed(3)} | TBT: ${tbt}ms`
+      );
 
       const reportDir = path.join(rootDir, '.reports');
       if (!fs.existsSync(reportDir)) fs.mkdirSync(reportDir, { recursive: true });
       const safeName = route === '/' ? 'home' : route.replace(/\//g, '-').replace(/^-/, '');
-      const reportPath = path.join(reportDir, `lh-${safeName}-${isDesktop ? 'desktop' : 'mobile'}.html`);
+      const reportPath = path.join(
+        reportDir,
+        `lh-${safeName}-${isDesktop ? 'desktop' : 'mobile'}.html`
+      );
       fs.writeFileSync(reportPath, report);
     }
 
     console.log('\n' + '='.repeat(80));
-    console.log(`📊 СВОДНЫЙ ОТЧЁТ LIGHTHOUSE (${isDesktop ? 'DESKTOP' : 'MOBILE'}) ДЛЯ ВСЕХ СТРАНИЦ:`);
+    console.log(
+      `📊 СВОДНЫЙ ОТЧЁТ LIGHTHOUSE (${isDesktop ? 'DESKTOP' : 'MOBILE'}) ДЛЯ ВСЕХ СТРАНИЦ:`
+    );
     console.log('='.repeat(80));
     console.table(results);
   } finally {

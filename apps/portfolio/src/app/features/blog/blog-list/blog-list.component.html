@@ -1,4 +1,4 @@
-<header class="blog-hero">
+<header>
   <div class="hero-top">
     <small app-accent-badge>
       <svg lucideBookOpen size="14"></svg>
@@ -26,20 +26,27 @@
     </nav>
 
     <div class="search-box">
-      <svg lucideSearch size="16"></svg>
+      @if (postsResource.isLoading()) {
+        <svg lucideLoaderCircle size="16" class="spin"></svg>
+      } @else {
+        <svg lucideSearch size="16"></svg>
+      }
       <input
-        #searchInput
         type="search"
         placeholder="Поиск по статьям и тегам..."
-        [value]="searchQuery()"
-        (input)="searchQuery.set(searchInput.value)"
+        [formField]="searchField"
         aria-label="Поиск по статьям"
       />
     </div>
   </div>
 </header>
 
-<main class="posts-container">
+@if (postsResource.isLoading()) {
+  <div class="blog-loader" aria-live="polite" aria-busy="true">
+    <svg lucideLoaderCircle size="32" class="spin"></svg>
+    <p>Загрузка статей...</p>
+  </div>
+} @else {
   @if (featuredPost(); as featured) {
     <article class="featured-card">
       <header>
@@ -70,7 +77,7 @@
   }
 
   <section class="posts-grid">
-    @for (post of regularPosts(); track post.slug) {
+    @for (post of regularPosts(); track post.id) {
       <article class="post-card">
         <header>
           <small class="read-meta">
@@ -101,10 +108,11 @@
     } @empty {
       <div class="empty-state">
         <p>Статей по заданному фильтру не найдено.</p>
-        <button app-outline-button type="button" (click)="selectedTag.set('Все')">
+        <button app-outline-button type="button" (click)="resetFilter()">
           <span>Сбросить фильтр</span>
         </button>
       </div>
     }
   </section>
-</main>
+}
+

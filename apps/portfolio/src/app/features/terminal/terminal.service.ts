@@ -1,28 +1,51 @@
-import { Injectable, signal } from '@angular/core';
-import { TerminalEntry } from '@shared/models';
-import { TERMINAL_COMMANDS, TERMINAL_INITIAL_HISTORY } from './terminal.data';
+import { inject, Injectable, signal } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { firstValueFrom } from 'rxjs';
+import { TerminalCommandDto, TerminalCommandRdo } from '@portfolio/contracts';
 
-export type { TerminalEntry };
+export type TerminalEntry = {
+  readonly command: string;
+  readonly lines: readonly string[];
+};
 
 @Injectable({
   providedIn: 'root'
 })
 export class TerminalService {
-  public readonly history = signal<TerminalEntry[]>(TERMINAL_INITIAL_HISTORY);
+  private readonly http = inject(HttpClient);
+  private queue: Promise<void> = Promise.resolve();
+
+  public readonly history = signal<readonly TerminalEntry[]>([
+    {
+      command: 'help',
+      lines: [
+        'Доступные команды: whoami, stack, skills, uptime, help',
+        'Введите команду или используйте быстрые кнопки внизу.'
+      ]
+    }
+  ]);
 
   public execute(rawCommand: string): void {
-    const cmd = rawCommand.trim().toLowerCase();
-    if (!cmd) return;
+    const trimmed = rawCommand.trim();
+    if (!trimmed) return;
 
-    if (cmd === 'clear') {
+    if (trimmed.toLowerCase() === 'clear') {
       this.history.set([]);
       return;
     }
 
-    const lines = TERMINAL_COMMANDS[cmd] ?? [
-      `Команда не найдена: "${rawCommand}". Введите "help" для справки.`
-    ];
+    const [cmd, ...args] = trimmed.split(/\s+/);
+    const body: TerminalCommandDto = { command: cmd, args };
 
-    this.history.update(prev => [...prev, { command: rawCommand, lines }]);
+    // Serialize requests so history order always matches submission order.
+    this.queue = this.queue.then(async () => {
+      const lines = await firstValueFrom(
+        this.http.post<TerminalCommandRdo>('/terminal/command', body)
+      ).then(
+        res => (res.output ? res.output.split('\n') : []),
+        () => ['Ошибка связи с сервером терминала.']
+      );
+      this.history.update(prev => [...prev, { command: rawCommand, lines }]);
+    });
   }
 }

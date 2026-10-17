@@ -1,7 +1,6 @@
 import {
   Component,
   ElementRef,
-  NgZone,
   viewChild,
   inject,
   afterNextRender,
@@ -31,7 +30,6 @@ import { ParticleEngine } from './particle-engine';
   `
 })
 export class CanvasBackgroundComponent {
-  private readonly ngZone = inject(NgZone);
   private readonly destroyRef = inject(DestroyRef);
   private readonly canvasRef = viewChild.required<ElementRef<HTMLCanvasElement>>('canvas');
 
@@ -50,27 +48,24 @@ export class CanvasBackgroundComponent {
       if (!ctx) return;
 
       this.engine = new ParticleEngine(canvas, ctx);
+      this.engine.init();
 
-      this.ngZone.runOutsideAngular(() => {
-        this.engine?.init();
+      const opts: AddEventListenerOptions = { passive: true, signal: this.abort.signal };
+      window.addEventListener('resize', this.onResize, opts);
+      window.addEventListener('mousemove', this.onMouseMove, opts);
+      window.addEventListener('scroll', this.onScroll, opts);
 
-        const opts: AddEventListenerOptions = { passive: true, signal: this.abort.signal };
-        window.addEventListener('resize', this.onResize, opts);
-        window.addEventListener('mousemove', this.onMouseMove, opts);
-        window.addEventListener('scroll', this.onScroll, opts);
-
-        document.addEventListener(
-          'visibilitychange',
-          () => {
-            if (document.hidden) {
-              this.engine?.pause();
-            } else {
-              this.engine?.resume();
-            }
-          },
-          opts
-        );
-      });
+      document.addEventListener(
+        'visibilitychange',
+        () => {
+          if (document.hidden) {
+            this.engine?.pause();
+          } else {
+            this.engine?.resume();
+          }
+        },
+        opts
+      );
     });
   }
 

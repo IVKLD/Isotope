@@ -7,6 +7,7 @@ import {
   afterNextRender,
   DestroyRef
 } from '@angular/core';
+import { form, FormField } from '@angular/forms/signals';
 import {
   LucideX,
   LucideTerminal,
@@ -15,19 +16,22 @@ import {
   LucideMinimize2,
   LucideMoveDiagonal2
 } from '@lucide/angular';
-import { DialogCloseDirective, createWindowResizeController } from '@shared/ui/dialog';
-import { IconButtonDirective, OutlineButtonDirective } from '@shared/ui/button';
+import { DialogCloseDirective } from '@shared/ui/dialog/dialog-close.directive';
+import { DialogHeaderDirective } from '@shared/ui/dialog/dialog-header.directive';
+import { createWindowResizeController } from '@shared/ui/dialog/window-resize.util';
+import { IconButtonDirective } from '@shared/ui/button/icon-button.directive';
+import { OutlineButtonDirective } from '@shared/ui/button/outline-button.directive';
 import { TerminalService } from './terminal.service';
 
 @Component({
   selector: 'app-terminal-modal',
   host: {
-    class: 'gnome-window',
     '[class.is-maximized]': 'isMaximized()',
     '[style.--terminal-width]': 'customWidth()',
     '[style.--terminal-height]': 'customHeight()'
   },
   imports: [
+    FormField,
     LucideX,
     LucideTerminal,
     LucideCornerDownLeft,
@@ -35,6 +39,7 @@ import { TerminalService } from './terminal.service';
     LucideMinimize2,
     LucideMoveDiagonal2,
     DialogCloseDirective,
+    DialogHeaderDirective,
     IconButtonDirective,
     OutlineButtonDirective
   ],
@@ -50,6 +55,7 @@ export class TerminalModalComponent {
 
   protected readonly terminal = inject(TerminalService);
   protected readonly currentInput = signal('');
+  protected readonly inputField = form(this.currentInput);
   protected readonly isMaximized = signal(false);
   protected readonly customWidth = signal<string | null>(null);
   protected readonly customHeight = signal<string | null>(null);

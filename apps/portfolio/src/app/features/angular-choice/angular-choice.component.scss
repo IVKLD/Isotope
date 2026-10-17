@@ -1,9 +1,9 @@
 @use 'mixins' as *;
 
-section {
-  position: relative;
+:host {
+  @include page-host;
 
-  header {
-    margin-bottom: 2.5rem;
+  > header {
+    @include page-header;
   }
 }

@@ -1,21 +1,15 @@
 @use 'mixins' as *;
-@use 'styles/blog-list-header';
 @use 'styles/blog-list-filter';
 @use 'styles/blog-list-card';
 @use 'styles/blog-list-grid';
 @use 'styles/blog-list-empty';
+@use 'styles/blog-list-loader';
 
 :host {
-  display: block;
-  padding: 6.5rem 1.5rem 5rem;
-  max-width: var(--container-max-width);
-  margin: 0 auto;
+  @include page-host;
 
-  @include max-md {
-    padding: 5rem 1rem 3rem;
+  > header {
+    @include page-header;
   }
 }
 
-.posts-container {
-  width: 100%;
-}

@@ -1,16 +1,22 @@
 import { inject } from '@angular/core';
 import { ResolveFn, RedirectCommand, Router } from '@angular/router';
-import { BlogPost } from './blog.types';
-import { BLOG_POST_LOADERS } from './blog.loaders';
+import { firstValueFrom } from 'rxjs';
+import { BlogPostRdo } from '@portfolio/contracts';
+import { BlogService } from './blog.service';
 
-export const blogPostResolver: ResolveFn<BlogPost> = async route => {
+export const blogPostResolver: ResolveFn<BlogPostRdo> = async route => {
   const router = inject(Router);
+  const blogService = inject(BlogService);
   const slug = route.paramMap.get('slug');
-  const loader = slug ? BLOG_POST_LOADERS[slug] : undefined;
 
-  if (!loader) {
+  if (!slug) {
     return new RedirectCommand(router.parseUrl('/blog'));
   }
 
-  return await loader();
+  const post = await firstValueFrom(blogService.getPost(slug));
+  if (!post) {
+    return new RedirectCommand(router.parseUrl('/blog'));
+  }
+
+  return post;
 };

@@ -1,0 +1,59 @@
+<div class="article-end">
+  <app-logo-icon [size]="28" />
+  <div>
+    <strong>Чистый код требует инженерной дисциплины</strong>
+    <p>
+      Автоматизация должна усиливать мастерство инженера, а не заменять его поверхностной иллюзией.
+    </p>
+  </div>
+</div>
+
+<div class="end-actions">
+  <div class="reactions-bar">
+    <button
+      type="button"
+      app-outline-button
+      size="sm"
+      (click)="react.emit('like')"
+      aria-label="Поставить лайк"
+    >
+      <svg lucideHeart size="14"></svg>
+      <span>{{ reactions().like }}</span>
+    </button>
+    <button
+      type="button"
+      app-outline-button
+      size="sm"
+      (click)="react.emit('fire')"
+      aria-label="Огонь"
+    >
+      <svg lucideFlame size="14"></svg>
+      <span>{{ reactions().fire }}</span>
+    </button>
+    <button
+      type="button"
+      app-outline-button
+      size="sm"
+      (click)="react.emit('rocket')"
+      aria-label="Ракета"
+    >
+      <svg lucideRocket size="14"></svg>
+      <span>{{ reactions().rocket }}</span>
+    </button>
+    <button
+      type="button"
+      app-outline-button
+      size="sm"
+      (click)="react.emit('mindblown')"
+      aria-label="Взрыв мозга"
+    >
+      <svg lucideSparkles size="14"></svg>
+      <span>{{ reactions().mindblown }}</span>
+    </button>
+  </div>
+
+  <a routerLink="/blog" app-outline-button>
+    <svg lucideArrowLeft size="16"></svg>
+    <span>Ко всем статьям блога</span>
+  </a>
+</div>

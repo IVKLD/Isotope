@@ -1,13 +1,13 @@
 <button
   type="button"
-  [attr.aria-keyshortcuts]="isMac ? 'Meta+K' : 'Control+K'"
-  (click)="openTerminal()"
+  [attr.aria-keyshortcuts]="isMac() ? 'Meta+K' : 'Control+K'"
+  (click)="opened.emit()"
 >
   <svg lucideTerminal size="14"></svg>
   <span>CLI</span>
   @if (showShortcut()) {
     <span class="key-combo" aria-hidden="true">
-      <kbd>{{ isMac ? '⌘' : 'Ctrl' }}</kbd>
+      <kbd>{{ isMac() ? '⌘' : 'Ctrl' }}</kbd>
       <kbd>K</kbd>
     </span>
   }

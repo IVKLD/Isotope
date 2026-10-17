@@ -1,0 +1,7 @@
+@use 'styles/blog-post-content';
+@use 'styles/blog-post-callouts';
+@use 'styles/blog-post-rules';
+
+:host {
+  display: block;
+}
