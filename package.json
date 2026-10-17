@@ -7,6 +7,7 @@
     "start:api": "nest start --watch",
     "build": "ng build --configuration production",
     "build:api": "nest build",
+    "start:prod": "node dist/apps/api/main.js",
     "preview": "serve -s dist/apps/portfolio/browser -l 4200",
     "watch": "ng build --watch --configuration development",
     "db:generate": "drizzle-kit generate",
