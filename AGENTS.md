@@ -54,3 +54,7 @@
 - **ALWAYS** use `yarn` and `just` for package management, running scripts, builds, lints, and audits.
 - **NEVER** use `npm`, `npx`, `pnpm`, or `bun`.
 - Prefer `just` recipes from `Justfile` (`just check`, `just build`, `just lint`, `just audit`, `just preview`).
+
+## Git & Pushes
+
+- **NEVER** execute `git push` autonomously, proactively, or without an explicit, direct command from the user. Proactive `git push` is strictly forbidden.

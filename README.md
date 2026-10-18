@@ -1,7 +1,7 @@
-# portfolio
+# isotope
 
 Личный сайт-портфолио фронтенд-разработчика (IgnI).
-Монорепозиторий на базе **Nx**: Angular 22 Frontend + NestJS 11 Backend + Drizzle ORM + PostgreSQL.
+Монорепозиторий на базе **Nx**: Angular 22 Frontend + NestJS 12 Backend + Drizzle ORM + PostgreSQL.
 
 ## Стек технологий
 
@@ -15,14 +15,14 @@
 
 ### Backend & Database
 
-- **NestJS 11** (Modular Architecture, Dependency Injection, Validation Pipes)
+- **NestJS 12** (Modular Architecture, Dependency Injection, Validation Pipes)
 - **Drizzle ORM** (TypeScript-first, zero-overhead ORM)
 - **PostgreSQL 17** (docker-compose для локальной разработки)
 - **OpenAPI / Swagger** (`/api/docs` автогенерация документации)
 
 ### Shared Contracts & Tooling
 
-- **@portfolio/contracts** (`libs/shared/contracts/`): сквозная типизация DTO и моделей между клиентом и сервером
+- **@isotope/contracts** (`libs/shared/contracts/`): сквозная типизация DTO и моделей между клиентом и сервером
 - **Nx Monorepo**: управление задачами, графом зависимостей и кэшированием
 - **Just**: единый раннер команд ([Justfile](file:///mnt/projects-and-games/projects/portfolio/Justfile))
 
@@ -41,11 +41,11 @@ yarn install
 ```bash
 # Frontend
 just dev             # Запуск Angular dev-сервера (http://localhost:4200)
-just build           # Сборка Angular фронтенда в dist/apps/portfolio/browser
+just build           # Сборка Angular фронтенда в dist/apps/frontend/browser
 
 # Backend
-just dev-api         # Запуск NestJS dev-сервера (http://localhost:3000)
-just build-api       # Сборка NestJS бэкенда в dist/apps/api
+just dev-backend     # Запуск NestJS dev-сервера (http://localhost:3000)
+just build-backend   # Сборка NestJS бэкенда в dist/apps/backend
 just build-all       # Сборка и фронтенда, и бэкенда
 
 # База данных (Docker & Drizzle)
@@ -70,7 +70,6 @@ just audit           # Аудит производительности Lighthous
 ## Архитектура API
 
 - **Документация Swagger**: `http://localhost:3000/api/docs`
-- **Healthcheck**: `http://localhost:3000/health` (статус сервиса, аптайм, статус подключения БД)
 - **Обратная связь**: `POST /api/feedback` (валидация, сохранение сообщений в БД)
 - **Блог и телеметрия**: `GET /api/blog/posts/:slug/stats`, `POST /api/blog/posts/:slug/view`, `POST /api/blog/posts/:slug/react`
 - **Терминал**: `POST /api/terminal/command` (серверный интерпретатор команд `whoami`, `skills`, `uptime`, `version`, etc.)
@@ -80,5 +79,5 @@ just audit           # Аудит производительности Lighthous
 
 ## Деплой
 
-- **Frontend**: деплой статических ассетов на Vercel, Netlify или Cloudflare Pages (`dist/apps/portfolio/browser`).
-- **Backend**: запускается в Node.js контейнере (`node dist/apps/api/src/main.js`) с переменными окружения из `.env`.
+- **Frontend**: деплой статических ассетов на Vercel, Netlify или Cloudflare Pages (`dist/apps/frontend/browser`).
+- **Backend**: запускается в Node.js контейнере (`node dist/apps/backend/main.js`) с переменными окружения из `.env`.

@@ -3,41 +3,41 @@
   "version": 1,
   "newProjectRoot": "apps",
   "projects": {
-    "portfolio": {
+    "frontend": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
           "style": "scss"
         }
       },
-      "root": "apps/portfolio",
-      "sourceRoot": "apps/portfolio/src",
+      "root": "apps/frontend",
+      "sourceRoot": "apps/frontend/src",
       "prefix": "app",
       "architect": {
         "build": {
           "builder": "@angular/build:application",
           "options": {
-            "outputPath": "dist/apps/portfolio",
-            "index": "apps/portfolio/src/index.html",
-            "browser": "apps/portfolio/src/main.ts",
+            "outputPath": "dist/apps/frontend",
+            "index": "apps/frontend/src/index.html",
+            "browser": "apps/frontend/src/main.ts",
             "polyfills": [],
-            "tsConfig": "apps/portfolio/tsconfig.app.json",
+            "tsConfig": "apps/frontend/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
               {
                 "glob": "**/*",
-                "input": "apps/portfolio/public"
+                "input": "apps/frontend/public"
               }
             ],
-            "server": "apps/portfolio/src/main.server.ts",
+            "server": "apps/frontend/src/main.server.ts",
             "prerender": {
-              "routesFile": "apps/portfolio/prerender-routes.txt",
+              "routesFile": "apps/frontend/prerender-routes.txt",
               "discoverRoutes": true
             },
             "ssr": false,
-            "styles": ["apps/portfolio/src/styles.scss"],
+            "styles": ["apps/frontend/src/styles.scss"],
             "stylePreprocessorOptions": {
-              "includePaths": ["apps/portfolio/src/styles"]
+              "includePaths": ["apps/frontend/src/styles"]
             }
           },
           "configurations": {
@@ -70,14 +70,14 @@
         "serve": {
           "builder": "@angular/build:dev-server",
           "options": {
-            "proxyConfig": "apps/portfolio/proxy.conf.json"
+            "proxyConfig": "apps/frontend/proxy.conf.json"
           },
           "configurations": {
             "production": {
-              "buildTarget": "portfolio:build:production"
+              "buildTarget": "frontend:build:production"
             },
             "development": {
-              "buildTarget": "portfolio:build:development"
+              "buildTarget": "frontend:build:development"
             }
           },
           "defaultConfiguration": "development"

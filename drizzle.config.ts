@@ -4,8 +4,8 @@ import * as dotenv from 'dotenv';
 dotenv.config();
 
 export default defineConfig({
-  schema: './apps/api/src/database/schema.ts',
-  out: './apps/api/src/database/migrations',
+  schema: './apps/backend/src/database/schema.ts',
+  out: './apps/backend/src/database/migrations',
   dialect: 'postgresql',
   dbCredentials: {
     url:

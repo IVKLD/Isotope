@@ -14,11 +14,11 @@
     "target": "ES2022",
     "module": "ES2022",
     "paths": {
-      "@core/*": ["./apps/portfolio/src/app/core/*"],
-      "@shared/*": ["./apps/portfolio/src/app/shared/*"],
-      "@features/*": ["./apps/portfolio/src/app/features/*"],
-      "@portfolio/contracts": ["./libs/shared/contracts/src/index.d.ts"],
-      "@api/*": ["./apps/api/src/*"]
+      "@core/*": ["./apps/frontend/src/app/core/*"],
+      "@shared/*": ["./apps/frontend/src/app/shared/*"],
+      "@features/*": ["./apps/frontend/src/app/features/*"],
+      "@isotope/contracts": ["./libs/shared/contracts/src/index.d.ts"],
+      "@backend/*": ["./apps/backend/src/*"]
     }
   },
   "angularCompilerOptions": {

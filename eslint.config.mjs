@@ -5,11 +5,11 @@ import prettierConfig from 'eslint-config-prettier';
 
 export default defineConfig(
   {
-    ignores: ['dist/**', '.angular/**', 'node_modules/**', 'apps/api/src/database/migrations/**']
+    ignores: ['dist/**', '.angular/**', 'node_modules/**', 'apps/backend/src/database/migrations/**']
   },
   // Angular Frontend
   {
-    files: ['apps/portfolio/src/**/*.ts'],
+    files: ['apps/frontend/src/**/*.ts'],
     extends: [...tseslint.configs.recommended, ...angular.configs.tsRecommended, prettierConfig],
     processor: angular.processInlineTemplates,
     rules: {
@@ -42,7 +42,7 @@ export default defineConfig(
   },
   // Backend & Contracts (NestJS + Shared)
   {
-    files: ['apps/api/**/*.ts', 'libs/**/*.ts'],
+    files: ['apps/backend/**/*.ts', 'libs/**/*.ts'],
     extends: [...tseslint.configs.recommended, prettierConfig],
     rules: {
       '@typescript-eslint/explicit-member-accessibility': [
@@ -58,7 +58,7 @@ export default defineConfig(
   },
   // Angular Templates
   {
-    files: ['apps/portfolio/src/**/*.html'],
+    files: ['apps/frontend/src/**/*.html'],
     extends: [
       ...angular.configs.templateRecommended,
       ...angular.configs.templateAccessibility,

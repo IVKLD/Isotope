@@ -9,7 +9,7 @@ import * as chromeLauncher from 'chrome-launcher';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const rootDir = path.resolve(__dirname, '..');
-const distDir = path.join(rootDir, 'dist', 'apps', 'portfolio', 'browser');
+const distDir = path.join(rootDir, 'dist', 'apps', 'frontend', 'browser');
 
 const isDesktop = process.argv.includes('--desktop');
 
@@ -114,7 +114,7 @@ async function runAudit() {
     process.exit(1);
   }
 
-  const routesFile = path.join(rootDir, 'apps', 'portfolio', 'prerender-routes.txt');
+  const routesFile = path.join(rootDir, 'apps', 'frontend', 'prerender-routes.txt');
   let routes = ['/'];
   if (specificRoute) {
     routes = [specificRoute];

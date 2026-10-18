@@ -6,26 +6,26 @@ dev:
     yarn start
 
 # Start NestJS backend development server
-dev-api:
-    yarn start:api
+dev-backend:
+    yarn start:backend
 
 # Start both backend and frontend development servers concurrently
 dev-all:
     @echo "Starting Backend (:3000) and Frontend (:4200)..."
-    @trap 'kill 0' SIGINT SIGTERM EXIT; yarn start:api & yarn start
+    @trap 'kill 0' SIGINT SIGTERM EXIT; yarn start:backend & yarn start
 
 # Build production frontend bundle
 build:
     yarn build
 
 # Build production NestJS backend bundle
-build-api:
-    yarn build:api
+build-backend:
+    yarn build:backend
 
 # Build both frontend and backend
 build-all:
     yarn build
-    yarn build:api
+    yarn build:backend
 
 # Preview production build locally
 preview:
@@ -47,7 +47,7 @@ format:
 check:
     yarn lint
     yarn build
-    yarn build:api
+    yarn build:backend
 
 # Start local PostgreSQL database container
 db-up:
