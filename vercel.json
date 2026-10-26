@@ -1,8 +1,13 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "buildCommand": "yarn build",
+  "buildCommand": "yarn build && yarn build:backend",
   "outputDirectory": "dist/apps/frontend/browser",
   "cleanUrls": true,
+  "functions": {
+    "api/index.ts": {
+      "includeFiles": "dist/apps/backend/**"
+    }
+  },
   "rewrites": [
     {
       "source": "/api/:path*",
