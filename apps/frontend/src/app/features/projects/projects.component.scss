@@ -6,10 +6,6 @@
 
   > header {
     @include page-header;
-
-    nav {
-      min-height: 2.75rem;
-    }
   }
 }
 

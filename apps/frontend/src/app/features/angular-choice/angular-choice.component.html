@@ -11,12 +11,10 @@
     </p>
   </div>
 
-  @if (competitor(); as comp) {
-    <app-competitor-tabs
-      [selectedKey]="selectedKey()"
-      (competitorSelect)="selectedKey.set($event)"
-    />
-  }
+  <app-competitor-tabs
+    [selectedKey]="selectedKey()"
+    (competitorSelect)="selectedKey.set($event)"
+  />
 </header>
 
 @if (competitor(); as comp) {

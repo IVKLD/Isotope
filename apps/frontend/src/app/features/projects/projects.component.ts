@@ -1,13 +1,19 @@
 import { Component, computed, inject, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { LazyDialogService } from '@core/services/lazy-dialog.service';
-import { ProjectFilterCategory, ProjectRdo } from '@isotope/contracts';
+import { ProjectCategoryTabRdo, ProjectFilterCategory, ProjectRdo } from '@isotope/contracts';
 import { TabListDirective } from '@shared/ui/tabs/tab-list.directive';
 import { TabDirective } from '@shared/ui/tabs/tab.directive';
 import { AccentBadgeDirective } from '@shared/ui/badge/accent-badge.directive';
 import { LucideFolderGit2, LucideLoaderCircle } from '@lucide/angular';
 import { ProjectsService } from './projects.service';
 import { ProjectCardComponent } from './project-card/project-card.component';
+
+const INITIAL_CATEGORIES: readonly ProjectCategoryTabRdo[] = [
+  { id: 'all', label: 'Все', count: 0 },
+  { id: 'prod', label: 'Продуктовые', count: 0 },
+  { id: 'geek', label: 'Гиковские', count: 0 }
+];
 
 @Component({
   selector: 'app-projects',
@@ -30,7 +36,7 @@ export class ProjectsComponent {
     initialValue: null
   });
   protected readonly categories = toSignal(this.projectsService.getCategories(), {
-    initialValue: null
+    initialValue: INITIAL_CATEGORIES
   });
   protected readonly activeCategory = signal<ProjectFilterCategory>('all');
 

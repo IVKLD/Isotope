@@ -6,9 +6,5 @@
 
   > header {
     @include page-header;
-
-    app-competitor-tabs {
-      min-height: 2.75rem;
-    }
   }
 }
