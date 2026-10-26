@@ -1,23 +1,24 @@
 'use strict';
 require('reflect-metadata');
 const express = require('express');
-const { NestFactory } = require('@nestjs/core');
-const { ExpressAdapter } = require('@nestjs/platform-express');
-const { ValidationPipe } = require('@nestjs/common');
 const path = require('path');
-
-const appModulePath = path.resolve(process.cwd(), 'dist/apps/backend/app/app.module');
-const filterPath = path.resolve(process.cwd(), 'dist/apps/backend/core/filters/http-exception.filter');
-const interceptorPath = path.resolve(process.cwd(), 'dist/apps/backend/core/interceptors/logging.interceptor');
-
-const { AppModule } = require(appModulePath);
-const { GlobalExceptionFilter } = require(filterPath);
-const { LoggingInterceptor } = require(interceptorPath);
 
 const server = express();
 let serverPromise = null;
 
 async function bootstrap() {
+  const { NestFactory } = await import('@nestjs/core');
+  const { ExpressAdapter } = await import('@nestjs/platform-express');
+  const { ValidationPipe } = await import('@nestjs/common');
+
+  const appModulePath = path.resolve(process.cwd(), 'dist/apps/backend/app/app.module.js');
+  const filterPath = path.resolve(process.cwd(), 'dist/apps/backend/core/filters/http-exception.filter.js');
+  const interceptorPath = path.resolve(process.cwd(), 'dist/apps/backend/core/interceptors/logging.interceptor.js');
+
+  const { AppModule } = await import(appModulePath);
+  const { GlobalExceptionFilter } = await import(filterPath);
+  const { LoggingInterceptor } = await import(interceptorPath);
+
   const app = await NestFactory.create(AppModule, new ExpressAdapter(server), {
     cors: true
   });
