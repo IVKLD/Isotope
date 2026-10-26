@@ -53,8 +53,12 @@ module.exports = async function handler(req, res) {
       const pathParam = Array.isArray(req.query.path)
         ? req.query.path.join('/')
         : req.query.path;
-      const searchIndex = req.url.indexOf('?');
-      const search = searchIndex !== -1 ? req.url.slice(searchIndex) : '';
+      delete req.query.path;
+
+      const urlObj = new URL(req.url, 'http://localhost');
+      urlObj.searchParams.delete('path');
+      const search = urlObj.search;
+
       req.url = `/api/${pathParam}${search}`;
     }
 
