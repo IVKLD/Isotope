@@ -2,8 +2,13 @@
 
 :host {
   @include page-host;
+  min-height: calc(100vh - 12rem);
 
   > header {
     @include page-header;
+
+    app-competitor-tabs {
+      min-height: 2.75rem;
+    }
   }
 }

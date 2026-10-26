@@ -2,9 +2,14 @@
 
 :host {
   @include page-host;
+  min-height: calc(100vh - 12rem);
 
   > header {
     @include page-header;
+
+    nav {
+      min-height: 2.75rem;
+    }
   }
 }
 

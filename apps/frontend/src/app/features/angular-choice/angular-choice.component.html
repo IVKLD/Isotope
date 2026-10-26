@@ -11,13 +11,20 @@
     </p>
   </div>
 
-  <app-competitor-tabs
-    [selectedKey]="selectedKey()"
-    (competitorSelect)="selectedKey.set($event)"
-  />
+  @if (competitor(); as comp) {
+    <app-competitor-tabs
+      [selectedKey]="selectedKey()"
+      (competitorSelect)="selectedKey.set($event)"
+    />
+  }
 </header>
 
 @if (competitor(); as comp) {
   <app-comparison-accordion [competitor]="comp" />
   <app-architecture-verdict [competitor]="comp" />
+} @else {
+  <div class="state-loader" aria-live="polite" aria-busy="true">
+    <svg lucideLoaderCircle size="32"></svg>
+    <p>Загрузка архитектурного анализа...</p>
+  </div>
 }

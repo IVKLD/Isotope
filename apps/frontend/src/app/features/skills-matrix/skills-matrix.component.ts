@@ -2,7 +2,7 @@ import { Component, computed, inject, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { CodeBlockComponent } from '@shared/ui/code-block/code-block.component';
 import { AccentBadgeDirective } from '@shared/ui/badge/accent-badge.directive';
-import { LucideLayers } from '@lucide/angular';
+import { LucideLayers, LucideLoaderCircle } from '@lucide/angular';
 import { StackModuleRdo } from '@isotope/contracts';
 import { SkillsService } from './skills.service';
 import { IdeHeaderComponent } from './ide-header/ide-header.component';
@@ -17,7 +17,8 @@ import { IdeStatusbarComponent } from './ide-statusbar/ide-statusbar.component';
     ModuleInspectorComponent,
     IdeStatusbarComponent,
     AccentBadgeDirective,
-    LucideLayers
+    LucideLayers,
+    LucideLoaderCircle
   ],
   templateUrl: './skills-matrix.component.html',
   styleUrl: './skills-matrix.component.scss'
@@ -25,11 +26,12 @@ import { IdeStatusbarComponent } from './ide-statusbar/ide-statusbar.component';
 export class SkillsMatrixComponent {
   private readonly skillsService = inject(SkillsService);
 
-  protected readonly modules = toSignal(this.skillsService.getModules(), { initialValue: [] });
+  protected readonly modules = toSignal(this.skillsService.getModules(), { initialValue: null });
   protected readonly selectedId = signal<string>('core');
 
   protected readonly selectedModule = computed(() => {
     const list = this.modules();
+    if (!list) return null;
     return list.find(m => m.id === this.selectedId()) ?? list[0] ?? null;
   });
 

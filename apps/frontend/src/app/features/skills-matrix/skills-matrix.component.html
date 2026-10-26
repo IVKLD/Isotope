@@ -15,7 +15,7 @@
     @if (selectedModule(); as selected) {
       <div class="ide-window">
         <app-ide-header
-          [modules]="modules()"
+          [modules]="modules() ?? []"
           [selected]="selected"
           (moduleSelect)="selectModule($event)"
         />
@@ -29,6 +29,11 @@
         </div>
 
         <app-ide-statusbar />
+      </div>
+    } @else {
+      <div class="ide-loader" aria-live="polite" aria-busy="true">
+        <svg lucideLoaderCircle size="32"></svg>
+        <p>Инициализация модулей архитектуры...</p>
       </div>
     }
   </div>

@@ -5,7 +5,7 @@ import { ProjectFilterCategory, ProjectRdo } from '@isotope/contracts';
 import { TabListDirective } from '@shared/ui/tabs/tab-list.directive';
 import { TabDirective } from '@shared/ui/tabs/tab.directive';
 import { AccentBadgeDirective } from '@shared/ui/badge/accent-badge.directive';
-import { LucideFolderGit2 } from '@lucide/angular';
+import { LucideFolderGit2, LucideLoaderCircle } from '@lucide/angular';
 import { ProjectsService } from './projects.service';
 import { ProjectCardComponent } from './project-card/project-card.component';
 
@@ -16,7 +16,8 @@ import { ProjectCardComponent } from './project-card/project-card.component';
     TabListDirective,
     TabDirective,
     AccentBadgeDirective,
-    LucideFolderGit2
+    LucideFolderGit2,
+    LucideLoaderCircle
   ],
   templateUrl: './projects.component.html',
   styleUrl: './projects.component.scss'
@@ -26,16 +27,17 @@ export class ProjectsComponent {
   private readonly projectsService = inject(ProjectsService);
 
   protected readonly projects = toSignal(this.projectsService.getProjects(), {
-    initialValue: []
+    initialValue: null
   });
   protected readonly categories = toSignal(this.projectsService.getCategories(), {
-    initialValue: []
+    initialValue: null
   });
   protected readonly activeCategory = signal<ProjectFilterCategory>('all');
 
   protected readonly filteredProjects = computed(() => {
-    const cat = this.activeCategory();
     const list = this.projects();
+    if (!list) return null;
+    const cat = this.activeCategory();
     if (cat === 'all') return list;
     return list.filter(p => p.category === cat);
   });
