@@ -4,7 +4,8 @@
     "module": "commonjs",
     "outDir": "../../dist/apps/backend",
     "rootDir": "src",
-    "emitDecoratorMetadata": true
+    "emitDecoratorMetadata": true,
+    "declaration": true
   },
   "include": ["src/**/*"]
 }
