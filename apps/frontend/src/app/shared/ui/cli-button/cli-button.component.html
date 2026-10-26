@@ -1,7 +1,6 @@
-<button
-  type="button"
+<a
+  routerLink="/terminal"
   [attr.aria-keyshortcuts]="isMac() ? 'Meta+K' : 'Control+K'"
-  (click)="opened.emit()"
 >
   <svg lucideTerminal size="14"></svg>
   <span>CLI</span>
@@ -11,4 +10,4 @@
       <kbd>K</kbd>
     </span>
   }
-</button>
+</a>

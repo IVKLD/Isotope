@@ -1,11 +1,10 @@
 import { Component, inject } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { LucideSend } from '@lucide/angular';
 import { GithubIconComponent } from '@shared/ui/icons/github-icon.component';
 import { LogoIconComponent } from '@shared/ui/icons/logo-icon.component';
 import { IconButtonDirective } from '@shared/ui/button/icon-button.directive';
 import { CliButtonComponent } from '@shared/ui/cli-button/cli-button.component';
-import { LazyDialogService } from '@core/services/lazy-dialog.service';
 
 @Component({
   selector: 'app-header',
@@ -25,20 +24,23 @@ import { LazyDialogService } from '@core/services/lazy-dialog.service';
   }
 })
 export class HeaderComponent {
-  private readonly dialog = inject(LazyDialogService);
-
-  protected openTerminal(): void {
-    this.dialog
-      .openLazy(
-        () => import('@features/terminal/terminal-modal.component').then(m => m.TerminalModalComponent)
-      )
-      .subscribe();
-  }
+  private readonly router = inject(Router);
 
   protected onKeydown(event: KeyboardEvent): void {
-    if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === 'k') {
+    const isModifier = event.metaKey || event.ctrlKey;
+    const isTerminalKey =
+      event.key.toLowerCase() === 'k' ||
+      event.key === '`' ||
+      event.key === 'ё' ||
+      event.key === '~';
+
+    if (isModifier && isTerminalKey) {
       event.preventDefault();
-      this.openTerminal();
+      if (this.router.url === '/terminal') {
+        this.router.navigate(['/']);
+      } else {
+        this.router.navigate(['/terminal']);
+      }
     }
   }
 }

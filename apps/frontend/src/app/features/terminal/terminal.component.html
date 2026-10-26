@@ -1,0 +1,54 @@
+<main rxVirtualScrollElement (click)="field().focusBoundControl()">
+  <rx-virtual-scroll-viewport
+    #virtualViewport
+    [itemSize]="20"
+    class="terminal-scroll"
+  >
+    <div
+      *rxVirtualFor="
+        let line of terminal.lines();
+        trackBy: 'id';
+        strategy: 'native'
+      "
+      class="term-line"
+    >
+      @if (line.kind === 'prompt-top') {
+      <div class="prompt-top">
+        <span class="frame">┌──(</span><span class="user">igni</span><span class="sym">㉿</span><span
+          class="host">desktop</span><span class="frame">)-[</span><span class="path">{{ formatEntryPath(line.cwd)
+          }}</span><span class="frame">]</span>
+      </div>
+      } @else if (line.kind === 'prompt-cmd') {
+      <div class="prompt-cmd">
+        <span class="frame">└─$</span>
+        <code>{{ line.command }}</code>
+      </div>
+      } @else {
+      <div class="term-output">
+        @for (span of line.spans; track $index) {
+        <span [style.color]="span.color" [class.is-bold]="span.bold">{{ span.text }}</span>
+        }
+      </div>
+      }
+    </div>
+  </rx-virtual-scroll-viewport>
+
+  <form (submit)="onSubmit($event)" class="active-prompt">
+    <div class="term-line prompt-top">
+      <span class="frame">┌──(</span><span class="user">igni</span><span class="sym">㉿</span><span
+        class="host">desktop</span><span class="frame">)-[</span><span class="path">{{ promptPath() }}</span><span
+        class="frame">]</span>
+    </div>
+    <div class="term-line prompt-input-row">
+      <span class="frame">└─$</span>
+      <input
+        type="text"
+        [formField]="field"
+        autocomplete="off"
+        autocapitalize="off"
+        spellcheck="false"
+        (keydown)="onInputKeydown($event)"
+      />
+    </div>
+  </form>
+</main>

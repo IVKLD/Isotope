@@ -1,0 +1,44 @@
+:host {
+  --term-bg: rgba(0, 0, 0, 0.7);
+  --term-border: rgba(244, 63, 94, 0.45);
+  --term-fg: #f1f5f9;
+  --term-dim: #71717a;
+  --term-prompt-frame: #f43f5e;
+  --term-prompt-user: #38bdf8;
+  --term-prompt-sym: #facc15;
+  --term-prompt-host: #38bdf8;
+  --term-prompt-path: #38bdf8;
+  --term-accent: #f43f5e;
+  --term-selection: rgba(244, 63, 94, 0.3);
+  --term-glow: none;
+
+  &.theme-matrix {
+    --term-bg: rgba(0, 0, 0, 0.75);
+    --term-border: rgba(0, 255, 102, 0.35);
+    --term-fg: #00ff66;
+    --term-dim: #008833;
+    --term-prompt-frame: #00ff66;
+    --term-prompt-user: #00dd55;
+    --term-prompt-sym: #00ff66;
+    --term-prompt-host: #00dd55;
+    --term-prompt-path: #33ff88;
+    --term-accent: #00ff66;
+    --term-selection: rgba(0, 255, 102, 0.3);
+    --term-glow: 0 0 7px rgba(0, 255, 102, 0.4);
+  }
+
+  &.theme-amber {
+    --term-bg: rgba(0, 0, 0, 0.75);
+    --term-border: rgba(255, 176, 0, 0.35);
+    --term-fg: #ffb000;
+    --term-dim: #996a00;
+    --term-prompt-frame: #ffb000;
+    --term-prompt-user: #ffa000;
+    --term-prompt-sym: #ffb000;
+    --term-prompt-host: #ffa000;
+    --term-prompt-path: #ffc233;
+    --term-accent: #ffb000;
+    --term-selection: rgba(255, 176, 0, 0.3);
+    --term-glow: 0 0 7px rgba(255, 176, 0, 0.35);
+  }
+}

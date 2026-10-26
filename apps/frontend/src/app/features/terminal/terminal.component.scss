@@ -1,0 +1,17 @@
+@use 'styles/terminal-themes';
+@use 'styles/terminal-viewport';
+
+:host {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  flex: 1 1 auto;
+  min-height: 0;
+  color: var(--term-fg);
+  font-family: var(--font-mono, monospace);
+  font-size: 13px;
+  line-height: 20px;
+  border: 1px solid var(--term-border);
+  overflow: hidden;
+}

@@ -1,46 +1,80 @@
-.prompt-line,
-.input-line {
+.prompt-top {
   display: flex;
   align-items: center;
-  gap: 6px;
-  line-height: 1.3;
+  font-weight: 600;
+  height: 20px;
+  line-height: 20px;
 
-  .prompt {
-    display: inline-flex;
-    align-items: center;
-    gap: 1px;
-    color: var(--text-dim);
-    font-weight: 500;
+  .frame {
+    color: var(--term-prompt-frame);
+  }
 
-    b {
-      color: var(--color-green);
-      font-weight: 500;
-    }
+  .user {
+    color: var(--term-prompt-user);
+  }
 
-    em {
-      color: var(--code-ident);
-      font-style: normal;
-    }
+  .sym {
+    color: var(--term-prompt-sym);
+  }
+
+  .host {
+    color: var(--term-prompt-host);
+  }
+
+  .path {
+    color: var(--term-prompt-path);
   }
 }
 
-form {
-  flex-shrink: 0;
-  padding: 0.5rem 1rem;
-  background: var(--bg-terminal);
-  border-top: 1px solid var(--border-subtle);
+.prompt-cmd {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  height: 20px;
+  line-height: 20px;
 
-  .input-line {
-    width: 100%;
+  .frame {
+    color: var(--term-prompt-frame);
+    font-weight: 600;
+  }
+
+  code {
+    color: var(--term-fg);
+    font: inherit;
+    font-size: 13px;
+    text-shadow: var(--term-glow);
+  }
+}
+
+.active-prompt {
+  display: flex;
+  flex-direction: column;
+
+  .prompt-input-row {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    height: 20px;
+    line-height: 20px;
+
+    .frame {
+      color: var(--term-prompt-frame);
+      font-weight: 600;
+      white-space: pre;
+    }
 
     input {
       flex: 1;
+      height: 20px;
+      line-height: 20px;
       background: transparent;
       border: none;
       outline: none;
-      color: var(--text-white);
+      color: var(--term-fg);
       font: inherit;
-      margin-left: 3px;
+      font-size: 13px;
+      caret-color: var(--term-fg);
+      text-shadow: var(--term-glow);
     }
   }
 }

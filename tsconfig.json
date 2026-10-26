@@ -17,6 +17,8 @@
       "@core/*": ["./apps/frontend/src/app/core/*"],
       "@shared/*": ["./apps/frontend/src/app/shared/*"],
       "@features/*": ["./apps/frontend/src/app/features/*"],
+      "@layouts/*": ["./apps/frontend/src/app/layouts/*"],
+      "@pages/*": ["./apps/frontend/src/app/pages/*"],
       "@isotope/contracts": ["./libs/shared/contracts/src/index.d.ts"],
       "@backend/*": ["./apps/backend/src/*"]
     }
