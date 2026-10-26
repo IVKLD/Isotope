@@ -1,5 +1,13 @@
 @use 'mixins' as *;
 
+:host {
+  @include page-host;
+
+  > header {
+    @include page-header;
+  }
+}
+
 .projects-list {
   display: flex;
   flex-direction: column;

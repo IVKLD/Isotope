@@ -4,12 +4,20 @@ import { LazyDialogService } from '@core/services/lazy-dialog.service';
 import { ProjectFilterCategory, ProjectRdo } from '@isotope/contracts';
 import { TabListDirective } from '@shared/ui/tabs/tab-list.directive';
 import { TabDirective } from '@shared/ui/tabs/tab.directive';
+import { AccentBadgeDirective } from '@shared/ui/badge/accent-badge.directive';
+import { LucideFolderGit2 } from '@lucide/angular';
 import { ProjectsService } from './projects.service';
 import { ProjectCardComponent } from './project-card/project-card.component';
 
 @Component({
   selector: 'app-projects',
-  imports: [ProjectCardComponent, TabListDirective, TabDirective],
+  imports: [
+    ProjectCardComponent,
+    TabListDirective,
+    TabDirective,
+    AccentBadgeDirective,
+    LucideFolderGit2
+  ],
   templateUrl: './projects.component.html',
   styleUrl: './projects.component.scss'
 })
