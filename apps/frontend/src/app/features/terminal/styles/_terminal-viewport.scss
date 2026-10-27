@@ -27,7 +27,7 @@ main {
     display: flex;
     align-items: center;
     white-space: pre;
-    font-family: var(--font-mono, monospace);
+    font-family: var(--font-mono);
     font-size: 13px;
     font-variant-ligatures: none;
     -webkit-font-smoothing: antialiased;
@@ -37,7 +37,7 @@ main {
       align-items: center;
       height: 20px;
       line-height: 20px;
-      color: var(--term-fg);
+      color: var(--text-terminal);
       white-space: pre;
 
       span.is-bold {

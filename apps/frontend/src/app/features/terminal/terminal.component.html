@@ -15,7 +15,7 @@
       @if (line.kind === 'prompt-top') {
       <div class="prompt-top">
         <span class="frame">┌──(</span><span class="user">igni</span><span class="sym">㉿</span><span
-          class="host">desktop</span><span class="frame">)-[</span><span class="path">{{ formatEntryPath(line.cwd)
+          class="host">desktop</span><span class="frame">)-[</span><span class="path">{{ terminal.formatPath(line.cwd)
           }}</span><span class="frame">]</span>
       </div>
       } @else if (line.kind === 'prompt-cmd') {
@@ -33,10 +33,10 @@
     </div>
   </rx-virtual-scroll-viewport>
 
-  <form (submit)="onSubmit($event)" class="active-prompt">
+  <form [formRoot]="field" class="active-prompt">
     <div class="term-line prompt-top">
       <span class="frame">┌──(</span><span class="user">igni</span><span class="sym">㉿</span><span
-        class="host">desktop</span><span class="frame">)-[</span><span class="path">{{ promptPath() }}</span><span
+        class="host">desktop</span><span class="frame">)-[</span><span class="path">{{ terminal.formatPath(terminal.cwd()) }}</span><span
         class="frame">]</span>
     </div>
     <div class="term-line prompt-input-row">

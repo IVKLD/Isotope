@@ -1,4 +1,4 @@
-import { TerminalLine, TerminalSpan } from './terminal.model';
+import { TerminalLine } from './terminal.model';
 
 export const NIXOS_LOGO: readonly string[] = [
   "          ::::.    ':::::     ::::'",
@@ -22,34 +22,45 @@ export const NIXOS_LOGO: readonly string[] = [
   "         .::::      ::::      '::::."
 ];
 
-export function buildScreenfetchLines(uptimeStr = '1d 11h 37m'): readonly TerminalLine[] {
-  const rawInfo: readonly (readonly TerminalSpan[])[] = [
-    [
-      { text: 'igni', color: '#7ebae4', bold: true },
-      { text: '@', color: 'var(--text-white)' },
-      { text: 'desktop', color: '#7ebae4', bold: true }
-    ],
-    [{ text: 'OS: ', color: '#7ebae4', bold: true }, { text: 'NixOS 26.05.20261025.1f607aa (Yarara)' }],
-    [{ text: 'Kernel: ', color: '#7ebae4', bold: true }, { text: 'x86_64 Linux 7.2.11' }],
-    [{ text: 'Uptime: ', color: '#7ebae4', bold: true }, { text: uptimeStr }],
-    [{ text: 'Packages: ', color: '#7ebae4', bold: true }, { text: '4188' }],
-    [{ text: 'Shell: ', color: '#7ebae4', bold: true }, { text: 'fish 4.7.1' }],
-    [{ text: 'Disk: ', color: '#7ebae4', bold: true }, { text: '2.2T / 3.4T (68%)' }],
-    [{ text: 'CPU: ', color: '#7ebae4', bold: true }, { text: 'AMD Ryzen 9 9950X 16-Core @ 32x 5.75645GHz' }],
-    [
-      { text: 'GPU: ', color: '#7ebae4', bold: true },
-      { text: 'AMD/ATI Navi 48 [Radeon RX 9070/9070 XT/9070 GRE], AMD/ATI Granite Ridge [Radeon Graphics]' }
-    ],
-    [{ text: 'RAM: ', color: '#7ebae4', bold: true }, { text: '18722MiB / 61884MiB' }]
+export function buildScreenfetchLines(uptimeStr: string): readonly TerminalLine[] {
+  const rawInfo: readonly [string, string][] = [
+    ['User:', 'igni@desktop'],
+    ['OS:', 'NixOS 26.05.20261025.1f607aa (Yarara)'],
+    ['Kernel:', 'x86_64 Linux 7.2.11'],
+    ['Uptime:', uptimeStr],
+    ['Packages:', '4188'],
+    ['Shell:', 'fish 4.7.1'],
+    ['Disk:', '2.2T / 3.4T (68%)'],
+    ['CPU:', 'AMD Ryzen 9 9950X 16-Core @ 32x 5.75645GHz'],
+    ['GPU:', 'AMD/ATI Navi 48 [Radeon RX 9070/9070 XT/9070 GRE]'],
+    ['RAM:', '18722MiB / 61884MiB']
   ];
 
   return NIXOS_LOGO.map((logo, i) => {
-    const infoSpans = rawInfo[i];
-    if (infoSpans) {
-      return [{ text: logo.padEnd(46, ' '), color: '#7ebae4', bold: true }, ...infoSpans];
+    const info = rawInfo[i];
+    if (info) {
+      return [
+        { text: logo.padEnd(46, ' '), color: '#7ebae4', bold: true },
+        { text: `${info[0]} `, color: '#7ebae4', bold: true },
+        { text: info[1] }
+      ];
     }
     return [{ text: logo, color: '#7ebae4', bold: true }];
   });
+}
+
+export function formatUptime(sessionStart: number): string {
+  const totalMins = Math.floor((Date.now() - sessionStart) / 60000);
+  const hrs = Math.floor(totalMins / 60);
+  const mins = totalMins % 60;
+  return ` ${new Date().toTimeString().slice(0, 8)} up ${hrs} hours, ${mins} mins, 1 user, load average: 0.05, 0.03, 0.01`;
+}
+
+export function formatUptimeDuration(sessionStart: number): string {
+  const totalMins = Math.floor((Date.now() - sessionStart) / 60000);
+  const hrs = Math.floor(totalMins / 60);
+  const mins = totalMins % 60;
+  return `${hrs}h ${mins}m`;
 }
 
 export const NIXOS_OS_RELEASE = [
@@ -75,6 +86,15 @@ export const BIO_TEXT = [
   'Telegram: @IVKLCD | GitHub: https://github.com/IVKLD'
 ].join('\n');
 
+export const SKILLS_JSON = JSON.stringify(
+  {
+    engineer: 'IgnI',
+    stack: ['Angular 22', 'Signals', 'Zoneless', 'NestJS', 'Rust', 'NixOS']
+  },
+  null,
+  2
+);
+
 export const HELP_LINES: readonly TerminalLine[] = [
   [{ text: 'Isotope Terminal (NixOS Interactive Shell TTY)', bold: true, color: '#7ebae4' }],
   '',
@@ -84,8 +104,6 @@ export const HELP_LINES: readonly TerminalLine[] = [
   '  ls [-la] | ll     Список файлов с подсветкой и правами',
   '  cat [file]        Просмотр файла (markdown, json, os-release)',
   '  tree [path]       Дерево файлов и папок',
-  '  projects          Список проектов со стеком и описанием',
-  '  blog              Список статей и публикаций',
   '',
   [{ text: 'СИСТЕМА И ТЕЛЕМЕТРИЯ:', bold: true, color: 'var(--color-green)' }],
   '  screenfetch       Инфо о системе с логотипом NixOS',
@@ -99,7 +117,6 @@ export const HELP_LINES: readonly TerminalLine[] = [
   '',
   [{ text: 'УТИЛИТЫ И GUI:', bold: true, color: 'var(--color-green)' }],
   '  open [name]       Открыть проект или статью в GUI',
-  '  theme [name]      Сменить тему: dark, matrix, amber',
   '  history           История введенных команд',
   '  clear             Очистить терминал (Ctrl+L)',
   '  help | man [cmd]  Справка по командам',
@@ -107,7 +124,6 @@ export const HELP_LINES: readonly TerminalLine[] = [
 ];
 
 export const BIN_COMMANDS: readonly string[] = [
-  'blog',
   'cat',
   'cd',
   'clear',
@@ -122,13 +138,10 @@ export const BIN_COMMANDS: readonly string[] = [
   'man',
   'neofetch',
   'open',
-  'projects',
   'pwd',
   'screenfetch',
-  'theme',
   'tree',
   'uname',
   'uptime',
   'whoami'
 ];
-

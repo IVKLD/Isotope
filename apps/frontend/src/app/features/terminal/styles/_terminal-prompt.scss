@@ -6,23 +6,17 @@
   line-height: 20px;
 
   .frame {
-    color: var(--term-prompt-frame);
+    color: var(--accent-light);
   }
 
-  .user {
-    color: var(--term-prompt-user);
+  .user,
+  .host,
+  .path {
+    color: var(--code-ident);
   }
 
   .sym {
-    color: var(--term-prompt-sym);
-  }
-
-  .host {
-    color: var(--term-prompt-host);
-  }
-
-  .path {
-    color: var(--term-prompt-path);
+    color: #facc15;
   }
 }
 
@@ -34,15 +28,14 @@
   line-height: 20px;
 
   .frame {
-    color: var(--term-prompt-frame);
+    color: var(--accent-light);
     font-weight: 600;
   }
 
   code {
-    color: var(--term-fg);
+    color: var(--text-terminal);
     font: inherit;
     font-size: 13px;
-    text-shadow: var(--term-glow);
   }
 }
 
@@ -58,7 +51,7 @@
     line-height: 20px;
 
     .frame {
-      color: var(--term-prompt-frame);
+      color: var(--accent-light);
       font-weight: 600;
       white-space: pre;
     }
@@ -70,11 +63,10 @@
       background: transparent;
       border: none;
       outline: none;
-      color: var(--term-fg);
+      color: var(--text-terminal);
       font: inherit;
       font-size: 13px;
-      caret-color: var(--term-fg);
-      text-shadow: var(--term-glow);
+      caret-color: var(--text-terminal);
     }
   }
 }

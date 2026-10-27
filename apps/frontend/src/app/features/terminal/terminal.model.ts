@@ -8,8 +8,6 @@ export type TerminalSpan = {
 
 export type TerminalLine = string | readonly TerminalSpan[];
 
-export type TerminalTheme = 'dark' | 'matrix' | 'amber';
-
 export type TerminalVirtualLine =
   | {
       readonly id: number;
@@ -30,8 +28,6 @@ export type TerminalVirtualLine =
 export type TerminalCommandContext = {
   readonly cwd: string;
   setCwd(dir: string): void;
-  readonly theme: TerminalTheme;
-  setTheme(theme: TerminalTheme): void;
   readonly sessionStart: number;
   readonly commandHistory: readonly string[];
   readonly projects: readonly ProjectRdo[] | null;

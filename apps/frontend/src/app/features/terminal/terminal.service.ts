@@ -5,13 +5,10 @@ import { BlogService } from '@features/blog/blog.service';
 import { ProjectsService } from '@features/projects/projects.service';
 import {
   TerminalCommandContext,
-  TerminalTheme,
   TerminalVirtualLine
 } from './terminal.model';
-import {
-  dispatchTerminalCommand,
-  getTerminalCompletions
-} from './terminal-commands';
+import { dispatchTerminalCommand } from './terminal-commands';
+import { getTerminalCompletions } from './terminal-completion';
 
 @Injectable({
   providedIn: 'root'
@@ -30,36 +27,18 @@ export class TerminalService {
   });
 
   public readonly cwd = signal('/home/igni');
-  public readonly theme = signal<TerminalTheme>('dark');
   public readonly commandHistory = signal<readonly string[]>([]);
   public readonly lines = signal<readonly TerminalVirtualLine[]>([]);
   private lineIdSeq = 1;
-
-  constructor() {
-    if (typeof localStorage !== 'undefined') {
-      const saved = localStorage.getItem('isotope-terminal-theme');
-      if (saved === 'dark' || saved === 'matrix' || saved === 'amber') {
-        this.theme.set(saved);
-      }
-    }
-  }
 
   public exit(): void {
     this.router.navigate(['/']);
   }
 
-  public promptPath(): string {
-    const cur = this.cwd();
-    if (cur === '/home/igni') return '~';
-    if (cur.startsWith('/home/igni/')) return `~/${cur.slice(11)}`;
-    return cur;
-  }
-
-  public setTheme(newTheme: TerminalTheme): void {
-    this.theme.set(newTheme);
-    if (typeof localStorage !== 'undefined') {
-      localStorage.setItem('isotope-terminal-theme', newTheme);
-    }
+  public formatPath(path: string): string {
+    if (path === '/home/igni') return '~';
+    if (path.startsWith('/home/igni/')) return `~/${path.slice(11)}`;
+    return path;
   }
 
   public clear(): void {
@@ -108,10 +87,7 @@ export class TerminalService {
       return;
     }
 
-    const effectiveCmd = lowCmd === ',' && args.length > 0 ? args[0].toLowerCase() : lowCmd;
-    const effectiveArgs = lowCmd === ',' && args.length > 0 ? args.slice(1) : args;
-
-    const outputLines = dispatchTerminalCommand(effectiveCmd, effectiveArgs, this.buildContext());
+    const outputLines = dispatchTerminalCommand(lowCmd, args, this.buildContext());
     const newItems: TerminalVirtualLine[] = [
       { id: this.lineIdSeq++, kind: 'prompt-top', cwd: this.cwd() },
       { id: this.lineIdSeq++, kind: 'prompt-cmd', command: raw },
@@ -133,8 +109,6 @@ export class TerminalService {
     return {
       cwd: this.cwd(),
       setCwd: dir => this.cwd.set(dir),
-      theme: this.theme(),
-      setTheme: theme => this.setTheme(theme),
       sessionStart: this.sessionStart,
       commandHistory: this.commandHistory(),
       projects: this.projects(),

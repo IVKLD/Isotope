@@ -5,7 +5,7 @@ import {
   viewChild,
   afterNextRender
 } from '@angular/core';
-import { form, FormField } from '@angular/forms/signals';
+import { form, FormField, FormRoot } from '@angular/forms/signals';
 import {
   RxVirtualScrollViewportComponent,
   RxVirtualFor,
@@ -18,13 +18,11 @@ import { TerminalService } from './terminal.service';
 @Component({
   selector: 'app-terminal',
   host: {
-    '[class.theme-dark]': "terminal.theme() === 'dark'",
-    '[class.theme-matrix]': "terminal.theme() === 'matrix'",
-    '[class.theme-amber]': "terminal.theme() === 'amber'",
-    '(window:keydown)': 'onGlobalKeydown($event)'
+    '(window:keydown.escape)': 'terminal.exit()'
   },
   imports: [
     FormField,
+    FormRoot,
     RxVirtualScrollViewportComponent,
     RxVirtualFor,
     FixedSizeVirtualScrollStrategy,
@@ -39,7 +37,16 @@ export class TerminalComponent {
   protected readonly terminal = inject(TerminalService);
   private readonly sound = inject(SoundService);
   protected readonly currentInput = signal('');
-  protected readonly field = form(this.currentInput);
+  protected readonly field = form(this.currentInput, {
+    submission: {
+      action: async () => {
+        const cmd = this.currentInput();
+        this.terminal.execute(cmd);
+        this.resetInput();
+        this.scrollToBottom();
+      }
+    }
+  });
 
   private historyCursor = -1;
   private inputStash = '';
@@ -51,33 +58,9 @@ export class TerminalComponent {
     });
   }
 
-  protected promptPath(): string {
-    return this.terminal.promptPath();
-  }
-
-  protected formatEntryPath(cwd: string): string {
-    if (cwd === '/home/igni') return '~';
-    if (cwd.startsWith('/home/igni/')) return `~/${cwd.slice(11)}`;
-    return cwd;
-  }
-
-  protected onSubmit(event?: Event): void {
-    event?.preventDefault();
-    const cmd = this.currentInput();
-    this.terminal.execute(cmd);
-    this.resetInput();
-    this.scrollToBottom();
-  }
-
   protected onInputKeydown(event: KeyboardEvent): void {
     if (!event.repeat && event.key !== 'Shift' && event.key !== 'Control' && event.key !== 'Alt' && event.key !== 'Meta') {
       this.sound.playKeyClick();
-    }
-
-    if (event.key === 'Enter') {
-      event.preventDefault();
-      this.onSubmit(event);
-      return;
     }
 
     if (event.key === 'Tab') {
@@ -124,13 +107,6 @@ export class TerminalComponent {
         }
         return;
       }
-    }
-  }
-
-  protected onGlobalKeydown(event: KeyboardEvent): void {
-    if (event.key === 'Escape') {
-      event.preventDefault();
-      this.terminal.exit();
     }
   }
 
